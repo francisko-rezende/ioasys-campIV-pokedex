@@ -1,12 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App";
+import Card from "./components/Card/Card";
 import Navigation from "./routes";
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme";
+import GlobalStyle from "./styles/GlobalStyle";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navigation />
+    <ThemeProvider theme={theme}>
+      <Navigation />
+    </ThemeProvider>
+    <GlobalStyle />
   </React.StrictMode>,
   document.getElementById("root")
 );

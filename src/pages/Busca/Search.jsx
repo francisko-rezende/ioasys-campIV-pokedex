@@ -1,19 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Card from "../../components/Card";
+import api from "../../services/api";
 
 const Search = () => {
-  const [pokemon, setPokemon] = React.useState("");
-  const [data, setData] = React.useState("");
+  const [searchedPokemon, setSearchedPokemon] = React.useState("");
+  const [searchResult, setSearchResult] = React.useState("");
 
   async function handlePokemonSearch(e) {
     e.preventDefault();
 
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${pokemon}/`
-    );
-    const data = await response.json();
-    setData(data);
+    const { data } = await api.get(`pokemon/${searchedPokemon}`);
+    console.log(data);
+    setSearchResult(data);
   }
 
   return (
@@ -22,14 +21,14 @@ const Search = () => {
       <Link to="/">Voltar</Link>
       <form>
         <input
-          onChange={(e) => setPokemon(e.target.value)}
-          value={pokemon}
+          onChange={(e) => setSearchedPokemon(e.target.value)}
+          value={searchedPokemon}
         ></input>
         <button type="submit" onClick={handlePokemonSearch}>
           Buscar
         </button>
       </form>
-      {data && <Card {...data} />}
+      {searchResult && <Card {...searchResult} />}
     </>
   );
 };

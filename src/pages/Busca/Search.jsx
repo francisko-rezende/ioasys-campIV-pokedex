@@ -12,7 +12,7 @@ const Search = () => {
   const [pokemonFeed, setPokemonFeed] = React.useState(null);
 
   async function getInfiniteScrollData(
-    endpoint = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=15"
+    endpoint = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20"
   ) {
     const { next, results } = (await axios.get(endpoint)).data;
     setEndpoint(next);
@@ -34,7 +34,6 @@ const Search = () => {
         const newResponses = await Promise.all(
           pokemonList.map((name) => api.get(name))
         );
-        console.log(newResponses);
         setPokemonFeed(newResponses.map(({ data }) => data));
       }
     }
@@ -42,9 +41,29 @@ const Search = () => {
     getPokemonData();
   }, [pokemonList]);
 
-  function loadMorePokemon() {
-    if (endpoint) getInfiniteScrollData(endpoint);
-  }
+  React.useEffect(() => {
+    let wait = false;
+    function infiniteScroll() {
+      if (endpoint) {
+        const scroll = window.scrollY;
+        const height = document.body.offsetHeight - window.innerHeight;
+
+        if (scroll > height * 0.95 && !wait) {
+          wait = true;
+          getInfiniteScrollData(endpoint);
+          setTimeout(() => (wait = false), 1000);
+        }
+      }
+    }
+
+    window.addEventListener("wheel", infiniteScroll);
+    window.addEventListener("scroll", infiniteScroll);
+
+    return () => {
+      window.removeEventListener("wheel", infiniteScroll);
+      window.removeEventListener("scroll", infiniteScroll);
+    };
+  });
 
   async function handlePokemonSearch(e) {
     e.preventDefault();
@@ -80,8 +99,6 @@ const Search = () => {
               <Card key={pokemon.id} {...pokemon} />
             ))}
           </div>
-          <div id="end"></div>
-          <button onClick={loadMorePokemon}>Carregar mais</button>
         </div>
       )}
     </>

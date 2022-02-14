@@ -7,34 +7,44 @@ import api from "../../services/api";
 const Search = () => {
   const [searchedPokemon, setSearchedPokemon] = React.useState("");
   const [searchResult, setSearchResult] = React.useState("");
+  const [pokemonList, setPokemonList] = React.useState("");
+  const [endpoint, setEndpoint] = React.useState(1);
   const [pokemonFeed, setPokemonFeed] = React.useState(null);
 
-  async function updatePokemonFeed(
-    url = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=2"
+  async function getInfiniteScrollData(
+    endpoint = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=15"
   ) {
-    const { data } = await axios.get(url);
-    const ids = data.results.map(({ url }) =>
-      url.replace("https://pokeapi.co/api/v2/pokemon/", "")
-    );
-    const responses = await Promise.all(ids.map((id) => api.get(id)));
-    const result = responses.map(({ data }) => data);
-    setPokemonFeed((pokemonFeed) =>
-      pokemonFeed
-        ? {
-            pokemon: [...pokemonFeed.pokemon, ...result],
-            data,
-          }
-        : { pokemon: result, data }
-    );
-  }
+    const { next, results } = (await axios.get(endpoint)).data;
+    setEndpoint(next);
 
-  function loadMorePokemon() {
-    if (pokemonFeed.data.next) updatePokemonFeed(pokemonFeed.data.next);
+    const pokemonNames = results.map(({ name }) => name);
+
+    setPokemonList((currentPokemon) =>
+      Array.from(new Set([...currentPokemon, ...pokemonNames]))
+    );
   }
 
   React.useEffect(() => {
-    updatePokemonFeed();
+    getInfiniteScrollData();
   }, []);
+
+  React.useEffect(() => {
+    async function getPokemonData() {
+      if (pokemonList) {
+        const newResponses = await Promise.all(
+          pokemonList.map((name) => api.get(name))
+        );
+        console.log(newResponses);
+        setPokemonFeed(newResponses.map(({ data }) => data));
+      }
+    }
+
+    getPokemonData();
+  }, [pokemonList]);
+
+  function loadMorePokemon() {
+    if (endpoint) getInfiniteScrollData(endpoint);
+  }
 
   async function handlePokemonSearch(e) {
     e.preventDefault();
@@ -66,10 +76,11 @@ const Search = () => {
         <div>
           <h1>Pokémon</h1>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-            {pokemonFeed.pokemon.map((pokemon) => (
+            {pokemonFeed.map((pokemon) => (
               <Card key={pokemon.id} {...pokemon} />
             ))}
           </div>
+          <div id="end"></div>
           <button onClick={loadMorePokemon}>Carregar mais</button>
         </div>
       )}

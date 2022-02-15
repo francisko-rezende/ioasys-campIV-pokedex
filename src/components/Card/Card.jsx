@@ -1,8 +1,12 @@
 import React from "react";
 import * as S from "./Card.styles";
 
-const Card = ({ id, name, types }) => {
-  const pokemonType = types[0].type.name;
+// Todo create styled container for Card (check the inline style below)
+// todo refactor getSvgBaseAddress and formatId into their own modules (?) inside the helper folder
+
+const Card = (pokemon) => {
+  const { id, name, types } = pokemon;
+  const type = types[0].type.name;
 
   const getSvgBaseAddress = (id) =>
     `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
@@ -28,8 +32,8 @@ const Card = ({ id, name, types }) => {
         justifyContent: "center",
       }}
     >
-      <S.Card href="#" pokemonType={pokemonType}>
-        <S.Id pokemonType={pokemonType}>{formatId(id)}</S.Id>
+      <S.Card to={name} type={type} state={{ pokemon }}>
+        <S.Id type={type}>{formatId(id)}</S.Id>
         <S.Photo
           src={getSvgBaseAddress(id)}
           alt={`Uma foto de um/uma ${name}`}
@@ -37,7 +41,7 @@ const Card = ({ id, name, types }) => {
           height="94.37px"
         />
 
-        <S.Name pokemonType={pokemonType}>{name}</S.Name>
+        <S.Name type={type}>{name}</S.Name>
       </S.Card>
     </div>
   );

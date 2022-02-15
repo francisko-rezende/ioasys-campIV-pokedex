@@ -30,11 +30,18 @@ const About = () => {
   };
 
   React.useEffect(() => {
-    axios
-      .get(pokemon.species.url)
-      .then(({ data }) =>
-        setFlavorText(data.flavor_text_entries[0].flavor_text)
+    axios.get(pokemon.species.url).then(({ data }) => {
+      const englishFlavorTextObj = data.flavor_text_entries.find(
+        ({ language }) => language.name === "en"
       );
+
+      if (englishFlavorTextObj) {
+        setFlavorText(englishFlavorTextObj.flavor_text);
+        return;
+      }
+
+      setFlavorText(data.flavor_text_entries[0].flavor_text);
+    });
   }, []);
 
   function persistInLocalStorage(pokemon) {
@@ -43,8 +50,8 @@ const About = () => {
     );
     if (currentFavorites) {
       const stringifiedPokemonArr = JSON.stringify([
-        ...currentFavorites,
         pokemon,
+        ...currentFavorites,
       ]);
       window.localStorage.setItem("favoritePokemon", stringifiedPokemonArr);
       return;

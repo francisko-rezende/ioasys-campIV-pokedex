@@ -3,6 +3,9 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
+// todo create About.styles.js and put styled componenents there
+// todo style it
+
 const About = () => {
   const location = useLocation();
   const { pokemon } = location.state;

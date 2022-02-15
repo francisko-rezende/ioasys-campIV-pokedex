@@ -11,6 +11,9 @@ function App() {
         <li>
           <Link to="/favoritos">Favoritos</Link>
         </li>
+        <li>
+          <Link to="/sobre">Info do poke</Link>
+        </li>
       </ul>
     </>
   );

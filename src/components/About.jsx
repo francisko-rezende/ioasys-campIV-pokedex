@@ -3,7 +3,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-// todo create About.styles.js and put styled componenents there
+// todo create About.styles.js and put styled components there
 // todo style it
 
 const About = () => {
@@ -40,7 +40,7 @@ const About = () => {
   return (
     <>
       <h1>Detalhes</h1>
-      <Link to="/">Voltar</Link>
+      <Link to="/busca">Voltar</Link>
       <img src={getSvgBaseAddress(pokemon.id)} alt="foto do pokemon" />
       <h2>{pokemon.name}</h2>
       <span>{formatId(pokemon.id)}</span>

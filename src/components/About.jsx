@@ -3,9 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const PokemonDetails = () => {
-  const bulba = JSON.parse(window.localStorage.getItem("bulba"));
-  const pokemonType = bulba.types[0].type.name;
+const About = ({ pokemon }) => {
+  // const bulba = JSON.parse(window.localStorage.getItem("bulba"));
+  const pokemonType = pokemon.types[0].type.name;
   const [flavorText, setFlavorText] = React.useState("");
 
   const getSvgBaseAddress = (id) =>
@@ -26,7 +26,7 @@ const PokemonDetails = () => {
 
   React.useEffect(() => {
     axios
-      .get(bulba.species.url)
+      .get(pokemon.species.url)
       .then(({ data }) =>
         setFlavorText(data.flavor_text_entries[0].flavor_text)
       );
@@ -36,22 +36,22 @@ const PokemonDetails = () => {
     <>
       <h1>Detalhes</h1>
       <Link to="/">Voltar</Link>
-      <img src={getSvgBaseAddress(bulba.id)} alt="foto do pokemon" />
-      <h2>{bulba.name}</h2>
-      <span>{formatId(bulba.id)}</span>
+      <img src={getSvgBaseAddress(pokemon.id)} alt="foto do pokemon" />
+      <h2>{pokemon.name}</h2>
+      <span>{formatId(pokemon.id)}</span>
       <hr></hr>
       <ul>
-        {bulba.types.map(({ type }) => (
+        {pokemon.types.map(({ type }) => (
           <button key={type.name}>{type.name}</button>
         ))}
       </ul>
       <hr />
       <ul>
-        <li>height: {bulba.height / 10} m</li>
-        <li>weight: {bulba.weight / 10} kg</li>
+        <li>height: {pokemon.height / 10} m</li>
+        <li>weight: {pokemon.weight / 10} kg</li>
         <li>
-          moves: {bulba.abilities[0].ability.name} /{" "}
-          {bulba.abilities[1].ability.name}
+          moves: {pokemon.abilities[0].ability.name} /{" "}
+          {pokemon.abilities[1].ability.name}
         </li>
       </ul>
       <hr />
@@ -74,7 +74,7 @@ const PokemonDetails = () => {
         <li>
           Total pra calcular o tamanho das barras: 245. Eg: 45 / 245 * 300 = 55
         </li>
-        {bulba.stats.map((item) => (
+        {pokemon.stats.map((item) => (
           <li
             key={item.stat.base_stat}
             style={{
@@ -121,4 +121,4 @@ const Bar = styled.div`
   top: 1px;
 `;
 
-export default PokemonDetails;
+export default About;

@@ -10,6 +10,7 @@ function Navigation() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/busca" element={<Search />} />
+        <Route path="/busca/:name" element={<About />} />
         <Route path="/favoritos" element={<FavoritePokemon />} />
         <Route path="/sobre" element={<About />} />
       </Routes>

@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Card = styled.a`
+export const Card = styled(Link)`
   border-radius: 10.49px;
-  color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
+  color: ${({ theme, type }) => theme.colors.pokemonTypes[type]};
   border: 1px solid;
   width: 150px;
   height: 148px;
@@ -11,7 +12,7 @@ export const Card = styled.a`
 
 export const Id = styled.span`
   display: block;
-  color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
+  color: ${({ theme, type }) => theme.colors.pokemonTypes[type]};
   text-align: right;
   padding: 5px 10px;
   padding-bottom: 0;
@@ -29,8 +30,7 @@ export const Name = styled.span`
   display: block;
   text-align: center;
   font-size: calc(14 / 16 * 1rem);
-  background: ${({ theme, pokemonType }) =>
-    theme.colors.pokemonTypes[pokemonType]};
+  background: ${({ theme, type }) => theme.colors.pokemonTypes[type]};
   /* background: rgba(0, 0, 0, 0.5); */
   color: ${({ theme }) => theme.colors.grayscale.white};
   text-transform: capitalize;

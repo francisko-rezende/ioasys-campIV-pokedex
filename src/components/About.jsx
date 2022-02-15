@@ -1,10 +1,12 @@
 import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-const About = ({ pokemon }) => {
-  // const bulba = JSON.parse(window.localStorage.getItem("bulba"));
+const About = () => {
+  const location = useLocation();
+  const { pokemon } = location.state;
+
   const pokemonType = pokemon.types[0].type.name;
   const [flavorText, setFlavorText] = React.useState("");
 
@@ -102,9 +104,9 @@ const About = ({ pokemon }) => {
 };
 
 const Wrapper = styled.div`
-  /* background-color: ${({ theme, pokemonType }) =>
-    theme.colors.pokemonTypes[pokemonType]}; */
-  background-color: hsla(100, 56%, 54%, 0.2);
+  background-color: ${({ theme, pokemonType }) =>
+    theme.colors.pokemonTypes[`${pokemonType}Bg`]};
+  /* background-color: hsla(100, 56%, 54%, 0.2); */
   width: 300px;
   height: 6px;
   position: relative;

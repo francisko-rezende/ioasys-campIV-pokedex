@@ -37,11 +37,30 @@ const About = () => {
       );
   }, []);
 
+  function persistInLocalStorage(pokemon) {
+    const currentFavorites = JSON.parse(
+      window.localStorage.getItem("favoritePokemon")
+    );
+    if (currentFavorites) {
+      const stringifiedPokemonArr = JSON.stringify([
+        ...currentFavorites,
+        pokemon,
+      ]);
+      window.localStorage.setItem("favoritePokemon", stringifiedPokemonArr);
+      return;
+    }
+    const stringifiedPokemonArr = JSON.stringify([pokemon]);
+    window.localStorage.setItem("favoritePokemon", stringifiedPokemonArr);
+  }
+
   return (
     <>
       <h1>Detalhes</h1>
       <Link to="/busca">Voltar</Link>
       <img src={getSvgBaseAddress(pokemon.id)} alt="foto do pokemon" />
+      <button onClick={() => persistInLocalStorage(pokemon)}>
+        Adicionar aos favoritos
+      </button>
       <h2>{pokemon.name}</h2>
       <span>{formatId(pokemon.id)}</span>
       <hr></hr>

@@ -12,6 +12,7 @@ function Navigation() {
         <Route path="/busca" element={<Search />} />
         <Route path="/busca/:name" element={<About />} />
         <Route path="/favoritos" element={<FavoritePokemon />} />
+        <Route path="/favoritos/:name" element={<About />} />
         <Route path="/sobre" element={<About />} />
       </Routes>
     </Router>

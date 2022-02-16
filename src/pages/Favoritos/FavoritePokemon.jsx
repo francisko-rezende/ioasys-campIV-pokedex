@@ -10,9 +10,11 @@ const FavoritePokemon = () => {
     <>
       <h1>Meus pokemon favoritos</h1>
       <Link to="/">Voltar</Link>
-      {favorites.map((pokemon) => (
-        <Card key={pokemon.name} {...pokemon} />
-      ))}
+      {favorites ? (
+        favorites.map((pokemon) => <Card key={pokemon.name} {...pokemon} />)
+      ) : (
+        <p>Você ainda não tem favoritos</p>
+      )}
     </>
   );
 };

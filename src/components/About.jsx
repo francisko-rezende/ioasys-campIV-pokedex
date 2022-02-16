@@ -42,13 +42,19 @@ const About = () => {
 
       setFlavorText(data.flavor_text_entries[0].flavor_text);
     });
-  }, []);
+  }, [pokemon.species.url]);
 
   function persistInLocalStorage(pokemon) {
     const currentFavorites = JSON.parse(
       window.localStorage.getItem("favoritePokemon")
     );
-    if (currentFavorites) {
+
+    if (currentFavorites && currentFavorites.length === 12) {
+      console.warn("A lista já tem o número máximo de pokemon");
+      return;
+    }
+
+    if (currentFavorites && currentFavorites.length < 12) {
       const stringifiedPokemonArr = JSON.stringify([
         pokemon,
         ...currentFavorites,

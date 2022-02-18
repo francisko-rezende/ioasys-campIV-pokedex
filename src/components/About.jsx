@@ -49,8 +49,24 @@ const About = () => {
       window.localStorage.getItem("favoritePokemon")
     );
 
+    if (currentFavorites.some(({ name }) => name === pokemon.name)) {
+      alert("Pokemon já está na lista");
+      return;
+    }
+
     if (currentFavorites && currentFavorites.length === 12) {
-      console.warn("A lista já tem o número máximo de pokemon");
+      const confirm = window.confirm(
+        "A lista já tem o número máximo de pokemon, se você adicionar esse ele vai substituir o último pokémon da sua lista. Tem certeza que deseja continuar?"
+      );
+
+      if (confirm) {
+        currentFavorites.pop();
+        currentFavorites.unshift(pokemon);
+        window.localStorage.setItem(
+          "favoritePokemon",
+          JSON.stringify(currentFavorites)
+        );
+      }
       return;
     }
 

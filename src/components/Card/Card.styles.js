@@ -8,6 +8,7 @@ export const Card = styled(Link)`
   width: 150px;
   height: 148px;
   text-decoration: none;
+  background-color: ${({ theme, mode }) => theme[mode].cardBg};
 `;
 
 export const Id = styled.span`
@@ -31,11 +32,10 @@ export const Name = styled.span`
   text-align: center;
   font-size: calc(14 / 16 * 1rem);
   background: ${({ theme, type }) => theme.colors.pokemonTypes[type]};
-  /* background: rgba(0, 0, 0, 0.5); */
   color: ${({ theme }) => theme.colors.grayscale.white};
   text-transform: capitalize;
   border-radius: 0 0 10px 10px;
   padding: 5px 10px;
   position: relative;
-  top: 3px;
+  top: 4px;
 `;

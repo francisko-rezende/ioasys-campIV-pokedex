@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import Card from "../../components/Card";
+import Header from "../../components/Header/Header";
 import api from "../../services/api";
 
 const Search = () => {
@@ -74,6 +75,7 @@ const Search = () => {
 
   return (
     <>
+      <Header />
       <h1>Essa é a página de busca</h1>
       <Link to="/">Voltar</Link>
       <form>

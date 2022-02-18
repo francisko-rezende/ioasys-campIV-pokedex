@@ -1,10 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import * as S from "./Card.styles";
 
 // Todo create styled container for Card (check the inline style below)
 // todo refactor getSvgBaseAddress and formatId into their own modules (?) inside the helper folder
 
 const Card = (pokemon) => {
+  const { mode } = useSelector(({ mode }) => mode);
+
   const { id, name, types } = pokemon;
   const type = types[0].type.name;
 
@@ -32,7 +35,7 @@ const Card = (pokemon) => {
         justifyContent: "center",
       }}
     >
-      <S.Card to={name} type={type} state={{ pokemon }}>
+      <S.Card to={name} type={type} state={{ pokemon }} mode={mode}>
         <S.Id type={type}>{formatId(id)}</S.Id>
         <S.Photo
           src={getSvgBaseAddress(id)}

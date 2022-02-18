@@ -107,7 +107,10 @@ const About = () => {
     <>
       <h1>Detalhes</h1>
       <Link to="/busca">Voltar</Link>
-      <img src={getSvgBaseAddress(pokemon.id)} alt="foto do pokemon" />
+      <img
+        src={getSvgBaseAddress(pokemon.id)}
+        alt={`Foto do/da ${pokemon.name}`}
+      />
       {isFavorite() ? (
         <button onClick={() => removeFromFavorites(pokemon)}>
           Remover dos favoritos
@@ -139,7 +142,7 @@ const About = () => {
       <hr />
       <h2>Base Stats</h2>
       <ul>
-        <li style={{ display: "flex", alignItems: "center" }}>
+        {/* <li style={{ display: "flex", alignItems: "center" }}>
           hp: 45{" "}
           <Wrapper
             role="progressbar"
@@ -153,10 +156,10 @@ const About = () => {
         </li>
         <li>
           Total pra calcular o tamanho das barras: 245. Eg: 45 / 245 * 300 = 55
-        </li>
+        </li> */}
         {pokemon.stats.map((item) => (
           <li
-            key={item.stat.base_stat}
+            key={item.stat.name}
             style={{
               display: "grid",
               alignItems: "center",
@@ -184,7 +187,6 @@ const About = () => {
 const Wrapper = styled.div`
   background-color: ${({ theme, pokemonType }) =>
     theme.colors.pokemonTypes[`${pokemonType}Bg`]};
-  /* background-color: hsla(100, 56%, 54%, 0.2); */
   width: 300px;
   height: 6px;
   position: relative;

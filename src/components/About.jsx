@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import Header from "./Header/Header";
 
 // todo create About.styles.js and put styled components there
 // todo style it
@@ -9,6 +10,10 @@ import styled from "styled-components";
 const About = () => {
   const location = useLocation();
   const { pokemon } = location.state;
+  const previousPage = location.pathname.split("/").slice(0, -1).join("/");
+
+  console.log(previousPage);
+
   const isFavorite = () => {
     const currentFavorites = JSON.parse(
       window.localStorage.getItem("favoritePokemon")
@@ -105,8 +110,9 @@ const About = () => {
 
   return (
     <>
+      <Header />
       <h1>Detalhes</h1>
-      <Link to="/busca">Voltar</Link>
+      <Link to={previousPage}>Voltar</Link>
       <img
         src={getSvgBaseAddress(pokemon.id)}
         alt={`Foto do/da ${pokemon.name}`}

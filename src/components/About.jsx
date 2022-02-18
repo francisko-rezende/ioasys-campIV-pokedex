@@ -1,7 +1,9 @@
 import axios from "axios";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import Container from "./Container";
 import Header from "./Header/Header";
 
 // todo create About.styles.js and put styled components there
@@ -12,7 +14,7 @@ const About = () => {
   const { pokemon } = location.state;
   const previousPage = location.pathname.split("/").slice(0, -1).join("/");
 
-  console.log(previousPage);
+  const { mode } = useSelector(({ mode }) => mode);
 
   const isFavorite = () => {
     const currentFavorites = JSON.parse(
@@ -34,6 +36,16 @@ const About = () => {
       "favoritePokemon",
       JSON.stringify(updatedFavorites)
     );
+  }
+
+  function getFormattedMoves() {
+    if (pokemon.abilities.length > 1) {
+      return pokemon.abilities
+        .slice(0, 2)
+        .map(({ ability }) => ability.name)
+        .join(" / ");
+    }
+    return pokemon.abilities[0].ability.name;
   }
 
   const pokemonType = pokemon.types[0].type.name;
@@ -109,14 +121,17 @@ const About = () => {
   }
 
   return (
-    <>
+    <Container mode={mode} pokemonType={pokemonType}>
       <Header />
       <h1>Detalhes</h1>
-      <Link to={previousPage}>Voltar</Link>
-      <img
-        src={getSvgBaseAddress(pokemon.id)}
-        alt={`Foto do/da ${pokemon.name}`}
-      />
+      <ImgContainer pokemonType={pokemonType}>
+        <Link to={previousPage}>Voltar</Link>
+        About
+        <img
+          src={getSvgBaseAddress(pokemon.id)}
+          alt={`Foto do/da ${pokemon.name}`}
+        />
+      </ImgContainer>
       {isFavorite() ? (
         <button onClick={() => removeFromFavorites(pokemon)}>
           Remover dos favoritos
@@ -126,27 +141,28 @@ const About = () => {
           Adicionar aos favoritos
         </button>
       )}
-      <h2>{pokemon.name}</h2>
-      <span>{formatId(pokemon.id)}</span>
+      <PokemonName pokemonType={pokemonType}>{pokemon.name}</PokemonName>
+      <PokemonId pokemonType={pokemonType}>{formatId(pokemon.id)}</PokemonId>
       <hr></hr>
-      <ul>
-        {pokemon.types.map(({ type }) => (
-          <button key={type.name}>{type.name}</button>
-        ))}
-      </ul>
+
+      {pokemon.types.map(({ type }) => (
+        <PokemonTypeTag key={type.name} pokemonType={type.name}>
+          {type.name}
+        </PokemonTypeTag>
+      ))}
+
       <hr />
-      <ul>
+      <PokemonTraitList mode={mode}>
         <li>height: {pokemon.height / 10} m</li>
         <li>weight: {pokemon.weight / 10} kg</li>
-        <li>
-          moves: {pokemon.abilities[0].ability.name} /{" "}
-          {pokemon.abilities[1].ability.name}
-        </li>
-      </ul>
+        <li>moves: {getFormattedMoves()}</li>
+      </PokemonTraitList>
       <hr />
-      <p>{flavorText}</p>
+      <PokemonFlavorText pokemonType={pokemonType} mode={mode}>
+        {flavorText}
+      </PokemonFlavorText>
       <hr />
-      <h2>Base Stats</h2>
+      <BaseStatsTitle pokemonType={pokemonType}>Base Stats</BaseStatsTitle>
       <ul>
         {/* <li style={{ display: "flex", alignItems: "center" }}>
           hp: 45{" "}
@@ -172,8 +188,10 @@ const About = () => {
               gridTemplateColumns: "1fr auto auto",
             }}
           >
-            <span>{item.stat.name}</span>
-            <span>{item.base_stat}</span>{" "}
+            <BaseStatName pokemonType={pokemonType}>
+              {item.stat.name}
+            </BaseStatName>
+            <BaseStatValue mode={mode}>{item.base_stat}</BaseStatValue>{" "}
             <Wrapper
               role="progressbar"
               aria-valuenow={item.base_stat}
@@ -186,7 +204,7 @@ const About = () => {
           </li>
         ))}
       </ul>
-    </>
+    </Container>
   );
 };
 
@@ -207,6 +225,59 @@ const Bar = styled.div`
     theme.colors.pokemonTypes[pokemonType]};
   position: relative;
   top: 1px;
+`;
+
+const PokemonName = styled.h2`
+  text-transform: capitalize;
+  color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
+`;
+
+const PokemonId = styled.span`
+  color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
+`;
+
+const ImgContainer = styled.div`
+  background-color: ${({ theme, pokemonType }) =>
+    theme.colors.pokemonTypes[pokemonType]};
+  width: 408px;
+  height: 538px;
+`;
+
+const PokemonTypeTag = styled.span`
+  text-transform: capitalize;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  color: ${({ theme }) => theme.colors.grayscale.white};
+  background-color: ${({ theme, pokemonType }) =>
+    theme.colors.pokemonTypes[pokemonType]};
+`;
+
+const PokemonTraitList = styled.ul`
+  color: ${({ theme, mode }) => theme[mode].textMain};
+`;
+
+const BaseStatsTitle = styled.h2`
+  color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
+`;
+
+const PokemonFlavorText = styled.p`
+  color: ${({ theme, mode }) => theme[mode].textMain};
+`;
+
+const BaseStatName = styled.span`
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
+`;
+
+const BaseStatValue = styled.span`
+  color: ${({ theme, mode }) => theme[mode].textMain};
 `;
 
 export default About;

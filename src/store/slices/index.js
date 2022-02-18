@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
-import themeVariationSlice from "./themeVariationSlice";
+import mode from "./modeSlice";
 
-const createReducer = combineReducers({ themeVariation: themeVariationSlice });
+const createReducer = combineReducers({ mode: mode });
 
 export default createReducer;

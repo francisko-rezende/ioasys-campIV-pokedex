@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Card from "../../components/Card";
+import Container from "../../components/Container";
 import Header from "../../components/Header/Header";
 import api from "../../services/api";
 
@@ -111,8 +112,8 @@ const Search = () => {
   );
 };
 
-const Container = styled.main`
-  background-color: ${({ theme, mode }) => theme[mode].pageBg};
-`;
+// const Container = styled.main`
+//   background-color: ${({ theme, mode }) => theme[mode].pageBg};
+// `;
 
 export default Search;

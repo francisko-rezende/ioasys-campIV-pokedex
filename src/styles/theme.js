@@ -47,6 +47,18 @@ const theme = {
     },
     ioasysColor: { secondaryColor: "#EC0344" },
   },
+  light: {
+    cardBg: "#f2f4f7",
+    pageBg: "#ffffff",
+    textMain: "#212121",
+    textSecondary: "hsla(0, 0%, 70%, 1)",
+  },
+  dark: {
+    cardBg: "#2f2f2f",
+    pageBg: "hsla(0, 0%, 13%, 1)",
+    textMain: "hsla(0, 0%, 100%, 1)",
+    textSecondary: "hsla(0, 0%, 70%, 1)",
+  },
 };
 
 export default theme;

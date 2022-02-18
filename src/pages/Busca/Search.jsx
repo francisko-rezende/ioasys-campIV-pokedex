@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import Card from "../../components/Card";
 import Header from "../../components/Header/Header";
 import api from "../../services/api";
@@ -11,6 +13,8 @@ const Search = () => {
   const [pokemonList, setPokemonList] = React.useState("");
   const [endpoint, setEndpoint] = React.useState(1);
   const [pokemonFeed, setPokemonFeed] = React.useState(null);
+
+  const { mode } = useSelector(({ mode }) => mode);
 
   async function getInfiniteScrollData(
     endpoint = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20"
@@ -74,7 +78,7 @@ const Search = () => {
   }
 
   return (
-    <>
+    <Container mode={mode}>
       <Header />
       <h1>Essa é a página de busca</h1>
       <Link to="/">Voltar</Link>
@@ -103,8 +107,12 @@ const Search = () => {
           </div>
         </div>
       )}
-    </>
+    </Container>
   );
 };
+
+const Container = styled.main`
+  background-color: ${({ theme, mode }) => theme[mode].pageBg};
+`;
 
 export default Search;

@@ -5,13 +5,17 @@ import Navigation from "./routes";
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
 import GlobalStyle from "./styles/GlobalStyle";
+import { Provider } from "react-redux";
+import store from "./store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Navigation />
-    </ThemeProvider>
-    <GlobalStyle />
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Navigation />
+      </ThemeProvider>
+      <GlobalStyle />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

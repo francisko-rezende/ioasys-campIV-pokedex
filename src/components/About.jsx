@@ -9,6 +9,27 @@ import styled from "styled-components";
 const About = () => {
   const location = useLocation();
   const { pokemon } = location.state;
+  const isFavorite = () => {
+    const currentFavorites = JSON.parse(
+      window.localStorage.getItem("favoritePokemon")
+    );
+    return currentFavorites.some(({ name }) => name === pokemon.name);
+  };
+
+  function removeFromFavorites(pokemon) {
+    const currentFavorites = JSON.parse(
+      window.localStorage.getItem("favoritePokemon")
+    );
+
+    const updatedFavorites = currentFavorites.filter(
+      ({ name }) => name !== pokemon.name
+    );
+
+    window.localStorage.setItem(
+      "favoritePokemon",
+      JSON.stringify(updatedFavorites)
+    );
+  }
 
   const pokemonType = pokemon.types[0].type.name;
   const [flavorText, setFlavorText] = React.useState("");
@@ -56,7 +77,7 @@ const About = () => {
 
     if (currentFavorites && currentFavorites.length === 12) {
       const confirm = window.confirm(
-        "A lista já tem o número máximo de pokemon, se você adicionar esse ele vai substituir o último pokémon da sua lista. Tem certeza que deseja continuar?"
+        "Sua lista de favoritos atingiu o limite máximo de 12 pokémon. Se você adicionar esse, ele vai substituir o último pokémon da sua lista. Tem certeza que deseja continuar?"
       );
 
       if (confirm) {
@@ -87,9 +108,15 @@ const About = () => {
       <h1>Detalhes</h1>
       <Link to="/busca">Voltar</Link>
       <img src={getSvgBaseAddress(pokemon.id)} alt="foto do pokemon" />
-      <button onClick={() => persistInLocalStorage(pokemon)}>
-        Adicionar aos favoritos
-      </button>
+      {isFavorite() ? (
+        <button onClick={() => removeFromFavorites(pokemon)}>
+          Remover dos favoritos
+        </button>
+      ) : (
+        <button onClick={() => persistInLocalStorage(pokemon)}>
+          Adicionar aos favoritos
+        </button>
+      )}
       <h2>{pokemon.name}</h2>
       <span>{formatId(pokemon.id)}</span>
       <hr></hr>

@@ -12,7 +12,6 @@ function App() {
       .then((response) => response)
       .then(({ data }) => {
         setPokemon(data);
-        console.log(data);
       });
   }, []);
 

@@ -1,8 +1,9 @@
 import axios from "axios";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { ADD_FAVORITE_POKEMON } from "../store/slices/favoritePokemonSlice";
 import Container from "./Container";
 import Header from "./Header/Header";
 
@@ -15,6 +16,16 @@ const About = () => {
   const previousPage = location.pathname.split("/").slice(0, -1).join("/");
 
   const { mode } = useSelector(({ mode }) => mode);
+  const dispatch = useDispatch();
+  const addToFavs = () => {
+    dispatch(ADD_FAVORITE_POKEMON(pokemon));
+  };
+
+  // const {
+  //   favoritePokemon: { favoritePokemonList },
+  // } = useSelector(({ favoritePokemon }) => favoritePokemon);
+
+  // console.log(favoritePokemonList);
 
   const isFavorite = () => {
     const currentFavorites = JSON.parse(
@@ -129,6 +140,7 @@ const About = () => {
     <Container mode={mode} pokemonType={pokemonType}>
       <Header />
       <h1>Detalhes</h1>
+      <button onClick={addToFavs}>Add</button>
       <ImgContainer pokemonType={pokemonType}>
         <Link to={previousPage}>Voltar</Link>
         About

@@ -3,7 +3,10 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { ADD_FAVORITE_POKEMON } from "../store/slices/favoritePokemonSlice";
+import {
+  ADD_FAVORITE_POKEMON,
+  REMOVE_FAVORITE_POKEMON,
+} from "../store/slices/favoritePokemonSlice";
 import Container from "./Container";
 import Header from "./Header/Header";
 
@@ -16,28 +19,40 @@ const About = () => {
   const previousPage = location.pathname.split("/").slice(0, -1).join("/");
 
   const { mode } = useSelector(({ mode }) => mode);
+  const favoritePokemonList = useSelector(
+    (store) => store.favoritePokemon.favoritePokemonList
+  );
+
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      "favoritePokemon",
+      JSON.stringify(favoritePokemonList)
+    );
+  }, [favoritePokemonList]);
+
   const dispatch = useDispatch();
   const addToFavs = () => {
     dispatch(ADD_FAVORITE_POKEMON(pokemon));
   };
-
-  // const {
-  //   favoritePokemon: { favoritePokemonList },
-  // } = useSelector(({ favoritePokemon }) => favoritePokemon);
-
-  // console.log(favoritePokemonList);
-
-  const isFavorite = () => {
-    const currentFavorites = JSON.parse(
-      window.localStorage.getItem("favoritePokemon")
-    );
-
-    if (currentFavorites) {
-      return currentFavorites.some(({ name }) => name === pokemon.name);
-    }
-
-    return false;
+  const removeFromFavs = () => {
+    dispatch(REMOVE_FAVORITE_POKEMON(pokemon));
   };
+
+  console.log(favoritePokemonList.some(({ name }) => name === pokemon.name));
+
+  const isFavorite = () =>
+    favoritePokemonList.some(({ name }) => name === pokemon.name);
+  // const isFavorite = () => {
+  //   const currentFavorites = JSON.parse(
+  //     window.localStorage.getItem("favoritePokemon")
+  //   );
+
+  //   if (currentFavorites) {
+  //     return currentFavorites.some(({ name }) => name === pokemon.name);
+  //   }
+
+  //   return false;
+  // };
 
   function removeFromFavorites(pokemon) {
     const currentFavorites = JSON.parse(
@@ -140,7 +155,12 @@ const About = () => {
     <Container mode={mode} pokemonType={pokemonType}>
       <Header />
       <h1>Detalhes</h1>
-      <button onClick={addToFavs}>Add</button>
+      {isFavorite() ? (
+        <button onClick={removeFromFavs}>Remove</button>
+      ) : (
+        <button onClick={addToFavs}>Add</button>
+      )}
+
       <ImgContainer pokemonType={pokemonType}>
         <Link to={previousPage}>Voltar</Link>
         About

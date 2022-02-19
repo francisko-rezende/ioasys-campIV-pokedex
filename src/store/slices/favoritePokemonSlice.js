@@ -26,6 +26,12 @@ const favoritePokemonSlice = createSlice({
       ...state,
       favoritePokemonList: [...state.favoritePokemonList, payload],
     }),
+    REMOVE_FAVORITE_POKEMON: (state, { payload }) => ({
+      ...state,
+      favoritePokemonList: state.favoritePokemonList.filter(
+        ({ name }) => name !== payload.name
+      ),
+    }),
   },
 });
 
@@ -36,6 +42,7 @@ export const {
   GET_FAVORITE_POKEMON_SUCCESS,
   GET_FAVORITE_POKEMON_FAILURE,
   ADD_FAVORITE_POKEMON,
+  REMOVE_FAVORITE_POKEMON,
 } = actions;
 
 export default reducer;

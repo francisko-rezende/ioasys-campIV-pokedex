@@ -51,8 +51,4 @@ const Blank = styled.div`
   background-color: ${({ theme, mode }) => theme[mode].cardBg};
 `;
 
-// const Container = styled.main`
-//   background-color: ${({ theme, mode }) => theme[mode].pageBg};
-// `;
-
 export default FavoritePokemon;

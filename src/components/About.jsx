@@ -31,43 +31,15 @@ const About = () => {
   }, [favoritePokemonList]);
 
   const dispatch = useDispatch();
-  const addToFavs = () => {
+  const addToFavorites = () => {
     dispatch(ADD_FAVORITE_POKEMON(pokemon));
   };
-  const removeFromFavs = () => {
+  const removeFromFavorites = () => {
     dispatch(REMOVE_FAVORITE_POKEMON(pokemon));
   };
 
-  console.log(favoritePokemonList.some(({ name }) => name === pokemon.name));
-
   const isFavorite = () =>
     favoritePokemonList.some(({ name }) => name === pokemon.name);
-  // const isFavorite = () => {
-  //   const currentFavorites = JSON.parse(
-  //     window.localStorage.getItem("favoritePokemon")
-  //   );
-
-  //   if (currentFavorites) {
-  //     return currentFavorites.some(({ name }) => name === pokemon.name);
-  //   }
-
-  //   return false;
-  // };
-
-  function removeFromFavorites(pokemon) {
-    const currentFavorites = JSON.parse(
-      window.localStorage.getItem("favoritePokemon")
-    );
-
-    const updatedFavorites = currentFavorites.filter(
-      ({ name }) => name !== pokemon.name
-    );
-
-    window.localStorage.setItem(
-      "favoritePokemon",
-      JSON.stringify(updatedFavorites)
-    );
-  }
 
   function getFormattedMoves() {
     if (pokemon.abilities.length > 1) {
@@ -113,52 +85,14 @@ const About = () => {
     });
   }, [pokemon.species.url]);
 
-  function persistInLocalStorage(pokemon) {
-    const currentFavorites = JSON.parse(
-      window.localStorage.getItem("favoritePokemon")
-    );
-
-    if (currentFavorites.some(({ name }) => name === pokemon.name)) {
-      alert("Pokemon já está na lista");
-      return;
-    }
-
-    if (currentFavorites && currentFavorites.length === 12) {
-      const confirm = window.confirm(
-        "Sua lista de favoritos atingiu o limite máximo de 12 pokémon. Se você adicionar esse, ele vai substituir o último pokémon da sua lista. Tem certeza que deseja continuar?"
-      );
-
-      if (confirm) {
-        currentFavorites.pop();
-        currentFavorites.unshift(pokemon);
-        window.localStorage.setItem(
-          "favoritePokemon",
-          JSON.stringify(currentFavorites)
-        );
-      }
-      return;
-    }
-
-    if (currentFavorites && currentFavorites.length < 12) {
-      const stringifiedPokemonArr = JSON.stringify([
-        pokemon,
-        ...currentFavorites,
-      ]);
-      window.localStorage.setItem("favoritePokemon", stringifiedPokemonArr);
-      return;
-    }
-    const stringifiedPokemonArr = JSON.stringify([pokemon]);
-    window.localStorage.setItem("favoritePokemon", stringifiedPokemonArr);
-  }
-
   return (
     <Container mode={mode} pokemonType={pokemonType}>
       <Header />
       <h1>Detalhes</h1>
       {isFavorite() ? (
-        <button onClick={removeFromFavs}>Remove</button>
+        <button onClick={removeFromFavorites}>Remove</button>
       ) : (
-        <button onClick={addToFavs}>Add</button>
+        <button onClick={addToFavorites}>Add</button>
       )}
 
       <ImgContainer pokemonType={pokemonType}>
@@ -169,15 +103,6 @@ const About = () => {
           alt={`Foto do/da ${pokemon.name}`}
         />
       </ImgContainer>
-      {isFavorite() ? (
-        <button onClick={() => removeFromFavorites(pokemon)}>
-          Remover dos favoritos
-        </button>
-      ) : (
-        <button onClick={() => persistInLocalStorage(pokemon)}>
-          Adicionar aos favoritos
-        </button>
-      )}
       <PokemonName pokemonType={pokemonType}>{pokemon.name}</PokemonName>
       <PokemonId pokemonType={pokemonType}>{formatId(pokemon.id)}</PokemonId>
       <hr></hr>

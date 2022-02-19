@@ -22,10 +22,29 @@ const favoritePokemonSlice = createSlice({
       isLoading: false,
       error: payload,
     }),
-    ADD_FAVORITE_POKEMON: (state, { payload }) => ({
-      ...state,
-      favoritePokemonList: [...state.favoritePokemonList, payload],
-    }),
+    ADD_FAVORITE_POKEMON: (state, { payload }) => {
+      const currentFavorites = Array.from(state.favoritePokemonList);
+      const isListFull = currentFavorites.length >= 12;
+
+      if (isListFull) {
+        const shouldRemoveLastPokemonAndAddNewOne = window.confirm(
+          "Sua lista de favoritos atingiu o limite máximo de 12 pokémon. Se você adicionar esse pokémon, ele vai substituir o último pokémon da sua lista. Tem certeza que deseja continuar?"
+        );
+
+        if (shouldRemoveLastPokemonAndAddNewOne) {
+          currentFavorites.pop();
+          currentFavorites.unshift(payload);
+          return { ...state, favoritePokemonList: currentFavorites };
+        } else {
+          return;
+        }
+      }
+
+      return {
+        ...state,
+        favoritePokemonList: [payload, ...state.favoritePokemonList],
+      };
+    },
     REMOVE_FAVORITE_POKEMON: (state, { payload }) => ({
       ...state,
       favoritePokemonList: state.favoritePokemonList.filter(

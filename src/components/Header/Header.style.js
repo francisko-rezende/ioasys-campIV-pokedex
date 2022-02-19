@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as IoasysLogo } from "../../assets/ioasys-logo.svg";
+import { ReactComponent as IoasysLogo } from "../../assets/ioasys-logo-svgomg.svg";
 
 export const Header = styled.header`
   color: ${({ theme }) => theme.colors.ioasysColor.secondaryColor};

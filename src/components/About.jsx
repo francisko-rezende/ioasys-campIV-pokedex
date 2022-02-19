@@ -20,7 +20,12 @@ const About = () => {
     const currentFavorites = JSON.parse(
       window.localStorage.getItem("favoritePokemon")
     );
-    return currentFavorites.some(({ name }) => name === pokemon.name);
+
+    if (currentFavorites) {
+      return currentFavorites.some(({ name }) => name === pokemon.name);
+    }
+
+    return false;
   };
 
   function removeFromFavorites(pokemon) {

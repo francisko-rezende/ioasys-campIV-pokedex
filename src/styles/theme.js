@@ -47,17 +47,24 @@ const theme = {
     },
     ioasysColor: { secondaryColor: "#EC0344" },
   },
+  agnostic: {
+    back: "hsla(0, 0%, 70%, 1)",
+  },
   light: {
-    cardBg: "#f2f4f7",
+    cardBg: "#ffff",
+    placeholderCardBg: "#f2f4f7",
     pageBg: "#ffffff",
     textMain: "#212121",
     textSecondary: "hsla(0, 0%, 70%, 1)",
+    favoritesHorizontalSeparator: "hsla(217, 24%, 89%, 1)",
   },
   dark: {
     cardBg: "#2f2f2f",
+    placeholderCardBg: "#2f2f2f",
     pageBg: "hsla(0, 0%, 13%, 1)",
     textMain: "hsla(0, 0%, 100%, 1)",
     textSecondary: "hsla(0, 0%, 70%, 1)",
+    favoritesHorizontalSeparator: "hsla(0, 0%, 18%, 1)",
   },
 };
 

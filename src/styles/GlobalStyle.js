@@ -6,10 +6,20 @@ p,
 h1,
 ul,
 li,
-blockquote {
+blockquote{
   padding: 0;
   margin: 0;
 }
+
+* {
+  box-sizing: border-box;
+  transition: .2s;
+}
+
+/* button {
+  background-color: transparent;
+  border: none;
+} */
 
 body {
   font-family: "Poppins", sans-serif;

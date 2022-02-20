@@ -14,8 +14,10 @@ const Header = () => {
 
   return (
     <S.Header>
-      <S.Logo />
-      ioasys pokédex{" "}
+      <div>
+        <S.Logo />
+        ioasys pokédex{" "}
+      </div>
       <button onClick={() => dispatch(TOGGLE_THEME())}>Mudar tema</button>
     </S.Header>
   );

@@ -8,6 +8,7 @@ import {
   REMOVE_FAVORITE_POKEMON,
 } from "../store/slices/favoritePokemonSlice";
 import Container from "./Container";
+import FavoriteIcon from "./FavoriteIcon";
 import Header from "./Header/Header";
 
 // todo create About.styles.js and put styled components there
@@ -38,8 +39,19 @@ const About = () => {
     dispatch(REMOVE_FAVORITE_POKEMON(pokemon));
   };
 
-  const isFavorite = () =>
-    favoritePokemonList.some(({ name }) => name === pokemon.name);
+  const [isFavorite, setIsFavorite] = React.useState(false);
+
+  React.useEffect(
+    () =>
+      setIsFavorite(
+        favoritePokemonList.some(({ name }) => name === pokemon.name),
+        [favoritePokemonList, pokemon.name]
+      ),
+    [favoritePokemonList, pokemon.name]
+  );
+
+  // const isFavorite = () =>
+  //   favoritePokemonList.some(({ name }) => name === pokemon.name);
 
   function getFormattedMoves() {
     if (pokemon.abilities.length > 1) {
@@ -89,10 +101,14 @@ const About = () => {
     <Container mode={mode} pokemonType={pokemonType}>
       <Header />
       <h1>Detalhes</h1>
-      {isFavorite() ? (
-        <button onClick={removeFromFavorites}>Remove</button>
+      {isFavorite ? (
+        <Button>
+          <FavoriteIcon onClick={removeFromFavorites} isFavorite={isFavorite} />
+        </Button>
       ) : (
-        <button onClick={addToFavorites}>Add</button>
+        <button>
+          <FavoriteIcon onClick={addToFavorites} isFavorite={isFavorite} />
+        </button>
       )}
 
       <ImgContainer pokemonType={pokemonType}>
@@ -240,6 +256,12 @@ const BaseStatName = styled.span`
 
 const BaseStatValue = styled.span`
   color: ${({ theme, mode }) => theme[mode].textMain};
+`;
+
+const Button = styled.button`
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 `;
 
 export default About;

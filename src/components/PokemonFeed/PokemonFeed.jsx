@@ -1,29 +1,30 @@
-import axios from "axios";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import api from "../../services/api";
+import { GET_POKEMON_LIST } from "../../store/slices/PokemonFeedSlice";
 import Card from "../Card";
 
 const PokemonFeed = () => {
-  const [pokemonList, setPokemonList] = React.useState("");
-  const [endpoint, setEndpoint] = React.useState("");
   const [pokemonFeed, setPokemonFeed] = React.useState(null);
-
-  async function getInfiniteScrollData(
-    endpoint = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20"
-  ) {
-    const { next, results } = (await axios.get(endpoint)).data;
-    setEndpoint(next);
-
-    const pokemonNames = results.map(({ name }) => name);
-
-    setPokemonList((currentPokemon) =>
-      Array.from(new Set([...currentPokemon, ...pokemonNames]))
-    );
-  }
+  const { pokemonList } = useSelector(({ pokemonFeed }) => pokemonFeed);
+  const dispatch = useDispatch();
+  const pageBottom = React.useRef();
 
   React.useEffect(() => {
-    getInfiniteScrollData();
-  }, []);
+    const intersectionObersever = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        dispatch(GET_POKEMON_LIST());
+      });
+    });
+
+    intersectionObersever.observe(pageBottom.current);
+
+    return () => intersectionObersever.disconnect();
+  }, [dispatch]);
 
   React.useEffect(() => {
     async function getPokemonData() {
@@ -38,42 +39,35 @@ const PokemonFeed = () => {
     getPokemonData();
   }, [pokemonList]);
 
-  React.useEffect(() => {
-    let wait = false;
-    function infiniteScroll() {
-      if (endpoint) {
-        const scroll = window.scrollY;
-        const height = document.body.offsetHeight - window.innerHeight;
-
-        if (scroll > height * 0.95 && !wait) {
-          wait = true;
-          getInfiniteScrollData(endpoint);
-          setTimeout(() => (wait = false), 1000);
-        }
-      }
-    }
-
-    window.addEventListener("wheel", infiniteScroll);
-    window.addEventListener("scroll", infiniteScroll);
-
-    return () => {
-      window.removeEventListener("wheel", infiniteScroll);
-      window.removeEventListener("scroll", infiniteScroll);
-    };
-  });
-
   return (
     <div>
       {pokemonFeed && (
         <div>
           <h1>Pokémon</h1>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+              gap: "20px",
+              maxWidth: "836px",
+            }}
+          >
             {pokemonFeed.map((pokemon) => (
               <Card key={pokemon.id} {...pokemon} />
             ))}
           </div>
         </div>
       )}
+      <div
+        style={{
+          width: "100vw",
+          heigth: "10px",
+          background: "red",
+        }}
+        ref={pageBottom}
+      >
+        a
+      </div>
     </div>
   );
 };

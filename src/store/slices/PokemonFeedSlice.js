@@ -5,6 +5,7 @@ const initialState = {
   endpoint: "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=25",
   isLoading: false,
   error: null,
+  pokemonFeedData: [],
 };
 
 const pokemonSlice = createSlice({
@@ -31,6 +32,10 @@ const pokemonSlice = createSlice({
       isLoading: false,
       error: payload,
     }),
+    UPDATE_POKEMON_FEED_DATA: (state, { payload }) => ({
+      ...state,
+      pokemonFeedData: payload,
+    }),
   },
 });
 
@@ -40,6 +45,7 @@ export const {
   GET_POKEMON_LIST,
   GET_POKEMON_LIST_SUCCESS,
   GET_POKEMON_LIST_FAILURE,
+  UPDATE_POKEMON_FEED_DATA,
 } = actions;
 
 export default reducer;

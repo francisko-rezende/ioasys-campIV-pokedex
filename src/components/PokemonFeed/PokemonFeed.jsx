@@ -2,12 +2,16 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import api from "../../services/api";
-import { GET_POKEMON_LIST } from "../../store/slices/PokemonFeedSlice";
+import {
+  GET_POKEMON_LIST,
+  UPDATE_POKEMON_FEED_DATA,
+} from "../../store/slices/PokemonFeedSlice";
 import Card from "../Card";
 
 const PokemonFeed = () => {
-  const [pokemonFeed, setPokemonFeed] = React.useState(null);
-  const { pokemonList } = useSelector(({ pokemonFeed }) => pokemonFeed);
+  const { pokemonList, pokemonFeedData } = useSelector(
+    ({ pokemonFeed }) => pokemonFeed
+  );
   const dispatch = useDispatch();
   const pageBottom = React.useRef();
 
@@ -27,21 +31,21 @@ const PokemonFeed = () => {
   }, [dispatch]);
 
   React.useEffect(() => {
-    async function getPokemonData() {
-      if (pokemonList) {
-        const newResponses = await Promise.all(
-          pokemonList.map((name) => api.get(name))
-        );
-        setPokemonFeed(newResponses.map(({ data }) => data));
-      }
-    }
+    if (pokemonList) {
+      Promise.all(pokemonList.map((name) => api.get(name))).then(
+        (newResponses) => {
+          const destructureData = ({ data }) => data;
+          const pokemonFeedData = newResponses.map(destructureData);
 
-    getPokemonData();
+          dispatch(UPDATE_POKEMON_FEED_DATA(pokemonFeedData));
+        }
+      );
+    }
   }, [pokemonList]);
 
   return (
     <div>
-      {pokemonFeed && (
+      {pokemonFeedData && (
         <div>
           <h1>Pokémon</h1>
           <div
@@ -52,7 +56,7 @@ const PokemonFeed = () => {
               maxWidth: "836px",
             }}
           >
-            {pokemonFeed.map((pokemon) => (
+            {pokemonFeedData.map((pokemon) => (
               <Card key={pokemon.id} {...pokemon} />
             ))}
           </div>

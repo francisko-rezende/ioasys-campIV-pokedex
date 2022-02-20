@@ -24,7 +24,6 @@ export const Photo = styled.img`
   display: block;
   margin: 0 auto;
   position: relative;
-  transform: scaleX(-1);
 `;
 
 export const Name = styled.span`

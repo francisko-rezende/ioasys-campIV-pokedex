@@ -5,12 +5,40 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Card from "../../components/Card";
 import Container from "../../components/Container";
+import Error from "../../components/Error";
 import Header from "../../components/Header/Header";
 import api from "../../services/api";
 
 const Search = () => {
   const [searchedPokemon, setSearchedPokemon] = React.useState("");
   const [searchResult, setSearchResult] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
+
+  function handlePokemonSearch(e) {
+    e.preventDefault();
+    setSearchResult("");
+    setIsLoading(true);
+
+    if (!searchedPokemon) {
+      setIsLoading(false);
+      return;
+    }
+
+    api
+      .get(`${searchedPokemon}`)
+      .then(({ data }) => {
+        setSearchResult(data);
+        setIsLoading(false);
+        setError(null);
+      })
+      .catch((error) => {
+        console.log(error.code);
+        setError(error);
+        setIsLoading(false);
+      });
+  }
+
   const [pokemonList, setPokemonList] = React.useState("");
   const [endpoint, setEndpoint] = React.useState(1);
   const [pokemonFeed, setPokemonFeed] = React.useState(null);
@@ -71,13 +99,6 @@ const Search = () => {
     };
   });
 
-  async function handlePokemonSearch(e) {
-    e.preventDefault();
-
-    const { data } = await api.get(`${searchedPokemon}`);
-    setSearchResult(data);
-  }
-
   return (
     <Container mode={mode}>
       <Header />
@@ -92,13 +113,15 @@ const Search = () => {
           Buscar
         </button>
       </form>
+      {isLoading && <h1>Loading...</h1>}
       {searchResult && (
         <div>
           <h1>Resultado da busca</h1>
           <Card {...searchResult} />
         </div>
       )}
-      {pokemonFeed && (
+      {error && <Error />}
+      {/* {pokemonFeed && (
         <div>
           <h1>Pokémon</h1>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
@@ -107,7 +130,7 @@ const Search = () => {
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </Container>
   );
 };

@@ -12,7 +12,7 @@ const PokemonFeed = () => {
   const pageBottom = React.useRef();
 
   React.useEffect(() => {
-    const intersectionObersever = new IntersectionObserver((entries) => {
+    const intersectionObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
           return;
@@ -21,9 +21,9 @@ const PokemonFeed = () => {
       });
     });
 
-    intersectionObersever.observe(pageBottom.current);
+    intersectionObserver.observe(pageBottom.current);
 
-    return () => intersectionObersever.disconnect();
+    return () => intersectionObserver.disconnect();
   }, [dispatch]);
 
   React.useEffect(() => {

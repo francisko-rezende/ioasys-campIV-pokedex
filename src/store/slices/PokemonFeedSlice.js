@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   pokemonList: [],
-  endpoint: "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20",
+  endpoint: "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=25",
   isLoading: false,
   error: null,
 };
@@ -12,12 +12,20 @@ const pokemonSlice = createSlice({
   initialState,
   reducers: {
     GET_POKEMON_LIST: (state) => ({ ...state, isLoading: true }),
-    GET_POKEMON_LIST_SUCCESS: (state, { payload }) => ({
-      ...state,
-      isLoading: false,
-      pokemonList: payload.results.map(({ name }) => name),
-      endpoint: payload.next,
-    }),
+    GET_POKEMON_LIST_SUCCESS: (state, { payload }) => {
+      const currentPokemon = state.pokemonList;
+      const newPokemon = payload.results.map(({ name }) => name);
+      const uniquePokemonNames = Array.from(
+        new Set([...currentPokemon, ...newPokemon])
+      );
+
+      return {
+        ...state,
+        isLoading: false,
+        pokemonList: uniquePokemonNames,
+        endpoint: payload.next,
+      };
+    },
     GET_POKEMON_LIST_FAILURE: (state, { payload }) => ({
       ...state,
       isLoading: false,

@@ -22,10 +22,6 @@ const About = () => {
     mode: { mode },
     favoritePokemon: { favoritePokemonList },
   } = useSelector((store) => store);
-  // const { mode } = useSelector(({ mode }) => mode);
-  // const favoritePokemonList = useSelector(
-  //   (store) => store.favoritePokemon.favoritePokemonList
-  // );
 
   React.useEffect(() => {
     window.localStorage.setItem(

@@ -64,7 +64,7 @@ const PokemonFeed = () => {
       )}
       <div
         style={{
-          width: "100vw",
+          width: "calc(100vw - 15px)",
           heigth: "10px",
           background: "red",
         }}

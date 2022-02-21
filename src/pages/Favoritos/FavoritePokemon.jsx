@@ -26,7 +26,6 @@ const FavoritePokemon = () => {
     <Container mode={mode}>
       <Wrapper>
         <Header />
-
         <Spacer mode={mode}>
           <StyledLink to="/">
             <StyledBackArrow /> Voltar
@@ -73,7 +72,7 @@ const Wrapper = styled.main`
 const Spacer = styled.div`
   padding: 60px 0;
   display: grid;
-  grid-template-columns: 1.3fr 2fr;
+  grid-template-columns: auto 1fr;
   align-items: center;
   border-top: 2px solid
     ${({ theme, mode }) => theme[mode].favoritesHorizontalSeparator};
@@ -85,6 +84,8 @@ const StyledLink = styled(Link)`
   align-items: center;
   font-weight: 400;
   font-size: 14px;
+  padding: 1rem;
+  padding-left: 0;
 `;
 
 const StyledBackArrow = styled(BackArrow)`
@@ -97,6 +98,8 @@ const StyledSubTitle = styled.h2`
   gap: 13px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.ioasysColor.secondaryColor};
+  justify-self: center;
+  transform: translateX(-53px);
 `;
 
 export default FavoritePokemon;

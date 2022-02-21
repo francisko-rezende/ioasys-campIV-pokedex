@@ -6,6 +6,7 @@ import Container from "../../components/Container";
 import Error from "../../components/Error";
 import Header from "../../components/Header/Header";
 import PokemonFeed from "../../components/PokemonFeed";
+import SearchBar from "../../components/SearchBar";
 import api from "../../services/api";
 
 const Search = () => {
@@ -45,15 +46,11 @@ const Search = () => {
       <Header />
       <h1>Essa é a página de busca</h1>
       <Link to="/">Voltar</Link>
-      <form>
-        <input
-          onChange={(e) => setSearchedPokemon(e.target.value)}
-          value={searchedPokemon}
-        ></input>
-        <button type="submit" onClick={handlePokemonSearch}>
-          Buscar
-        </button>
-      </form>
+      <SearchBar
+        setSearchedPokemon={setSearchedPokemon}
+        handlePokemonSearch={handlePokemonSearch}
+        searchedPokemon={searchedPokemon}
+      />
       {isLoading && <h1>Loading...</h1>}
       {searchResult && (
         <div>

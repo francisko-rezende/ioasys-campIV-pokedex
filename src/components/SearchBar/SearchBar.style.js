@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactComponent as UnstyledClearSearchIcon } from "../../assets/icons/clear-search-svgomg.svg";
 
 export const Input = styled.input`
   background-color: transparent;
@@ -31,4 +32,8 @@ export const Label = styled.label`
   background-color: ${({ theme, mode }) => theme[mode].pageBg};
   position: absolute;
   top: -1em;
+`;
+
+export const ClearSearchIcon = styled(UnstyledClearSearchIcon)`
+  cursor: pointer;
 `;

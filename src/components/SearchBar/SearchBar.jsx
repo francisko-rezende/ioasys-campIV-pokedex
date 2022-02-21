@@ -21,7 +21,11 @@ const SearchBar = ({
         id="pokemonSearch"
         placeholder="bulbasaur"
       ></S.Input>
-      <SearchIcon />
+      {searchedPokemon ? (
+        <S.ClearSearchIcon onClick={() => setSearchedPokemon("")} />
+      ) : (
+        <SearchIcon />
+      )}
     </S.Form>
   );
 };

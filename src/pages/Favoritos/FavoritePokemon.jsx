@@ -7,6 +7,7 @@ import Background from "../../components/Background";
 import FavoriteIcon from "../../components/FavoriteIcon";
 import Header from "../../components/Header/Header";
 import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
+import Container from "../../components/Container";
 
 const FavoritePokemon = () => {
   const {
@@ -24,7 +25,7 @@ const FavoritePokemon = () => {
 
   return (
     <Background mode={mode}>
-      <Wrapper>
+      <Container>
         <Header />
         <Spacer mode={mode}>
           <StyledLink to="/">
@@ -44,7 +45,7 @@ const FavoritePokemon = () => {
           )}
           {generatePlaceholderCards()}
         </Grid>
-      </Wrapper>
+      </Container>
     </Background>
   );
 };
@@ -62,11 +63,6 @@ const Blank = styled.div`
   height: 150px;
   border-radius: 10.49px;
   background-color: ${({ theme, mode }) => theme[mode].placeholderCardBg};
-`;
-
-const Wrapper = styled.main`
-  max-width: 830px;
-  margin: 0 auto;
 `;
 
 const Spacer = styled.div`

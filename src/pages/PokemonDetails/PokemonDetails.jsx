@@ -52,10 +52,7 @@ const About = () => {
     [favoritePokemonList, pokemon.name]
   );
 
-  // const isFavorite = () =>
-  //   favoritePokemonList.some(({ name }) => name === pokemon.name);
-
-  function getFormattedMoves() {
+  function getFormattedMoves(pokemon) {
     if (pokemon.abilities.length > 1) {
       return pokemon.abilities
         .slice(0, 2)
@@ -134,23 +131,23 @@ const About = () => {
           <PokemonId pokemonType={pokemonType}>
             {formatId(pokemon.id)}
           </PokemonId>
-          <hr></hr>
+
           {pokemon.types.map(({ type }) => (
             <PokemonTypeTag key={type.name} pokemonType={type.name}>
               {type.name}
             </PokemonTypeTag>
           ))}
-          <hr />
+
           <PokemonTraitList mode={mode}>
             <li>height: {pokemon.height / 10} m</li>
             <li>weight: {pokemon.weight / 10} kg</li>
-            <li>moves: {getFormattedMoves()}</li>
+            <li>moves: {getFormattedMoves(pokemon)}</li>
           </PokemonTraitList>
-          <hr />
+
           <PokemonFlavorText pokemonType={pokemonType} mode={mode}>
             {flavorText}
           </PokemonFlavorText>
-          <hr />
+
           <BaseStatsTitle pokemonType={pokemonType}>Base Stats</BaseStatsTitle>
           <ul>
             {/* <li style={{ display: "flex", alignItems: "center" }}>
@@ -212,7 +209,7 @@ const About = () => {
 const Wrapper = styled.div`
   background-color: ${({ theme, pokemonType }) =>
     theme.colors.pokemonTypes[`${pokemonType}Bg`]};
-  width: 255px;
+  width: calc(100% - 1rem);
   height: 6px;
   position: relative;
   top: 1px;
@@ -250,6 +247,7 @@ const PokemonPicContainer = styled.div`
 const PokemonTypeTag = styled.span`
   text-transform: capitalize;
   display: inline-block;
+  margin-right: 10px;
   font-weight: 700;
   font-size: 12px;
   line-height: 16px;
@@ -264,12 +262,13 @@ const PokemonTraitList = styled.ul`
   color: ${({ theme, mode }) => theme[mode].textMain};
 `;
 
-const BaseStatsTitle = styled.h2`
+const BaseStatsTitle = styled.h3`
   color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
 `;
 
 const PokemonFlavorText = styled.p`
   color: ${({ theme, mode }) => theme[mode].textMain};
+  font-size: 14px;
 `;
 
 const BaseStatName = styled.span`
@@ -327,6 +326,7 @@ const DetailsContainer = styled.section`
   position: relative;
   z-index: 3;
   margin: 0 auto;
+  border-radius: 10px;
 `;
 
 export default About;

@@ -10,7 +10,7 @@ export const Switch = styled(SwitchPrimitive.Root)`
   position: relative;
   border: 1px solid ${({ theme }) => theme.colors.ioasysColor.secondaryColor};
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  /* '&[data-state="checked"]': { backgroundColor: 'transparent' }, */
+  cursor: pointer;
 `;
 
 export const Thumb = styled(SwitchPrimitive.Thumb)`
@@ -26,6 +26,4 @@ export const Thumb = styled(SwitchPrimitive.Thumb)`
   transform: ${({ mode }) =>
     mode === "dark" ? "translateX(6px)" : "translateX(19px)"};
   will-change: transform;
-
-  /* '&[data-state="checked"]': { transform: 'translateX(19px)', backgroundColor: 'hsla(343, 97%, 47%, 1)'}, */
 `;

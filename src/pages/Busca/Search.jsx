@@ -8,6 +8,7 @@ import Header from "../../components/Header/Header";
 import PokemonFeed from "../../components/PokemonFeed";
 import SearchBar from "../../components/SearchBar";
 import api from "../../services/api";
+import Container from "../../components/Container";
 
 const Search = () => {
   const [searchedPokemon, setSearchedPokemon] = React.useState("");
@@ -43,25 +44,26 @@ const Search = () => {
 
   return (
     <Background mode={mode}>
-      <Header />
-      <h1>Essa é a página de busca</h1>
-      <Link to="/">Voltar</Link>
-      <SearchBar
-        setSearchedPokemon={setSearchedPokemon}
-        handlePokemonSearch={handlePokemonSearch}
-        searchedPokemon={searchedPokemon}
-        mode={mode}
-      />
-      {isLoading && <h1>Loading...</h1>}
-      {searchResult && (
-        <div>
-          <h1>Resultado da busca</h1>
-          <Card {...searchResult} />
-        </div>
-      )}
-      {error && <Error />}
+      <Container>
+        <Header />
 
-      <PokemonFeed />
+        <Link to="/">Voltar</Link>
+        <SearchBar
+          setSearchedPokemon={setSearchedPokemon}
+          handlePokemonSearch={handlePokemonSearch}
+          searchedPokemon={searchedPokemon}
+          mode={mode}
+        />
+        {isLoading && <h1>Loading...</h1>}
+        {searchResult && (
+          <div>
+            <h1>Resultado da busca</h1>
+            <Card {...searchResult} />
+          </div>
+        )}
+        {error && <Error />}
+        <PokemonFeed />
+      </Container>
     </Background>
   );
 };

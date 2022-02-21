@@ -47,7 +47,6 @@ const PokemonFeed = () => {
     <div>
       {pokemonFeedData && (
         <div>
-          <h1>Pokémon</h1>
           <div
             style={{
               display: "grid",

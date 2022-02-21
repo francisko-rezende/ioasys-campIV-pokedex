@@ -31,9 +31,9 @@ const FavoritePokemon = () => {
           <StyledLink to="/">
             <StyledBackArrow /> Voltar
           </StyledLink>
-          <StyledSubTitle>
+          <StyledSecondaryHeader>
             <FavoriteIcon isFavorite={true} /> Meus favotiros
-          </StyledSubTitle>
+          </StyledSecondaryHeader>
         </Spacer>
         <Grid>
           {favoritePokemonList ? (
@@ -88,7 +88,7 @@ const StyledBackArrow = styled(BackArrow)`
   margin-right: 13px;
 `;
 
-const StyledSubTitle = styled.h2`
+const StyledSecondaryHeader = styled.h2`
   display: flex;
   font-size: 18px;
   gap: 13px;

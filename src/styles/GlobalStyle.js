@@ -13,7 +13,7 @@ blockquote{
 
 * {
   box-sizing: border-box;
-  transition: .2s;
+  /* transition: .2s; */
 }
 
 /* button {

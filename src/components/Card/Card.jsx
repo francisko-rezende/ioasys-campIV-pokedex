@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import * as S from "./Card.styles";
+import * as S from "./Card.style";
 
 // Todo create styled container for Card (check the inline style below)
 // todo refactor getSvgBaseAddress and formatId into their own modules (?) inside the helper folder

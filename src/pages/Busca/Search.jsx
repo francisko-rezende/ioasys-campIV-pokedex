@@ -50,6 +50,7 @@ const Search = () => {
         setSearchedPokemon={setSearchedPokemon}
         handlePokemonSearch={handlePokemonSearch}
         searchedPokemon={searchedPokemon}
+        mode={mode}
       />
       {isLoading && <h1>Loading...</h1>}
       {searchResult && (

@@ -49,6 +49,7 @@ const theme = {
   },
   agnostic: {
     back: "hsla(0, 0%, 70%, 1)",
+    searchBarText: "hsla(0, 0%, 40%, 1)",
   },
   light: {
     cardBg: "#ffff",

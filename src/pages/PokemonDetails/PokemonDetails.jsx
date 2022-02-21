@@ -6,10 +6,10 @@ import styled from "styled-components";
 import {
   ADD_FAVORITE_POKEMON,
   REMOVE_FAVORITE_POKEMON,
-} from "../store/slices/favoritePokemonSlice";
-import Background from "./Background";
-import FavoriteIcon from "./FavoriteIcon";
-import Header from "./Header/Header";
+} from "../../store/slices/favoritePokemonSlice";
+import Background from "../../components/Background";
+import FavoriteIcon from "../../components/FavoriteIcon";
+import Header from "../../components/Header/Header";
 
 // todo create About.styles.js and put styled components there
 // todo style it

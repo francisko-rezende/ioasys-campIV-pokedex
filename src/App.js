@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
-import About from "./components/About";
 
 function App() {
   const [pokemon, setPokemon] = React.useState("");

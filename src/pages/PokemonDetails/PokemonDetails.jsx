@@ -106,9 +106,9 @@ const About = () => {
           <FavoriteIcon onClick={removeFromFavorites} isFavorite={isFavorite} />
         </Button>
       ) : (
-        <button>
+        <Button>
           <FavoriteIcon onClick={addToFavorites} isFavorite={isFavorite} />
-        </button>
+        </Button>
       )}
 
       <ImgContainer pokemonType={pokemonType}>
@@ -261,7 +261,9 @@ const BaseStatValue = styled.span`
 const Button = styled.button`
   cursor: pointer;
   background-color: transparent;
+  height: fit-content;
   border: none;
+  display: flex;
 `;
 
 export default About;

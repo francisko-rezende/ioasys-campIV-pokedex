@@ -8,7 +8,7 @@ export const Header = styled.header`
   justify-content: space-between;
   font-weight: 700;
   font-size: 28px;
-  padding: 60px 0;
+  padding: 75px 0 60px 0;
 `;
 
 export const Logo = styled(IoasysLogo)`

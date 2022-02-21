@@ -10,6 +10,8 @@ import {
 import Background from "../../components/Background";
 import FavoriteIcon from "../../components/FavoriteIcon";
 import Header from "../../components/Header/Header";
+import { Container } from "../../components/Container/Container.style";
+import pokeballBg from "../../assets/icons/pokeball-bg-svgomg.svg";
 
 // todo create About.styles.js and put styled components there
 // todo style it
@@ -66,7 +68,7 @@ const About = () => {
   const pokemonType = pokemon.types[0].type.name;
   const [flavorText, setFlavorText] = React.useState("");
 
-  const getSvgBaseAddress = (id) =>
+  const getSvgAddress = (id) =>
     `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
 
   const formatId = (id) => {
@@ -81,6 +83,16 @@ const About = () => {
         return `#${id}`;
     }
   };
+
+  const abbreviateStatName = (stat) =>
+    ({
+      hp: "hp",
+      attack: "atk",
+      defense: "def",
+      "special-attack": "satk",
+      "special-defense": "sdef",
+      speed: "spd",
+    }[stat]);
 
   React.useEffect(() => {
     axios.get(pokemon.species.url).then(({ data }) => {
@@ -98,90 +110,101 @@ const About = () => {
   }, [pokemon.species.url]);
 
   return (
-    <Background mode={mode} pokemonType={pokemonType}>
-      <Header />
-      <h1>Detalhes</h1>
-      {isFavorite ? (
-        <Button>
-          <FavoriteIcon onClick={removeFromFavorites} isFavorite={isFavorite} />
-        </Button>
-      ) : (
-        <Button>
-          <FavoriteIcon onClick={addToFavorites} isFavorite={isFavorite} />
-        </Button>
-      )}
-
-      <ImgContainer pokemonType={pokemonType}>
-        <Link to={previousPage}>Voltar</Link>
-        About
-        <img
-          src={getSvgBaseAddress(pokemon.id)}
-          alt={`Foto do/da ${pokemon.name}`}
-        />
-      </ImgContainer>
-      <PokemonName pokemonType={pokemonType}>{pokemon.name}</PokemonName>
-      <PokemonId pokemonType={pokemonType}>{formatId(pokemon.id)}</PokemonId>
-      <hr></hr>
-
-      {pokemon.types.map(({ type }) => (
-        <PokemonTypeTag key={type.name} pokemonType={type.name}>
-          {type.name}
-        </PokemonTypeTag>
-      ))}
-
-      <hr />
-      <PokemonTraitList mode={mode}>
-        <li>height: {pokemon.height / 10} m</li>
-        <li>weight: {pokemon.weight / 10} kg</li>
-        <li>moves: {getFormattedMoves()}</li>
-      </PokemonTraitList>
-      <hr />
-      <PokemonFlavorText pokemonType={pokemonType} mode={mode}>
-        {flavorText}
-      </PokemonFlavorText>
-      <hr />
-      <BaseStatsTitle pokemonType={pokemonType}>Base Stats</BaseStatsTitle>
-      <ul>
-        {/* <li style={{ display: "flex", alignItems: "center" }}>
-          hp: 45{" "}
-          <Wrapper
-            role="progressbar"
-            aria-valuenow="45"
-            aria-valuemin="0"
-            aria-valuemax="255"
-            pokemonType={pokemonType}
-          >
-            <Bar pokemonType={pokemonType} value={45} />
-          </Wrapper>
-        </li>
-        <li>
-          Total pra calcular o tamanho das barras: 245. Eg: 45 / 245 * 300 = 55
-        </li> */}
-        {pokemon.stats.map((item) => (
-          <li
-            key={item.stat.name}
-            style={{
-              display: "grid",
-              alignItems: "center",
-              gridTemplateColumns: "1fr auto auto",
-            }}
-          >
-            <BaseStatName pokemonType={pokemonType}>
-              {item.stat.name}
-            </BaseStatName>
-            <BaseStatValue mode={mode}>{item.base_stat}</BaseStatValue>{" "}
-            <Wrapper
-              role="progressbar"
-              aria-valuenow={item.base_stat}
-              aria-valuemin="0"
-              aria-valuemax="255"
-              pokemonType={pokemonType}
-            >
-              <Bar pokemonType={pokemonType} value={item.base_stat} />
-            </Wrapper>
-          </li>
-        ))}
-      </ul>
+    <Background
+      mode={mode}
+      pokemonType={pokemonType}
+      style={{ position: "relative" }}
+    >
+      <Container>
+        <Header />
+        <DetailsContainer>
+          {isFavorite ? (
+            <Button>
+              <FavoriteIcon
+                onClick={removeFromFavorites}
+                isFavorite={isFavorite}
+              />
+            </Button>
+          ) : (
+            <Button>
+              <FavoriteIcon onClick={addToFavorites} isFavorite={isFavorite} />
+            </Button>
+          )}
+          <PokemonName pokemonType={pokemonType}>{pokemon.name}</PokemonName>
+          <PokemonId pokemonType={pokemonType}>
+            {formatId(pokemon.id)}
+          </PokemonId>
+          <hr></hr>
+          {pokemon.types.map(({ type }) => (
+            <PokemonTypeTag key={type.name} pokemonType={type.name}>
+              {type.name}
+            </PokemonTypeTag>
+          ))}
+          <hr />
+          <PokemonTraitList mode={mode}>
+            <li>height: {pokemon.height / 10} m</li>
+            <li>weight: {pokemon.weight / 10} kg</li>
+            <li>moves: {getFormattedMoves()}</li>
+          </PokemonTraitList>
+          <hr />
+          <PokemonFlavorText pokemonType={pokemonType} mode={mode}>
+            {flavorText}
+          </PokemonFlavorText>
+          <hr />
+          <BaseStatsTitle pokemonType={pokemonType}>Base Stats</BaseStatsTitle>
+          <ul>
+            {/* <li style={{ display: "flex", alignItems: "center" }}>
+              hp: 45{" "}
+              <Wrapper
+                role="progressbar"
+                aria-valuenow="45"
+                aria-valuemin="0"
+                aria-valuemax="255"
+                pokemonType={pokemonType}
+              >
+                <Bar pokemonType={pokemonType} value={45} />
+              </Wrapper>
+            </li>
+            <li>
+              Total pra calcular o tamanho das barras: 245. Eg: 45 / 245 * 300 = 55
+            </li> */}
+            {pokemon.stats.map((item) => (
+              <li
+                key={item.stat.name}
+                style={{
+                  display: "grid",
+                  alignItems: "center",
+                  gridTemplateColumns: "70px auto 1fr",
+                }}
+              >
+                <BaseStatName pokemonType={pokemonType}>
+                  {abbreviateStatName(item.stat.name)}
+                </BaseStatName>
+                <BaseStatValue mode={mode}>{item.base_stat}</BaseStatValue>{" "}
+                <Wrapper
+                  role="progressbar"
+                  aria-valuenow={item.base_stat}
+                  aria-valuemin="0"
+                  aria-valuemax="255"
+                  pokemonType={pokemonType}
+                >
+                  <Bar pokemonType={pokemonType} value={item.base_stat} />
+                </Wrapper>
+              </li>
+            ))}
+          </ul>
+        </DetailsContainer>
+        <PokemonPicContainer pokemonType={pokemonType}>
+          <Link to={previousPage}>Voltar</Link>
+          About
+          <PokemonPicWrapper>
+            <PokemonPic
+              src={getSvgAddress(pokemon.id)}
+              alt={`Foto do/da ${pokemon.name}`}
+            />
+          </PokemonPicWrapper>
+        </PokemonPicContainer>
+      </Container>
     </Background>
   );
 };
@@ -189,7 +212,7 @@ const About = () => {
 const Wrapper = styled.div`
   background-color: ${({ theme, pokemonType }) =>
     theme.colors.pokemonTypes[`${pokemonType}Bg`]};
-  width: 300px;
+  width: 255px;
   height: 6px;
   position: relative;
   top: 1px;
@@ -202,7 +225,7 @@ const Bar = styled.div`
   background-color: ${({ theme, pokemonType }) =>
     theme.colors.pokemonTypes[pokemonType]};
   position: relative;
-  top: 1px;
+  /* top: 1px; */
 `;
 
 const PokemonName = styled.h2`
@@ -214,11 +237,14 @@ const PokemonId = styled.span`
   color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
 `;
 
-const ImgContainer = styled.div`
+const PokemonPicContainer = styled.div`
   background-color: ${({ theme, pokemonType }) =>
     theme.colors.pokemonTypes[pokemonType]};
   width: 408px;
   height: 538px;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
 `;
 
 const PokemonTypeTag = styled.span`
@@ -264,6 +290,43 @@ const Button = styled.button`
   height: fit-content;
   border: none;
   display: flex;
+`;
+
+const PokemonPicWrapper = styled.div`
+  position: relative;
+  width: 400px;
+  height: 400px;
+  top: 75px;
+
+  &::before {
+    content: "";
+    background-image: url(${pokeballBg});
+    background-size: cover;
+    display: inline-block;
+    position: absolute;
+    width: 310px;
+    height: 310px;
+    left: 0;
+    top: 0px;
+    transform: translateX(-50px);
+  }
+`;
+
+const PokemonPic = styled.img`
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  height: 80%;
+  display: block;
+  object-fit: cover;
+  transform: translateX(100px);
+`;
+
+const DetailsContainer = styled.section`
+  max-width: 400px;
+  position: relative;
+  z-index: 3;
+  margin: 0 auto;
 `;
 
 export default About;

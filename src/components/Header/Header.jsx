@@ -17,10 +17,10 @@ const Header = () => {
 
   return (
     <S.Header>
-      <div>
+      <S.Title>
         <S.Logo />
         ioasys pokédex{" "}
-      </div>
+      </S.Title>
       <Switch onClick={toggleMode} mode={mode} />
     </S.Header>
   );

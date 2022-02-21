@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Card from "../../components/Card";
-import Container from "../../components/Container";
+import Background from "../../components/Background";
 import FavoriteIcon from "../../components/FavoriteIcon";
 import Header from "../../components/Header/Header";
 import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
@@ -23,7 +23,7 @@ const FavoritePokemon = () => {
   }
 
   return (
-    <Container mode={mode}>
+    <Background mode={mode}>
       <Wrapper>
         <Header />
         <Spacer mode={mode}>
@@ -45,7 +45,7 @@ const FavoritePokemon = () => {
           {generatePlaceholderCards()}
         </Grid>
       </Wrapper>
-    </Container>
+    </Background>
   );
 };
 

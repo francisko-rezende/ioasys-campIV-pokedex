@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.main`
+export const Background = styled.main`
   background-color: ${({ theme, mode }) => theme[mode].pageBg};
   height: 100%;
   min-height: 100vh;

@@ -7,7 +7,7 @@ import {
   ADD_FAVORITE_POKEMON,
   REMOVE_FAVORITE_POKEMON,
 } from "../store/slices/favoritePokemonSlice";
-import Container from "./Container";
+import Background from "./Background";
 import FavoriteIcon from "./FavoriteIcon";
 import Header from "./Header/Header";
 
@@ -98,7 +98,7 @@ const About = () => {
   }, [pokemon.species.url]);
 
   return (
-    <Container mode={mode} pokemonType={pokemonType}>
+    <Background mode={mode} pokemonType={pokemonType}>
       <Header />
       <h1>Detalhes</h1>
       {isFavorite ? (
@@ -182,7 +182,7 @@ const About = () => {
           </li>
         ))}
       </ul>
-    </Container>
+    </Background>
   );
 };
 

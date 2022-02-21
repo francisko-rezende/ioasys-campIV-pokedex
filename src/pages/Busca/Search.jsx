@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Card from "../../components/Card";
-import Container from "../../components/Container";
+import Background from "../../components/Background";
 import Error from "../../components/Error";
 import Header from "../../components/Header/Header";
 import PokemonFeed from "../../components/PokemonFeed";
@@ -42,7 +42,7 @@ const Search = () => {
   const { mode } = useSelector(({ mode }) => mode);
 
   return (
-    <Container mode={mode}>
+    <Background mode={mode}>
       <Header />
       <h1>Essa é a página de busca</h1>
       <Link to="/">Voltar</Link>
@@ -62,7 +62,7 @@ const Search = () => {
       {error && <Error />}
 
       <PokemonFeed />
-    </Container>
+    </Background>
   );
 };
 

@@ -55,7 +55,6 @@ const Search = () => {
           setError={setError}
           setSearchResult={setSearchResult}
         />
-        {(error || searchResult) && <button>Mostrar feed</button>}
         {isLoading && <h1>Loading...</h1>}
         {searchResult && (
           <S.SearchResultContainer>
@@ -64,8 +63,12 @@ const Search = () => {
             </PokemonListContainer>
           </S.SearchResultContainer>
         )}
-        {error && <Error />}
-        {!error && !searchResult && <PokemonFeed />}
+        {error && (
+          <S.SearchResultContainer>
+            <Error />
+          </S.SearchResultContainer>
+        )}
+        <PokemonFeed />
       </Container>
     </Background>
   );

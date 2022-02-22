@@ -8,6 +8,7 @@ import {
   UPDATE_POKEMON_FEED_DATA,
 } from "../../store/slices/PokemonFeedSlice";
 import Card from "../Card";
+import PokemonListContainer from "../PokemonListContainer";
 
 const PokemonFeed = () => {
   const { pokemonList, pokemonFeedData } = useSelector(
@@ -51,11 +52,11 @@ const PokemonFeed = () => {
   return (
     <>
       {pokemonFeedData && (
-        <Wrapper>
+        <PokemonListContainer>
           {pokemonFeedData.map((pokemon) => (
             <Card key={pokemon.id} {...pokemon} />
           ))}
-        </Wrapper>
+        </PokemonListContainer>
       )}
       <div ref={pageBottom} style={{ height: "50px" }}>
         a
@@ -63,11 +64,5 @@ const PokemonFeed = () => {
     </>
   );
 };
-
-const Wrapper = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-`;
 
 export default PokemonFeed;

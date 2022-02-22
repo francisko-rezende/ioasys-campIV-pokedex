@@ -9,6 +9,11 @@ export const Card = styled(Link)`
   height: 148px;
   text-decoration: none;
   background-color: ${({ theme, mode }) => theme[mode].cardBg};
+
+  @media (max-width: 565px) {
+    width: 104px;
+    height: 112px;
+  }
 `;
 
 export const Id = styled.span`
@@ -18,12 +23,22 @@ export const Id = styled.span`
   padding: 5px 10px;
   padding-bottom: 0;
   font-size: calc(10 / 16 * 1rem);
+
+  @media (max-width: 565px) {
+    font-size: calc(8 / 16 * 1rem);
+  }
 `;
 
 export const Photo = styled.img`
   display: block;
   margin: 0 auto;
   position: relative;
+  /* max-width: 90%; */
+
+  @media (max-width: 565px) {
+    width: 50%;
+    top: -15%;
+  }
 `;
 
 export const Name = styled.span`
@@ -36,5 +51,12 @@ export const Name = styled.span`
   border-radius: 0 0 10px 10px;
   padding: 5px 10px;
   position: relative;
-  top: 4px;
+  top: 2px;
+
+  @media (max-width: 565px) {
+    top: unset;
+    font-size: calc(10 / 16 * 1rem);
+    top: -24%;
+    /* background-color: rgba(1, 1, 1, 0.4); */
+  }
 `;

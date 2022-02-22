@@ -10,7 +10,6 @@ import {
 import Background from "../../components/Background";
 import FavoriteIcon from "../../components/FavoriteIcon";
 import Header from "../../components/Header/Header";
-import { Container } from "../../components/Container/Container.style";
 import pokeballBg from "../../assets/icons/pokeball-bg-svgomg.svg";
 import TraitListItem from "../../components/TraitListItem";
 import HeightIcon from "../../components/HeightIcon/HeightIcon";
@@ -211,7 +210,7 @@ const About = () => {
         </DetailsContainer>
         <PokemonPicContainer pokemonType={pokemonType}>
           <AboutWrapper>
-            <BackLink to={previousPage}>
+            <BackLink to={previousPage ? previousPage : "/"}>
               <BackArrow /> Voltar
             </BackLink>
             <SecondaryTitle>About</SecondaryTitle>

@@ -50,22 +50,23 @@ const theme = {
   agnostic: {
     back: "hsla(0, 0%, 70%, 1)",
     searchBarText: "hsla(0, 0%, 40%, 1)",
+    textSecondary: "hsla(0, 0%, 70%, 1)",
   },
   light: {
     cardBg: "#ffff",
     placeholderCardBg: "#f2f4f7",
     pageBg: "#ffffff",
     textMain: "#212121",
-    textSecondary: "hsla(0, 0%, 70%, 1)",
     favoritesHorizontalSeparator: "hsla(217, 24%, 89%, 1)",
+    pokemonDetailIcons: "#212121",
   },
   dark: {
     cardBg: "#2f2f2f",
     placeholderCardBg: "#2f2f2f",
     pageBg: "hsla(0, 0%, 13%, 1)",
     textMain: "hsla(0, 0%, 100%, 1)",
-    textSecondary: "hsla(0, 0%, 70%, 1)",
     favoritesHorizontalSeparator: "hsla(0, 0%, 18%, 1)",
+    pokemonDetailIcons: "#ffff",
   },
 };
 

@@ -4,6 +4,8 @@ export default createGlobalStyle`
 body,
 p,
 h1,
+h2,
+h3,
 ul,
 li,
 blockquote{
@@ -11,9 +13,10 @@ blockquote{
   margin: 0;
 }
 
+
 * {
   box-sizing: border-box;
-  /* transition: .2s; */
+  transition: .2s;
 }
 
 /* button {

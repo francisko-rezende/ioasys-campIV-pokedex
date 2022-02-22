@@ -12,6 +12,10 @@ import FavoriteIcon from "../../components/FavoriteIcon";
 import Header from "../../components/Header/Header";
 import { Container } from "../../components/Container/Container.style";
 import pokeballBg from "../../assets/icons/pokeball-bg-svgomg.svg";
+import TraitListItem from "../../components/TraitListItem";
+import HeightIcon from "../../components/HeightIcon/HeightIcon";
+import WeightIcon from "../../components/WeightIcon";
+import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
 
 // todo create About.styles.js and put styled components there
 // todo style it
@@ -53,10 +57,20 @@ const About = () => {
   );
 
   function getFormattedMoves(pokemon) {
+    const capitalize = (word) => {
+      const firstLetter = word[0];
+      const capitalizedWord = word.replace(
+        firstLetter,
+        firstLetter.toUpperCase()
+      );
+      return capitalizedWord;
+    };
+
     if (pokemon.abilities.length > 1) {
       return pokemon.abilities
         .slice(0, 2)
         .map(({ ability }) => ability.name)
+        .map((abilityName) => capitalize(abilityName))
         .join(" / ");
     }
     return pokemon.abilities[0].ability.name;
@@ -115,22 +129,27 @@ const About = () => {
       <Container>
         <Header />
         <DetailsContainer>
-          {isFavorite ? (
-            <Button>
-              <FavoriteIcon
-                onClick={removeFromFavorites}
-                isFavorite={isFavorite}
-              />
-            </Button>
-          ) : (
-            <Button>
-              <FavoriteIcon onClick={addToFavorites} isFavorite={isFavorite} />
-            </Button>
-          )}
-          <PokemonName pokemonType={pokemonType}>{pokemon.name}</PokemonName>
-          <PokemonId pokemonType={pokemonType}>
-            {formatId(pokemon.id)}
-          </PokemonId>
+          <SectionHeader>
+            {isFavorite ? (
+              <Button>
+                <FavoriteIcon
+                  onClick={removeFromFavorites}
+                  isFavorite={isFavorite}
+                />
+              </Button>
+            ) : (
+              <Button>
+                <FavoriteIcon
+                  onClick={addToFavorites}
+                  isFavorite={isFavorite}
+                />
+              </Button>
+            )}
+            <PokemonName pokemonType={pokemonType}>{pokemon.name}</PokemonName>
+            <PokemonId pokemonType={pokemonType}>
+              {formatId(pokemon.id)}
+            </PokemonId>
+          </SectionHeader>
 
           {pokemon.types.map(({ type }) => (
             <PokemonTypeTag key={type.name} pokemonType={type.name}>
@@ -139,9 +158,15 @@ const About = () => {
           ))}
 
           <PokemonTraitList mode={mode}>
-            <li>height: {pokemon.height / 10} m</li>
-            <li>weight: {pokemon.weight / 10} kg</li>
-            <li>moves: {getFormattedMoves(pokemon)}</li>
+            <TraitListItem fadedText="weight">
+              <WeightIcon mode={mode} /> {pokemon.weight / 10} kg
+            </TraitListItem>
+            <TraitListItem fadedText="height">
+              <HeightIcon mode={mode} /> {pokemon.height / 10} m
+            </TraitListItem>
+            <TraitListItem fadedText="moves">
+              {getFormattedMoves(pokemon)}
+            </TraitListItem>
           </PokemonTraitList>
 
           <PokemonFlavorText pokemonType={pokemonType} mode={mode}>
@@ -166,14 +191,7 @@ const About = () => {
               Total pra calcular o tamanho das barras: 245. Eg: 45 / 245 * 300 = 55
             </li> */}
             {pokemon.stats.map((item) => (
-              <li
-                key={item.stat.name}
-                style={{
-                  display: "grid",
-                  alignItems: "center",
-                  gridTemplateColumns: "70px auto 1fr",
-                }}
-              >
+              <BaseStatItem key={item.stat.name}>
                 <BaseStatName pokemonType={pokemonType}>
                   {abbreviateStatName(item.stat.name)}
                 </BaseStatName>
@@ -187,13 +205,17 @@ const About = () => {
                 >
                   <Bar pokemonType={pokemonType} value={item.base_stat} />
                 </Wrapper>
-              </li>
+              </BaseStatItem>
             ))}
           </ul>
         </DetailsContainer>
         <PokemonPicContainer pokemonType={pokemonType}>
-          <Link to={previousPage}>Voltar</Link>
-          About
+          <AboutWrapper>
+            <BackLink to={previousPage}>
+              <BackArrow /> Voltar
+            </BackLink>
+            <SecondaryTitle>About</SecondaryTitle>
+          </AboutWrapper>
           <PokemonPicWrapper>
             <PokemonPic
               src={getSvgAddress(pokemon.id)}
@@ -222,7 +244,6 @@ const Bar = styled.div`
   background-color: ${({ theme, pokemonType }) =>
     theme.colors.pokemonTypes[pokemonType]};
   position: relative;
-  /* top: 1px; */
 `;
 
 const PokemonName = styled.h2`
@@ -232,13 +253,18 @@ const PokemonName = styled.h2`
 
 const PokemonId = styled.span`
   color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 2.5;
+  align-self: flex-end;
+  margin-left: 15px;
 `;
 
 const PokemonPicContainer = styled.div`
   background-color: ${({ theme, pokemonType }) =>
     theme.colors.pokemonTypes[pokemonType]};
   width: 408px;
-  height: 538px;
+  height: calc(583px - 15px);
   position: absolute;
   bottom: 0px;
   left: 0;
@@ -248,6 +274,7 @@ const PokemonTypeTag = styled.span`
   text-transform: capitalize;
   display: inline-block;
   margin-right: 10px;
+  margin-bottom: 35px;
   font-weight: 700;
   font-size: 12px;
   line-height: 16px;
@@ -260,15 +287,20 @@ const PokemonTypeTag = styled.span`
 
 const PokemonTraitList = styled.ul`
   color: ${({ theme, mode }) => theme[mode].textMain};
+  margin-bottom: 56px;
+  display: flex;
+  gap: 50px;
 `;
 
 const BaseStatsTitle = styled.h3`
   color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
+  margin-bottom: 20px;
 `;
 
 const PokemonFlavorText = styled.p`
   color: ${({ theme, mode }) => theme[mode].textMain};
   font-size: 14px;
+  margin-bottom: 30px;
 `;
 
 const BaseStatName = styled.span`
@@ -277,6 +309,7 @@ const BaseStatName = styled.span`
   line-height: 16px;
   font-weight: 600;
   color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
+  position: relative;
 `;
 
 const BaseStatValue = styled.span`
@@ -327,6 +360,54 @@ const DetailsContainer = styled.section`
   z-index: 3;
   margin: 0 auto;
   border-radius: 10px;
+`;
+
+const SectionHeader = styled.header`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+`;
+
+const BaseStatItem = styled.li`
+  display: grid;
+  align-items: center;
+  grid-template-columns: 70px auto 1fr;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    display: block;
+    content: "";
+    height: 100%;
+    border-right: 1px solid ${({ theme }) => theme.colors.grayscale.lightGray};
+    top: 0;
+    left: 54px;
+  }
+`;
+
+const SecondaryTitle = styled.h2`
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  color: #ffffff;
+`;
+
+const AboutWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 17px 28px;
+  gap: 86px;
+`;
+
+const BackLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: ${({ theme }) => theme.colors.grayscale.white};
+  gap: 12px;
 `;
 
 export default About;

@@ -59,9 +59,7 @@ const PokemonFeed = () => {
           ))}
         </PokemonListContainer>
       )}
-      <div ref={pageBottom} style={{ height: "50px" }}>
-        a
-      </div>
+      <div ref={pageBottom} style={{ height: "50px" }}></div>
     </>
   );
 };

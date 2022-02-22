@@ -8,7 +8,15 @@ const SearchBar = ({
   handlePokemonSearch,
   searchedPokemon,
   mode,
+  setError,
+  setSearchResult,
 }) => {
+  const resetSearchAndError = () => {
+    setError(null);
+    setSearchResult(null);
+    setSearchedPokemon("");
+  };
+
   return (
     <S.Wrapper>
       <S.Form onSubmit={handlePokemonSearch}>
@@ -20,11 +28,10 @@ const SearchBar = ({
           value={searchedPokemon}
           type="text"
           id="pokemonSearch"
-          placeholder="bulbasaur"
         ></S.Input>
         <div>
           {searchedPokemon ? (
-            <S.ClearSearchIcon onClick={() => setSearchedPokemon("")} />
+            <S.ClearSearchIcon onClick={resetSearchAndError} />
           ) : (
             <SearchIcon />
           )}

@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import Card from "../../components/Card";
 import Background from "../../components/Background";
 import Error from "../../components/Error";
@@ -9,10 +8,12 @@ import PokemonFeed from "../../components/PokemonFeed";
 import SearchBar from "../../components/SearchBar";
 import api from "../../services/api";
 import Container from "../../components/Container";
+import PokemonListContainer from "../../components/PokemonListContainer";
+import * as S from "./Search.style.js";
 
 const Search = () => {
   const [searchedPokemon, setSearchedPokemon] = React.useState("");
-  const [searchResult, setSearchResult] = React.useState("");
+  const [searchResult, setSearchResult] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
@@ -46,23 +47,25 @@ const Search = () => {
     <Background mode={mode}>
       <Container>
         <Header />
-
-        {/* <Link to="/">Voltar</Link> */}
         <SearchBar
           setSearchedPokemon={setSearchedPokemon}
           handlePokemonSearch={handlePokemonSearch}
           searchedPokemon={searchedPokemon}
           mode={mode}
+          setError={setError}
+          setSearchResult={setSearchResult}
         />
+        {(error || searchResult) && <button>Mostrar feed</button>}
         {isLoading && <h1>Loading...</h1>}
         {searchResult && (
-          <div>
-            <h1>Resultado da busca</h1>
-            <Card {...searchResult} />
-          </div>
+          <S.SearchResultContainer>
+            <PokemonListContainer>
+              <Card {...searchResult} />
+            </PokemonListContainer>
+          </S.SearchResultContainer>
         )}
         {error && <Error />}
-        <PokemonFeed />
+        {!error && !searchResult && <PokemonFeed />}
       </Container>
     </Background>
   );

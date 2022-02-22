@@ -128,7 +128,7 @@ const About = () => {
     >
       <Container>
         <Header />
-        <DetailsContainer>
+        <DetailsContainer mode={mode}>
           <SectionHeader>
             {isFavorite ? (
               <Button>
@@ -196,7 +196,7 @@ const About = () => {
                   {abbreviateStatName(item.stat.name)}
                 </BaseStatName>
                 <BaseStatValue mode={mode}>{item.base_stat}</BaseStatValue>{" "}
-                <Wrapper
+                <BarWrapper
                   role="progressbar"
                   aria-valuenow={item.base_stat}
                   aria-valuemin="0"
@@ -204,7 +204,7 @@ const About = () => {
                   pokemonType={pokemonType}
                 >
                   <Bar pokemonType={pokemonType} value={item.base_stat} />
-                </Wrapper>
+                </BarWrapper>
               </BaseStatItem>
             ))}
           </ul>
@@ -228,7 +228,7 @@ const About = () => {
   );
 };
 
-const Wrapper = styled.div`
+const BarWrapper = styled.div`
   background-color: ${({ theme, pokemonType }) =>
     theme.colors.pokemonTypes[`${pokemonType}Bg`]};
   width: calc(100% - 1rem);
@@ -246,9 +246,30 @@ const Bar = styled.div`
   position: relative;
 `;
 
+const SectionHeader = styled.header`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+
+  @media (max-width: 1270px) {
+    position: absolute;
+    top: -170px;
+    /* left: -5px; */
+    width: 360px;
+    display: grid;
+    grid-template-columns: repeat(2, auto) 1fr;
+    justify-content: start;
+  }
+`;
+
 const PokemonName = styled.h2`
   text-transform: capitalize;
   color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
+
+  @media (max-width: 1270px) {
+    color: ${({ theme }) => theme.colors.grayscale.white};
+  }
 `;
 
 const PokemonId = styled.span`
@@ -258,16 +279,11 @@ const PokemonId = styled.span`
   line-height: 2.5;
   align-self: flex-end;
   margin-left: 15px;
-`;
 
-const PokemonPicContainer = styled.div`
-  background-color: ${({ theme, pokemonType }) =>
-    theme.colors.pokemonTypes[pokemonType]};
-  width: 408px;
-  height: calc(583px - 15px);
-  position: absolute;
-  bottom: 0px;
-  left: 0;
+  @media (max-width: 1270px) {
+    color: ${({ theme }) => theme.colors.grayscale.white};
+    justify-self: end;
+  }
 `;
 
 const PokemonTypeTag = styled.span`
@@ -289,7 +305,8 @@ const PokemonTraitList = styled.ul`
   color: ${({ theme, mode }) => theme[mode].textMain};
   margin-bottom: 56px;
   display: flex;
-  gap: 50px;
+  justify-content: space-between;
+  /* gap: 50px; */
 `;
 
 const BaseStatsTitle = styled.h3`
@@ -324,6 +341,21 @@ const Button = styled.button`
   display: flex;
 `;
 
+const PokemonPicContainer = styled.div`
+  background-color: ${({ theme, pokemonType }) =>
+    theme.colors.pokemonTypes[pokemonType]};
+  width: 408px;
+  height: calc(583px - 15px);
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+
+  @media (max-width: 1270px) {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
 const PokemonPicWrapper = styled.div`
   position: relative;
   width: 400px;
@@ -342,6 +374,26 @@ const PokemonPicWrapper = styled.div`
     top: 0px;
     transform: translateX(-50px);
   }
+
+  @media (max-width: 1270px) {
+    width: 200px;
+    height: 200px;
+    z-index: 3;
+    right: -6%;
+
+    &::before {
+      content: "";
+      background-image: url(${pokeballBg});
+      background-size: cover;
+      display: inline-block;
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      left: 0px;
+      top: -70px;
+      transform: translateX(150px);
+    }
+  }
 `;
 
 const PokemonPic = styled.img`
@@ -355,18 +407,23 @@ const PokemonPic = styled.img`
 `;
 
 const DetailsContainer = styled.section`
-  max-width: 400px;
+  max-width: 440px;
   position: relative;
   z-index: 3;
   margin: 0 auto;
   border-radius: 10px;
-`;
 
-const SectionHeader = styled.header`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 25px;
+  @media (max-width: 1270px) {
+    padding: 80px 40px 70px 40px;
+  }
+
+  @media (max-width: calc(430px + 7px)) {
+    max-width: calc(440px - 14px);
+    margin: 0 7px;
+  }
+
+  background-color: ${({ theme, mode }) => theme[mode].pageBg};
+  /* background-color: rgba(0, 0, 0, 0.2); */
 `;
 
 const BaseStatItem = styled.li`
@@ -399,6 +456,10 @@ const AboutWrapper = styled.div`
   align-items: center;
   padding: 17px 28px;
   gap: 86px;
+
+  @media (max-width: 1270px) {
+    display: none;
+  }
 `;
 
 const BackLink = styled(Link)`

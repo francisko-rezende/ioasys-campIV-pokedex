@@ -465,7 +465,7 @@ const AboutWrapper = styled.div`
     position: absolute;
     bottom: 8%;
     margin: auto;
-    right: calc(402px);
+    right: 42%;
   }
 `;
 

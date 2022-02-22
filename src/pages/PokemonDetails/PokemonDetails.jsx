@@ -126,7 +126,7 @@ const About = () => {
       pokemonType={pokemonType}
       style={{ position: "relative" }}
     >
-      <Container>
+      <MainContainer>
         <Header />
         <DetailsContainer mode={mode}>
           <SectionHeader>
@@ -223,7 +223,7 @@ const About = () => {
             />
           </PokemonPicWrapper>
         </PokemonPicContainer>
-      </Container>
+      </MainContainer>
     </Background>
   );
 };
@@ -391,8 +391,7 @@ const PokemonPicWrapper = styled.div`
       height: 180px;
       left: 0px;
       top: -70px;
-      transform: translateX(150px);
-      transform: translateX(50px);
+      transform: translateX(100px);
     }
   }
 `;
@@ -408,6 +407,7 @@ const PokemonPic = styled.img`
 
   @media (max-width: 1270px) {
     transform: unset;
+    margin: 0 auto;
   }
 `;
 
@@ -479,6 +479,12 @@ const BackLink = styled(Link)`
   font-size: 16px;
   color: ${({ theme }) => theme.colors.grayscale.white};
   gap: 12px;
+`;
+
+const MainContainer = styled.main`
+  max-width: calc(830px + 14px);
+  /* padding: 0 7px; */
+  margin: 0 auto;
 `;
 
 export default About;

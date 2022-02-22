@@ -379,7 +379,7 @@ const PokemonPicWrapper = styled.div`
     width: 200px;
     height: 200px;
     z-index: 3;
-    right: -6%;
+    margin: auto;
 
     &::before {
       content: "";
@@ -392,6 +392,7 @@ const PokemonPicWrapper = styled.div`
       left: 0px;
       top: -70px;
       transform: translateX(150px);
+      transform: translateX(50px);
     }
   }
 `;
@@ -404,6 +405,10 @@ const PokemonPic = styled.img`
   display: block;
   object-fit: cover;
   transform: translateX(100px);
+
+  @media (max-width: 1270px) {
+    transform: unset;
+  }
 `;
 
 const DetailsContainer = styled.section`
@@ -411,19 +416,17 @@ const DetailsContainer = styled.section`
   position: relative;
   z-index: 3;
   margin: 0 auto;
-  border-radius: 10px;
+  background-color: ${({ theme, mode }) => theme[mode].pageBg};
 
   @media (max-width: 1270px) {
+    border-radius: 15px;
     padding: 80px 40px 70px 40px;
+    max-width: calc(440px + 80px);
   }
 
-  @media (max-width: calc(430px + 7px)) {
-    max-width: calc(440px - 14px);
+  @media (max-width: calc(520px + 14px)) {
     margin: 0 7px;
   }
-
-  background-color: ${({ theme, mode }) => theme[mode].pageBg};
-  /* background-color: rgba(0, 0, 0, 0.2); */
 `;
 
 const BaseStatItem = styled.li`

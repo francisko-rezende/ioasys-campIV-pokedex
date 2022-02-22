@@ -22,7 +22,6 @@ export const Thumb = styled(SwitchPrimitive.Thumb)`
       ? "hsla(257, 3%, 56%, 1)"
       : theme.colors.ioasysColor.secondaryColor};
   border-radius: 9999px;
-  transition: transform 100ms;
   transform: ${({ mode }) =>
     mode === "dark" ? "translateX(6px)" : "translateX(19px)"};
   will-change: transform;

@@ -448,6 +448,10 @@ const SecondaryTitle = styled.h2`
   font-size: 18px;
   line-height: 1;
   color: #ffffff;
+
+  @media (max-width: 1270px) {
+    display: none;
+  }
 `;
 
 const AboutWrapper = styled.div`
@@ -458,7 +462,10 @@ const AboutWrapper = styled.div`
   gap: 86px;
 
   @media (max-width: 1270px) {
-    display: none;
+    position: absolute;
+    bottom: 8%;
+    margin: auto;
+    right: calc(402px);
   }
 `;
 

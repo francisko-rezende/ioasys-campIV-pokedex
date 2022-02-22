@@ -29,7 +29,8 @@ const SearchBar = ({
         )}
       </S.Form>
       <S.FavLink to="/favoritos">
-        <FavoriteIcon isFavorite={true} /> Meus favotiros
+        <FavoriteIcon isFavorite={true} />{" "}
+        <S.FavLinkText>Meus favotiros</S.FavLinkText>
       </S.FavLink>
     </S.Wrapper>
   );

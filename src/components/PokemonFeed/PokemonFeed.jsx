@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
 import api from "../../services/api";
 import {
   GET_POKEMON_LIST,
@@ -18,18 +17,20 @@ const PokemonFeed = () => {
   const pageBottom = React.useRef();
 
   React.useEffect(() => {
-    const intersectionObserver = new IntersectionObserver((entries) => {
-      const [pageBottomEntry] = entries;
-      if (!pageBottomEntry.isIntersecting) return;
-      dispatch(GET_POKEMON_LIST());
+    const intersectionObserver = new IntersectionObserver(
+      ([pageBottomEntry]) => {
+        // const [pageBottomEntry] = entries;
+        if (!pageBottomEntry.isIntersecting) return;
+        dispatch(GET_POKEMON_LIST());
 
-      // entries.forEach((entry) => {
-      //   if (!entry.isIntersecting) {
-      //     return;
-      //   }
-      //   dispatch(GET_POKEMON_LIST());
-      // });
-    });
+        // entries.forEach((entry) => {
+        //   if (!entry.isIntersecting) {
+        //     return;
+        //   }
+        //   dispatch(GET_POKEMON_LIST());
+        // });
+      }
+    );
 
     intersectionObserver.observe(pageBottom.current);
 

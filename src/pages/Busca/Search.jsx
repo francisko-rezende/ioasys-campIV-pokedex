@@ -47,7 +47,7 @@ const Search = () => {
       <Container>
         <Header />
 
-        <Link to="/">Voltar</Link>
+        {/* <Link to="/">Voltar</Link> */}
         <SearchBar
           setSearchedPokemon={setSearchedPokemon}
           handlePokemonSearch={handlePokemonSearch}

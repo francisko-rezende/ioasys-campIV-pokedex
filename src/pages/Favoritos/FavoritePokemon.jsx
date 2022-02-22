@@ -8,6 +8,7 @@ import FavoriteIcon from "../../components/FavoriteIcon";
 import Header from "../../components/Header/Header";
 import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
 import Container from "../../components/Container";
+import PokemonListContainer from "../../components/PokemonListContainer";
 
 const FavoritePokemon = () => {
   const {
@@ -15,11 +16,11 @@ const FavoritePokemon = () => {
     favoritePokemon: { favoritePokemonList },
   } = useSelector((store) => store);
 
-  function generatePlaceholderCards() {
+  function generatePlaceholderCards(favoritePokemonList) {
     const numberOfCardsToCreate = 12 - favoritePokemonList.length;
     const placeholderCardsArray = Array(numberOfCardsToCreate).fill();
     return placeholderCardsArray.map((_, index) => (
-      <Blank key={index} mode={mode} />
+      <PlaceholderCard key={index} mode={mode} />
     ));
   }
 
@@ -27,15 +28,15 @@ const FavoritePokemon = () => {
     <Background mode={mode}>
       <Container>
         <Header />
-        <Spacer mode={mode}>
+        <SecondaryHeaderWrapper mode={mode}>
           <StyledLink to="/">
             <StyledBackArrow /> Voltar
           </StyledLink>
           <StyledSecondaryHeader>
             <FavoriteIcon isFavorite={true} /> Meus favotiros
           </StyledSecondaryHeader>
-        </Spacer>
-        <Grid>
+        </SecondaryHeaderWrapper>
+        <PokemonListContainer>
           {favoritePokemonList ? (
             favoritePokemonList.map((pokemon) => (
               <Card key={pokemon.name} {...pokemon} />
@@ -43,35 +44,39 @@ const FavoritePokemon = () => {
           ) : (
             <p>Você ainda não tem favoritos</p>
           )}
-          {generatePlaceholderCards()}
-        </Grid>
+          {generatePlaceholderCards(favoritePokemonList)}
+        </PokemonListContainer>
       </Container>
     </Background>
   );
 };
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  max-width: 830px;
-  margin: 0 auto;
-`;
-
-const Blank = styled.div`
+const PlaceholderCard = styled.div`
   width: 152px;
   height: 150px;
   border-radius: 10.49px;
   background-color: ${({ theme, mode }) => theme[mode].placeholderCardBg};
+
+  @media (max-width: 565px) {
+    width: 104px;
+    height: 112px;
+  }
 `;
 
-const Spacer = styled.div`
+const SecondaryHeaderWrapper = styled.div`
   padding: 60px 0;
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
+  /* justify-content: center; */
   border-top: 2px solid
     ${({ theme, mode }) => theme[mode].favoritesHorizontalSeparator};
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+    border: unset;
+    padding-top: 0;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -82,10 +87,23 @@ const StyledLink = styled(Link)`
   font-size: 14px;
   padding: 1rem;
   padding-left: 0;
+
+  @media (max-width: 500px) {
+    position: absolute;
+    bottom: 4%;
+    left: 45%;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const StyledBackArrow = styled(BackArrow)`
   margin-right: 13px;
+
+  @media (max-width: 500px) {
+    margin: unset;
+    margin-bottom: 5px;
+  }
 `;
 
 const StyledSecondaryHeader = styled.h2`
@@ -96,6 +114,10 @@ const StyledSecondaryHeader = styled.h2`
   color: ${({ theme }) => theme.colors.ioasysColor.secondaryColor};
   justify-self: center;
   transform: translateX(-53px);
+
+  @media (max-width: 500px) {
+    transform: unset;
+  }
 `;
 
 export default FavoritePokemon;

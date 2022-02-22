@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./SearchBar.style";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-svgomg.svg";
-import { Link } from "react-router-dom";
 import FavoriteIcon from "../FavoriteIcon";
 
 const SearchBar = ({
@@ -10,7 +9,6 @@ const SearchBar = ({
   searchedPokemon,
   mode,
 }) => {
-  console.log(mode);
   return (
     <S.Wrapper>
       <S.Form onSubmit={handlePokemonSearch}>

@@ -53,4 +53,14 @@ export const FavLink = styled(Link)`
   display: flex;
   gap: 10px;
   color: ${({ theme }) => theme.colors.ioasysColor.secondaryColor};
+
+  @media (max-width: 920px) {
+    margin-left: calc(20px - 1rem);
+  }
+`;
+
+export const FavLinkText = styled.span`
+  @media (max-width: 920px) {
+    display: none;
+  }
 `;

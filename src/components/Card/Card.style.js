@@ -36,7 +36,7 @@ export const Photo = styled.img`
   /* max-width: 90%; */
 
   @media (max-width: 565px) {
-    width: 50%;
+    width: 60%;
     top: -15%;
   }
 `;

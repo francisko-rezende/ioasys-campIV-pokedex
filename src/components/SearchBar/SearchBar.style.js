@@ -33,7 +33,12 @@ export const Label = styled.label`
   color: ${({ theme }) => theme.colors.ioasysColor.secondaryColor};
   background-color: ${({ theme, mode }) => theme[mode].pageBg};
   position: absolute;
-  top: -1em;
+  top: -0.8em;
+  padding: 0 2px;
+
+  @media (max-width: 565px) {
+    font-size: 16px;
+  }
 `;
 
 export const ClearSearchIcon = styled(UnstyledClearSearchIcon)`

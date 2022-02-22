@@ -22,11 +22,13 @@ const SearchBar = ({
           id="pokemonSearch"
           placeholder="bulbasaur"
         ></S.Input>
-        {searchedPokemon ? (
-          <S.ClearSearchIcon onClick={() => setSearchedPokemon("")} />
-        ) : (
-          <SearchIcon />
-        )}
+        <div>
+          {searchedPokemon ? (
+            <S.ClearSearchIcon onClick={() => setSearchedPokemon("")} />
+          ) : (
+            <SearchIcon />
+          )}
+        </div>
       </S.Form>
       <S.FavLink to="/favoritos">
         <FavoriteIcon isFavorite={true} />{" "}

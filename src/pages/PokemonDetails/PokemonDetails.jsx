@@ -49,26 +49,25 @@ const About = () => {
   hooks.useSyncFavoriteState(setIsFavorite, favoritePokemonList, pokemon);
 
   React.useEffect(() => {
-    api.get(`/pokemon-species/${pokemon.name}`).then(({ data }) => {
-      const isLanguageEN = ({ language }) => language.name === "en";
+    api
+      .get(`/pokemon-pecies/${pokemon.name}`)
+      .then(({ data }) => {
+        const isLanguageEN = ({ language }) => language.name === "en";
+        const englishFlavorTextObj =
+          data.flavor_text_entries.find(isLanguageEN);
 
-      const englishFlavorTextObj = data.flavor_text_entries.find(isLanguageEN);
+        if (englishFlavorTextObj) {
+          setFlavorText(englishFlavorTextObj.flavor_text);
+          return;
+        }
 
-      if (englishFlavorTextObj) {
-        setFlavorText(englishFlavorTextObj.flavor_text);
-        return;
-      }
-
-      setFlavorText(data.flavor_text_entries[0].flavor_text);
-    });
+        setFlavorText(data.flavor_text_entries[0].flavor_text);
+      })
+      .catch((error) => console.log(error));
   }, [pokemon.name]);
 
   return (
-    <Background
-      mode={currentMode}
-      pokemonType={pokemonType}
-      // style={{ position: "relative" }}
-    >
+    <Background mode={currentMode} pokemonType={pokemonType}>
       <S.MainContainer>
         <Header />
         <S.DetailsContainer mode={currentMode}>

@@ -41,7 +41,7 @@ const PokemonFeed = () => {
     const isThereAPokemonList = pokemonList.length > 0;
 
     if (isThereAPokemonList) {
-      Promise.all(pokemonList.map((name) => api.get(name))).then(
+      Promise.all(pokemonList.map((name) => api.get(`/pokemon/${name}`))).then(
         (newResponses) => {
           const getData = ({ data }) => data;
 

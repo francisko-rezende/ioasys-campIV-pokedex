@@ -6,7 +6,7 @@ import {
   GET_POKEMON_LIST_FAILURE,
 } from "../slices/PokemonFeedSlice";
 
-import axios from "axios";
+import api from "../../services/api";
 
 const getEndpoint = (state) => state.pokemonFeed.endpoint;
 
@@ -16,7 +16,7 @@ function* getPokemons() {
 
     const {
       data: { results, next },
-    } = yield call(axios.get, endpoint);
+    } = yield call(api.get, endpoint);
 
     yield put(GET_POKEMON_LIST_SUCCESS({ results, next }));
   } catch (error) {

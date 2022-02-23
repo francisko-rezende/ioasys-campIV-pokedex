@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -16,6 +15,7 @@ import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg"
 import * as S from "./PokemonDetails.style";
 import * as hooks from "../../hooks";
 import * as helpers from "../../helpers";
+import api from "../../services/api";
 
 const About = () => {
   const location = useLocation();
@@ -49,7 +49,7 @@ const About = () => {
   hooks.useSyncFavoriteState(setIsFavorite, favoritePokemonList, pokemon);
 
   React.useEffect(() => {
-    axios.get(pokemon.species.url).then(({ data }) => {
+    api.get(`/pokemon-species/${pokemon.name}`).then(({ data }) => {
       const isLanguageEN = ({ language }) => language.name === "en";
 
       const englishFlavorTextObj = data.flavor_text_entries.find(isLanguageEN);
@@ -61,7 +61,7 @@ const About = () => {
 
       setFlavorText(data.flavor_text_entries[0].flavor_text);
     });
-  }, [pokemon.species.url]);
+  }, [pokemon.name]);
 
   return (
     <Background

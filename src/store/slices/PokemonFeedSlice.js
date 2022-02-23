@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   pokemonList: [],
-  endpoint: "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30",
+  endpoint: "/pokemon/?offset=0&limit=30",
   isLoading: false,
   error: null,
   pokemonFeedData: [],

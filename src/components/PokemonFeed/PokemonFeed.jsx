@@ -22,13 +22,6 @@ const PokemonFeed = () => {
         // const [pageBottomEntry] = entries;
         if (!pageBottomEntry.isIntersecting) return;
         dispatch(GET_POKEMON_LIST());
-
-        // entries.forEach((entry) => {
-        //   if (!entry.isIntersecting) {
-        //     return;
-        //   }
-        //   dispatch(GET_POKEMON_LIST());
-        // });
       }
     );
 
@@ -37,30 +30,42 @@ const PokemonFeed = () => {
     return () => intersectionObserver.disconnect();
   }, [dispatch]);
 
+  const [isLoadingFeed, setIsLoadingFeed] = React.useState(false);
+  const [errorFeed, setErrorFeed] = React.useState(null);
+
   React.useEffect(() => {
     const isThereAPokemonList = pokemonList.length > 0;
 
     if (isThereAPokemonList) {
-      Promise.all(pokemonList.map((name) => api.get(`/pokemon/${name}`))).then(
-        (newResponses) => {
+      setIsLoadingFeed(true);
+      setErrorFeed(null);
+      Promise.all(pokemonList.map((name) => api.get(`/pokemo/${name}`)))
+        .then((newResponses) => {
+          console.log(newResponses);
           const getData = ({ data }) => data;
 
           const pokemonFeedData = newResponses.map(getData);
           dispatch(UPDATE_POKEMON_FEED_DATA(pokemonFeedData));
-        }
-      );
+          setIsLoadingFeed(null);
+        })
+        .catch((err) => {
+          setIsLoadingFeed(false);
+          setErrorFeed(err);
+        });
     }
   }, [dispatch, pokemonList.length]);
 
   return (
     <>
-      {pokemonFeedData && (
+      {pokemonFeedData.length > 0 && (
         <PokemonListContainer>
           {pokemonFeedData.map((pokemon) => (
             <Card key={pokemon.id} {...pokemon} />
           ))}
         </PokemonListContainer>
       )}
+      {isLoadingFeed && <h1 style={{ color: "red" }}>loading...</h1>}
+      {errorFeed && <h1>Deu ruim</h1>}
       <div ref={pageBottom} style={{ height: "50px" }}></div>
     </>
   );

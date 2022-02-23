@@ -68,7 +68,6 @@ const SecondaryHeaderWrapper = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  /* justify-content: center; */
   border-top: 2px solid
     ${({ theme, mode }) => theme[mode].favoritesHorizontalSeparator};
 
@@ -90,7 +89,7 @@ const StyledLink = styled(Link)`
 
   @media (max-width: 500px) {
     position: absolute;
-    bottom: 4%;
+    bottom: 6%;
     left: 45%;
     flex-direction: column;
     align-items: center;

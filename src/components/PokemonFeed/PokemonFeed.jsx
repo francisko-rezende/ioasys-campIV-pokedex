@@ -38,17 +38,19 @@ const PokemonFeed = () => {
   }, [dispatch]);
 
   React.useEffect(() => {
-    if (pokemonList) {
+    const isThereAPokemonList = pokemonList.length > 0;
+
+    if (isThereAPokemonList) {
       Promise.all(pokemonList.map((name) => api.get(name))).then(
         (newResponses) => {
-          const destructureData = ({ data }) => data;
+          const getData = ({ data }) => data;
 
-          const pokemonFeedData = newResponses.map(destructureData);
+          const pokemonFeedData = newResponses.map(getData);
           dispatch(UPDATE_POKEMON_FEED_DATA(pokemonFeedData));
         }
       );
     }
-  }, [dispatch, pokemonList]);
+  }, [dispatch, pokemonList.length]);
 
   return (
     <>

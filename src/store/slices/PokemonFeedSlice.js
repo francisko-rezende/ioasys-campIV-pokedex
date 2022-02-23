@@ -14,7 +14,7 @@ const pokemonSlice = createSlice({
   reducers: {
     GET_POKEMON_LIST: (state) => ({ ...state, isLoading: true }),
     GET_POKEMON_LIST_SUCCESS: (state, { payload }) => {
-      const currentPokemon = state.pokemonList;
+      const currentPokemon = [...state.pokemonList];
       const newPokemon = payload.results.map(({ name }) => name);
       const uniquePokemonNames = Array.from(
         new Set([...currentPokemon, ...newPokemon])

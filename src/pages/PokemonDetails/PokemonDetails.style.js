@@ -28,7 +28,6 @@ export const SectionHeader = styled.header`
   @media (max-width: 1380px) {
     position: absolute;
     top: -170px;
-    /* left: -5px; */
     width: 360px;
     display: grid;
     grid-template-columns: repeat(2, auto) 1fr;
@@ -148,6 +147,7 @@ export const PokemonPicWrapper = styled.div`
   }
 
   @media (max-width: 1380px) {
+    top: 70px;
     width: 200px;
     height: 200px;
     z-index: 3;
@@ -178,6 +178,8 @@ export const PokemonPic = styled.img`
   transform: translateX(100px);
 
   @media (max-width: 1380px) {
+    height: 80%;
+
     transform: unset;
     margin: 0 auto;
   }

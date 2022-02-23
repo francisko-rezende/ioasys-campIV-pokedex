@@ -174,7 +174,6 @@ export const PokemonPic = styled.img`
   max-width: 100%;
   height: 90%;
   display: block;
-  object-fit: cover;
   transform: translateX(100px);
 
   @media (max-width: 1380px) {

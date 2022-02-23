@@ -39,7 +39,7 @@ const PokemonFeed = () => {
     if (isThereAPokemonList) {
       setIsLoadingFeed(true);
       setErrorFeed(null);
-      Promise.all(pokemonList.map((name) => api.get(`/pokemo/${name}`)))
+      Promise.all(pokemonList.map((name) => api.get(`/pokemon/${name}`)))
         .then((newResponses) => {
           console.log(newResponses);
           const getData = ({ data }) => data;

@@ -14,21 +14,28 @@ import HeightIcon from "../../components/HeightIcon";
 import WeightIcon from "../../components/WeightIcon";
 import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
 import * as S from "./PokemonDetails.style";
-import useSaveInLocalStorage from "../../hooks/useSaveInLocalStorage";
+import * as hooks from "../../hooks";
+import * as helpers from "../../helpers";
 
 const About = () => {
   const location = useLocation();
+  const previousPage = helpers.getPreviousPageAddress(location);
   const { pokemon } = location.state;
-  const previousPage = location.pathname.split("/").slice(0, -1).join("/");
+  const pokemonType = pokemon.types[0].type.name;
 
-  const {
-    mode: { mode },
-    favoritePokemon: { favoritePokemonList },
-  } = useSelector((store) => store);
+  const store = useSelector((store) => store);
+  const { mode } = store.mode;
+  const { favoritePokemonList } = store.favoritePokemon;
 
-  useSaveInLocalStorage("favoritePokemon", favoritePokemonList);
+  // const {
+  //   mode: { mode },
+  //   favoritePokemon: { favoritePokemonList },
+  // } = useSelector((store) => store);
+
+  hooks.useSaveInLocalStorage("favoritePokemon", favoritePokemonList);
 
   const dispatch = useDispatch();
+
   const addToFavorites = () => {
     dispatch(ADD_FAVORITE_POKEMON(pokemon));
   };
@@ -37,70 +44,15 @@ const About = () => {
   };
 
   const [isFavorite, setIsFavorite] = React.useState(false);
-
-  React.useEffect(
-    () =>
-      setIsFavorite(
-        favoritePokemonList.some(({ name }) => name === pokemon.name),
-        [favoritePokemonList, pokemon.name]
-      ),
-    [favoritePokemonList, pokemon.name]
-  );
-
-  function getFormattedMoves(pokemon) {
-    const capitalize = (word) => {
-      const firstLetter = word[0];
-      const capitalizedWord = word.replace(
-        firstLetter,
-        firstLetter.toUpperCase()
-      );
-      return capitalizedWord;
-    };
-
-    if (pokemon.abilities.length > 1) {
-      return pokemon.abilities
-        .slice(0, 2)
-        .map(({ ability }) => ability.name)
-        .map((abilityName) => capitalize(abilityName))
-        .join(" / ");
-    }
-    return pokemon.abilities[0].ability.name;
-  }
-
-  const pokemonType = pokemon.types[0].type.name;
   const [flavorText, setFlavorText] = React.useState("");
 
-  const getSvgAddress = (id) =>
-    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
-
-  const getThreeDigitNumber = (number) => {
-    const numberLength = String(number).length;
-
-    switch (numberLength) {
-      case 1:
-        return `00${number}`;
-      case 2:
-        return `0${number}`;
-      default:
-        return `${number}`;
-    }
-  };
-
-  const abbreviateStatName = (stat) =>
-    ({
-      hp: "hp",
-      attack: "atk",
-      defense: "def",
-      "special-attack": "satk",
-      "special-defense": "sdef",
-      speed: "spd",
-    }[stat]);
+  hooks.useSyncFavoriteState(setIsFavorite, favoritePokemonList, pokemon);
 
   React.useEffect(() => {
     axios.get(pokemon.species.url).then(({ data }) => {
-      const englishFlavorTextObj = data.flavor_text_entries.find(
-        ({ language }) => language.name === "en"
-      );
+      const isLanguageEN = ({ language }) => language.name === "en";
+
+      const englishFlavorTextObj = data.flavor_text_entries.find(isLanguageEN);
 
       if (englishFlavorTextObj) {
         setFlavorText(englishFlavorTextObj.flavor_text);
@@ -115,7 +67,7 @@ const About = () => {
     <Background
       mode={mode}
       pokemonType={pokemonType}
-      style={{ position: "relative" }}
+      // style={{ position: "relative" }}
     >
       <S.MainContainer>
         <Header />
@@ -140,7 +92,7 @@ const About = () => {
               {pokemon.name}
             </S.PokemonName>
             <S.PokemonId pokemonType={pokemonType}>
-              #{getThreeDigitNumber(pokemon.id)}
+              #{helpers.convertToThreeDigitNumber(pokemon.id)}
             </S.PokemonId>
           </S.SectionHeader>
 
@@ -158,7 +110,7 @@ const About = () => {
               <HeightIcon mode={mode} /> {pokemon.height / 10} m
             </TraitListItem>
             <TraitListItem fadedText="moves">
-              {getFormattedMoves(pokemon)}
+              {helpers.getFormattedMoves(pokemon)}
             </TraitListItem>
           </S.PokemonTraitList>
 
@@ -173,10 +125,10 @@ const About = () => {
             {pokemon.stats.map((item) => (
               <S.BaseStatItem key={item.stat.name}>
                 <S.BaseStatName pokemonType={pokemonType}>
-                  {abbreviateStatName(item.stat.name)}
+                  {helpers.abbreviateBaseStatName(item.stat.name)}
                 </S.BaseStatName>
                 <S.BaseStatValue mode={mode}>
-                  {getThreeDigitNumber(item.base_stat)}
+                  {helpers.convertToThreeDigitNumber(item.base_stat)}
                 </S.BaseStatValue>{" "}
                 <S.BarWrapper
                   role="progressbar"
@@ -194,14 +146,14 @@ const About = () => {
 
         <S.PokemonPicContainer pokemonType={pokemonType}>
           <S.AboutWrapper>
-            <S.BackLink to={previousPage ? previousPage : "/"}>
+            <S.BackLink to={previousPage}>
               <BackArrow /> Voltar
             </S.BackLink>
             <S.SecondaryTitle>About</S.SecondaryTitle>
           </S.AboutWrapper>
           <S.PokemonPicWrapper>
             <S.PokemonPic
-              src={getSvgAddress(pokemon.id)}
+              src={helpers.getSvgAddress(pokemon.id)}
               alt={`Foto do/da ${pokemon.name}`}
             />
           </S.PokemonPicWrapper>

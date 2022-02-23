@@ -9,7 +9,7 @@ const modeSlice = createSlice({
   initialState,
   reducers: {
     TOGGLE_THEME: (state) => ({
-      currentMode: state.mode === "light" ? "dark" : "light",
+      currentMode: state.currentMode === "light" ? "dark" : "light",
     }),
   },
 });

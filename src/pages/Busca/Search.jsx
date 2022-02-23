@@ -41,17 +41,17 @@ const Search = () => {
       });
   }
 
-  const { mode } = useSelector(({ mode }) => mode);
+  const { currentMode } = useSelector(({ mode }) => mode);
 
   return (
-    <Background mode={mode}>
+    <Background mode={currentMode}>
       <Container>
         <Header />
         <SearchBar
           setSearchedPokemon={setSearchedPokemon}
           handlePokemonSearch={handlePokemonSearch}
           searchedPokemon={searchedPokemon}
-          mode={mode}
+          mode={currentMode}
           setError={setError}
           setSearchResult={setSearchResult}
         />

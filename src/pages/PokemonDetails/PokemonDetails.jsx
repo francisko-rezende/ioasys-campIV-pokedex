@@ -24,7 +24,7 @@ const About = () => {
   const pokemonType = pokemon.types[0].type.name;
 
   const store = useSelector((store) => store);
-  const { mode } = store.mode;
+  const { currentMode } = store.mode;
   const { favoritePokemonList } = store.favoritePokemon;
 
   // const {
@@ -65,13 +65,13 @@ const About = () => {
 
   return (
     <Background
-      mode={mode}
+      mode={currentMode}
       pokemonType={pokemonType}
       // style={{ position: "relative" }}
     >
       <S.MainContainer>
         <Header />
-        <S.DetailsContainer mode={mode}>
+        <S.DetailsContainer mode={currentMode}>
           <S.SectionHeader>
             {isFavorite ? (
               <S.Button>
@@ -102,19 +102,19 @@ const About = () => {
             </S.PokemonTypeTag>
           ))}
 
-          <S.PokemonTraitList mode={mode}>
+          <S.PokemonTraitList mode={currentMode}>
             <TraitListItem fadedText="weight">
-              <WeightIcon mode={mode} /> {pokemon.weight / 10} kg
+              <WeightIcon mode={currentMode} /> {pokemon.weight / 10} kg
             </TraitListItem>
             <TraitListItem fadedText="height">
-              <HeightIcon mode={mode} /> {pokemon.height / 10} m
+              <HeightIcon mode={currentMode} /> {pokemon.height / 10} m
             </TraitListItem>
             <TraitListItem fadedText="moves">
               {helpers.getFormattedMoves(pokemon)}
             </TraitListItem>
           </S.PokemonTraitList>
 
-          <S.PokemonFlavorText pokemonType={pokemonType} mode={mode}>
+          <S.PokemonFlavorText pokemonType={pokemonType} mode={currentMode}>
             {flavorText}
           </S.PokemonFlavorText>
 
@@ -127,7 +127,7 @@ const About = () => {
                 <S.BaseStatName pokemonType={pokemonType}>
                   {helpers.abbreviateBaseStatName(item.stat.name)}
                 </S.BaseStatName>
-                <S.BaseStatValue mode={mode}>
+                <S.BaseStatValue mode={currentMode}>
                   {helpers.convertToThreeDigitNumber(item.base_stat)}
                 </S.BaseStatValue>{" "}
                 <S.BarWrapper

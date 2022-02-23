@@ -6,7 +6,7 @@ import * as S from "./Card.style";
 // todo refactor getSvgBaseAddress and formatId into their own modules (?) inside the helper folder
 
 const Card = (pokemon) => {
-  const { mode } = useSelector(({ mode }) => mode);
+  const { currentMode } = useSelector(({ mode }) => mode);
 
   const { id, name, types } = pokemon;
   const type = types[0].type.name;
@@ -35,7 +35,7 @@ const Card = (pokemon) => {
         justifyContent: "center",
       }}
     >
-      <S.Card to={name} type={type} state={{ pokemon }} mode={mode}>
+      <S.Card to={name} type={type} state={{ pokemon }} mode={currentMode}>
         <S.Id type={type}>{formatId(id)}</S.Id>
         <S.Photo
           src={getSvgBaseAddress(id)}

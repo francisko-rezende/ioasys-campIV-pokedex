@@ -12,7 +12,7 @@ import PokemonListContainer from "../../components/PokemonListContainer";
 
 const FavoritePokemon = () => {
   const {
-    mode: { mode },
+    mode: { currentMode },
     favoritePokemon: { favoritePokemonList },
   } = useSelector((store) => store);
 
@@ -20,15 +20,15 @@ const FavoritePokemon = () => {
     const numberOfCardsToCreate = 12 - favoritePokemonList.length;
     const placeholderCardsArray = Array(numberOfCardsToCreate).fill();
     return placeholderCardsArray.map((_, index) => (
-      <PlaceholderCard key={index} mode={mode} />
+      <PlaceholderCard key={index} mode={currentMode} />
     ));
   }
 
   return (
-    <Background mode={mode}>
+    <Background mode={currentMode}>
       <Container>
         <Header />
-        <SecondaryHeaderWrapper mode={mode}>
+        <SecondaryHeaderWrapper mode={currentMode}>
           <StyledLink to="/">
             <StyledBackArrow /> Voltar
           </StyledLink>

@@ -21,6 +21,7 @@ const Search = () => {
     e.preventDefault();
 
     setSearchResult("");
+    setError(null);
     setIsLoading(true);
 
     if (!searchedPokemon) {
@@ -29,14 +30,14 @@ const Search = () => {
     }
 
     api
-      .get(`${searchedPokemon}`)
+      .get(`/pokemon/${searchedPokemon}`)
       .then(({ data }) => {
         setSearchResult(data);
         setIsLoading(false);
         setError(null);
       })
       .catch((error) => {
-        setError(error);
+        setError(error.message);
         setIsLoading(false);
       });
   }
@@ -65,7 +66,7 @@ const Search = () => {
         )}
         {error && (
           <S.SearchResultContainer>
-            <Error />
+            <Error errorMessage={error} />
           </S.SearchResultContainer>
         )}
         <PokemonFeed />

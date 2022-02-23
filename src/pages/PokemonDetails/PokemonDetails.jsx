@@ -81,16 +81,16 @@ const About = () => {
   const getSvgAddress = (id) =>
     `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
 
-  const formatId = (id) => {
-    const idLength = String(id).length;
+  const getThreeDigitNumber = (number) => {
+    const numberLength = String(number).length;
 
-    switch (idLength) {
+    switch (numberLength) {
       case 1:
-        return `#00${id}`;
+        return `00${number}`;
       case 2:
-        return `#0${id}`;
+        return `0${number}`;
       default:
-        return `#${id}`;
+        return `${number}`;
     }
   };
 
@@ -146,7 +146,7 @@ const About = () => {
             )}
             <PokemonName pokemonType={pokemonType}>{pokemon.name}</PokemonName>
             <PokemonId pokemonType={pokemonType}>
-              {formatId(pokemon.id)}
+              #{getThreeDigitNumber(pokemon.id)}
             </PokemonId>
           </SectionHeader>
 
@@ -194,7 +194,9 @@ const About = () => {
                 <BaseStatName pokemonType={pokemonType}>
                   {abbreviateStatName(item.stat.name)}
                 </BaseStatName>
-                <BaseStatValue mode={mode}>{item.base_stat}</BaseStatValue>{" "}
+                <BaseStatValue mode={mode}>
+                  {getThreeDigitNumber(item.base_stat)}
+                </BaseStatValue>{" "}
                 <BarWrapper
                   role="progressbar"
                   aria-valuenow={item.base_stat}
@@ -230,11 +232,11 @@ const About = () => {
 const BarWrapper = styled.div`
   background-color: ${({ theme, pokemonType }) =>
     theme.colors.pokemonTypes[`${pokemonType}Bg`]};
-  width: calc(100% - 1rem);
+  width: 100%;
   height: 6px;
   position: relative;
   top: 1px;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
 `;
 
 const Bar = styled.div`
@@ -251,7 +253,7 @@ const SectionHeader = styled.header`
   gap: 10px;
   margin-bottom: 25px;
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1380px) {
     position: absolute;
     top: -170px;
     /* left: -5px; */
@@ -266,7 +268,7 @@ const PokemonName = styled.h2`
   text-transform: capitalize;
   color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1380px) {
     color: ${({ theme }) => theme.colors.grayscale.white};
   }
 `;
@@ -279,7 +281,7 @@ const PokemonId = styled.span`
   align-self: flex-end;
   margin-left: 15px;
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1380px) {
     color: ${({ theme }) => theme.colors.grayscale.white};
     justify-self: end;
   }
@@ -349,7 +351,7 @@ const PokemonPicContainer = styled.div`
   bottom: 0px;
   left: 0;
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1380px) {
     width: 100%;
     height: 100%;
   }
@@ -359,7 +361,7 @@ const PokemonPicWrapper = styled.div`
   position: relative;
   width: 400px;
   height: 400px;
-  top: 75px;
+  top: 0px;
 
   &::before {
     content: "";
@@ -367,14 +369,14 @@ const PokemonPicWrapper = styled.div`
     background-size: cover;
     display: inline-block;
     position: absolute;
-    width: 310px;
-    height: 310px;
+    width: 377px;
+    height: 377px;
     left: 0;
     top: 0px;
     transform: translateX(-50px);
   }
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1380px) {
     width: 200px;
     height: 200px;
     z-index: 3;
@@ -399,12 +401,12 @@ const PokemonPic = styled.img`
   position: relative;
   z-index: 1;
   max-width: 100%;
-  height: 80%;
+  height: 90%;
   display: block;
   object-fit: cover;
   transform: translateX(100px);
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1380px) {
     transform: unset;
     margin: 0 auto;
   }
@@ -417,7 +419,7 @@ const DetailsContainer = styled.section`
   margin: 0 auto;
   background-color: ${({ theme, mode }) => theme[mode].pageBg};
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1380px) {
     border-radius: 15px;
     padding: 80px 40px 70px 40px;
     max-width: calc(440px + 80px);
@@ -431,7 +433,7 @@ const DetailsContainer = styled.section`
 const BaseStatItem = styled.li`
   display: grid;
   align-items: center;
-  grid-template-columns: 70px auto 1fr;
+  grid-template-columns: 70px 50px 1fr;
   position: relative;
 
   &::before {
@@ -451,7 +453,7 @@ const SecondaryTitle = styled.h2`
   line-height: 1;
   color: #ffffff;
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1380px) {
     display: none;
   }
 `;
@@ -463,7 +465,7 @@ const AboutWrapper = styled.div`
   padding: 17px 28px;
   gap: 86px;
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1380px) {
     position: absolute;
     bottom: 8%;
     margin: auto;

@@ -7,12 +7,14 @@ import {
   UPDATE_POKEMON_FEED_DATA,
 } from "../../store/slices/PokemonFeedSlice";
 import Card from "../Card";
+import Loading from "../Loading";
 import PokemonListContainer from "../PokemonListContainer";
 
 const PokemonFeed = () => {
   const { pokemonList, pokemonFeedData } = useSelector(
     ({ pokemonFeed }) => pokemonFeed
   );
+  const { currentMode } = useSelector(({ mode }) => mode);
   const dispatch = useDispatch();
   const pageBottom = React.useRef();
 
@@ -64,7 +66,7 @@ const PokemonFeed = () => {
           ))}
         </PokemonListContainer>
       )}
-      {isLoadingFeed && <h1 style={{ color: "red" }}>loading...</h1>}
+      {isLoadingFeed && <Loading mode={currentMode} />}
       {errorFeed && <h1>Deu ruim</h1>}
       <div ref={pageBottom} style={{ height: "50px" }}></div>
     </>

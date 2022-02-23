@@ -10,6 +10,7 @@ import api from "../../services/api";
 import Container from "../../components/Container";
 import PokemonListContainer from "../../components/PokemonListContainer";
 import * as S from "./Search.style.js";
+import Loading from "../../components/Loading";
 
 const Search = () => {
   const [searchedPokemon, setSearchedPokemon] = React.useState("");
@@ -56,7 +57,7 @@ const Search = () => {
           setError={setError}
           setSearchResult={setSearchResult}
         />
-        {isLoading && <h1>Loading...</h1>}
+        {isLoading && <Loading mode={currentMode} />}
         {searchResult && (
           <S.SearchResultContainer>
             <PokemonListContainer>

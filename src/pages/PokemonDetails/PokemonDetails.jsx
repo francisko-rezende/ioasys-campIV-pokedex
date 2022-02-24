@@ -45,6 +45,8 @@ const About = () => {
 
   const [isFavorite, setIsFavorite] = React.useState(false);
   const [flavorText, setFlavorText] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   hooks.useSyncFavoriteState(setIsFavorite, favoritePokemonList, pokemon);
 
@@ -72,21 +74,13 @@ const About = () => {
         <Header />
         <S.DetailsContainer mode={currentMode}>
           <S.SectionHeader>
-            {isFavorite ? (
-              <S.Button>
-                <FavoriteIcon
-                  onClick={removeFromFavorites}
-                  isFavorite={isFavorite}
-                />
-              </S.Button>
-            ) : (
-              <S.Button>
-                <FavoriteIcon
-                  onClick={addToFavorites}
-                  isFavorite={isFavorite}
-                />
-              </S.Button>
-            )}
+            <S.Button>
+              <FavoriteIcon
+                removeFromFavorites={removeFromFavorites}
+                addToFavorites={addToFavorites}
+                isFavorite={isFavorite}
+              />
+            </S.Button>
             <S.PokemonName pokemonType={pokemonType}>
               {pokemon.name}
             </S.PokemonName>

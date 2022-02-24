@@ -1,9 +1,9 @@
 import * as S from "./FavoriteIcon.style";
 
-const FavoriteIcon = ({ onClick, isFavorite }) => {
+const FavoriteIcon = ({ addToFavorites, removeFromFavorites, isFavorite }) => {
   return (
     <S.FavoriteIcon
-      onClick={onClick}
+      onClick={isFavorite ? removeFromFavorites : addToFavorites}
       isFavorite={isFavorite}
       width="24"
       height="24"

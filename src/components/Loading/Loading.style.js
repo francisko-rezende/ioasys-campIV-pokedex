@@ -16,7 +16,7 @@ export const PokeballContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100px;
-  transform: translateY(-40px);
+  transform: translateY(-100px);
 `;
 
 export const Pokeball = styled.div`

@@ -46,9 +46,9 @@ const PokemonFeed = () => {
           ))}
         </PokemonListContainer>
       )}
+      <div ref={pageBottom} style={{ height: "100px" }}></div>
       {isLoading && <Loading mode={currentMode} />}
       {error && <h1>Deu ruim</h1>}
-      <div ref={pageBottom} style={{ height: "50px" }}></div>
     </>
   );
 };

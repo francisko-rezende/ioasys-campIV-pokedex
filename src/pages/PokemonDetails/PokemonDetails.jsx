@@ -50,7 +50,7 @@ const About = () => {
 
   React.useEffect(() => {
     api
-      .get(`/pokemon-pecies/${pokemon.name}`)
+      .get(`/pokemon-species/${pokemon.name}`)
       .then(({ data }) => {
         const isLanguageEN = ({ language }) => language.name === "en";
         const englishFlavorTextObj =

@@ -37,7 +37,7 @@ export const Pokeball = styled.div`
   }
 
   &::before {
-    background: red;
+    background: ${({ theme }) => theme.colors.ioasysColor.secondaryColor};
     width: 100%;
     height: 50%;
   }

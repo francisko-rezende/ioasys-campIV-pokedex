@@ -7,7 +7,7 @@ const Error = ({ errorMessage }) => {
       "Request failed with status code 404":
         "Este pokemon não foi encontrado ;(",
       "Network Error": "Sua conexão tá com problema ;(",
-    }[errorMessage]);
+    }[errorMessage] || "Ocorreu um erro, tente de novo depois ;(");
 
   console.log(errorMessage);
 

@@ -5,6 +5,7 @@ import {
   GET_POKEMON_LIST,
 } from "../../store/slices/PokemonFeedSlice";
 import Card from "../Card";
+import Error from "../Error/Error";
 import Loading from "../Loading";
 import PokemonListContainer from "../PokemonListContainer";
 
@@ -35,7 +36,7 @@ const PokemonFeed = () => {
     if (isThereAPokemonList) {
       dispatch(GET_POKEMON_FEED_DATA(pokemonList));
     }
-  }, [dispatch, pokemonList.length]);
+  }, [dispatch, pokemonList]);
 
   return (
     <>
@@ -48,7 +49,7 @@ const PokemonFeed = () => {
       )}
       <div ref={pageBottom} style={{ height: "100px" }}></div>
       {isLoading && <Loading mode={currentMode} />}
-      {error && <h1>Deu ruim</h1>}
+      {error && <Error />}
     </>
   );
 };

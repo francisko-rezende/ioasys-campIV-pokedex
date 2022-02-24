@@ -1,13 +1,6 @@
-export function getFormattedMoves(pokemon) {
-  const capitalize = (word) => {
-    const firstLetter = word[0];
-    const capitalizedWord = word.replace(
-      firstLetter,
-      firstLetter.toUpperCase()
-    );
-    return capitalizedWord;
-  };
+import { capitalizeWord } from "./capitalizeWord";
 
+export function getFormattedMoves(pokemon) {
   const hasMoreThanOneAbility = pokemon.abilities.length > 1;
 
   const getAbilityName = ({ ability }) => ability.name;
@@ -16,8 +9,8 @@ export function getFormattedMoves(pokemon) {
     return pokemon.abilities
       .slice(0, 2)
       .map(getAbilityName)
-      .map((abilityName) => capitalize(abilityName))
+      .map((abilityName) => capitalizeWord(abilityName))
       .join(" / ");
   }
-  return capitalize(pokemon.abilities[0].ability.name);
+  return capitalizeWord(pokemon.abilities[0].ability.name);
 }

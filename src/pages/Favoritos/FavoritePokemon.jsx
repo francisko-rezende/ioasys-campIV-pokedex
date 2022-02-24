@@ -9,6 +9,7 @@ import Header from "../../components/Header/Header";
 import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
 import Container from "../../components/Container";
 import PokemonListContainer from "../../components/PokemonListContainer";
+import Head from "../../components/Head";
 
 const FavoritePokemon = () => {
   const {
@@ -26,6 +27,10 @@ const FavoritePokemon = () => {
 
   return (
     <Background mode={currentMode}>
+      <Head
+        title="Favoritos"
+        description="Pokémon favoritos. Aqui você encontra os Pokémon que você mais gosta."
+      />
       <Container>
         <Header />
         <SecondaryHeaderWrapper mode={currentMode}>

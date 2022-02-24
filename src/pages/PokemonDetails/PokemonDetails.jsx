@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import {
   ADD_FAVORITE_POKEMON,
   REMOVE_FAVORITE_POKEMON,
@@ -16,6 +16,8 @@ import * as S from "./PokemonDetails.style";
 import * as hooks from "../../hooks";
 import * as helpers from "../../helpers";
 import api from "../../services/api";
+import Head from "../../components/Head";
+import { capitalizeWord } from "../../helpers/capitalizeWord";
 
 const About = () => {
   const location = useLocation();
@@ -70,6 +72,13 @@ const About = () => {
 
   return (
     <Background mode={currentMode} pokemonType={pokemonType}>
+      <Head
+        title={capitalizeWord(pokemon.name)}
+        description={`Aqui você encontra tudo o que pode querer saber sober ${capitalizeWord(
+          pokemon.name
+        )}s`}
+      />
+
       <S.MainContainer>
         <Header />
         <S.DetailsContainer mode={currentMode}>

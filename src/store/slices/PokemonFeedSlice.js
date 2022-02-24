@@ -22,12 +22,25 @@ const pokemonSlice = createSlice({
 
       return {
         ...state,
-        isLoading: false,
         pokemonList: uniquePokemonNames,
-        endpoint: payload.next,
+        endpoint: payload.next.split("v2")[1],
       };
     },
     GET_POKEMON_LIST_FAILURE: (state, { payload }) => ({
+      ...state,
+      isLoading: false,
+      error: payload,
+    }),
+    GET_POKEMON_FEED_DATA: (state) => ({ ...state }),
+    GET_POKEMON_FEED_DATA_SUCCESS: (state, { payload }) => {
+      const data = payload.map(({ data }) => data);
+      return {
+        ...state,
+        pokemonFeedData: data,
+        isLoading: false,
+      };
+    },
+    GET_POKEMON_FEED_DATA_FAILURE: (state, { payload }) => ({
       ...state,
       isLoading: false,
       error: payload,
@@ -45,6 +58,9 @@ export const {
   GET_POKEMON_LIST,
   GET_POKEMON_LIST_SUCCESS,
   GET_POKEMON_LIST_FAILURE,
+  GET_POKEMON_FEED_DATA,
+  GET_POKEMON_FEED_DATA_SUCCESS,
+  GET_POKEMON_FEED_DATA_FAILURE,
   UPDATE_POKEMON_FEED_DATA,
 } = actions;
 

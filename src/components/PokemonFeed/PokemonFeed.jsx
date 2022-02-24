@@ -1,11 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import api from "../../services/api";
+import { useDispatch, useSelector } from "react-redux";
 import {
   GET_POKEMON_FEED_DATA,
   GET_POKEMON_LIST,
-  UPDATE_POKEMON_FEED_DATA,
 } from "../../store/slices/PokemonFeedSlice";
 import Card from "../Card";
 import Loading from "../Loading";
@@ -22,12 +19,8 @@ const PokemonFeed = () => {
   React.useEffect(() => {
     const intersectionObserver = new IntersectionObserver(
       ([pageBottomEntry]) => {
-        // const [pageBottomEntry] = entries;
         if (!pageBottomEntry.isIntersecting) return;
         dispatch(GET_POKEMON_LIST());
-        if (pokemonList.length) {
-          dispatch(GET_POKEMON_FEED_DATA());
-        }
       }
     );
 
@@ -36,31 +29,13 @@ const PokemonFeed = () => {
     return () => intersectionObserver.disconnect();
   }, [dispatch]);
 
-  const [isLoadingFeed, setIsLoadingFeed] = React.useState(false);
-  const [errorFeed, setErrorFeed] = React.useState(null);
-
   React.useEffect(() => {
     const isThereAPokemonList = pokemonList.length > 0;
 
     if (isThereAPokemonList) {
-      // console.log("dispara");
-      // dispatch(GET_POKEMON_FEED_DATA(pokemonList));
-      // setIsLoadingFeed(true);
-      // setErrorFeed(null);
-      // Promise.all(pokemonList.map((name) => api.get(`/pokemon/${name}`)))
-      //   .then((newResponses) => {
-      //     console.log(newResponses);
-      //     const getData = ({ data }) => data;
-      //     const pokemonFeedData = newResponses.map(getData);
-      //     dispatch(UPDATE_POKEMON_FEED_DATA(pokemonFeedData));
-      //     setIsLoadingFeed(null);
-      //   })
-      //   .catch((err) => {
-      //     setIsLoadingFeed(false);
-      //     setErrorFeed(err);
-      //   });
+      dispatch(GET_POKEMON_FEED_DATA(pokemonList));
     }
-  }, [pokemonList.length]);
+  }, [dispatch, pokemonList.length]);
 
   return (
     <>

@@ -30,11 +30,6 @@ const About = () => {
   const { currentMode } = store.mode;
   const { favoritePokemonList } = store.favoritePokemon;
 
-  // const {
-  //   mode: { mode },
-  //   favoritePokemon: { favoritePokemonList },
-  // } = useSelector((store) => store);
-
   hooks.useSaveInLocalStorage("favoritePokemon", favoritePokemonList);
 
   const dispatch = useDispatch();

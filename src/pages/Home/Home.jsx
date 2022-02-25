@@ -9,7 +9,7 @@ import SearchBar from "../../components/SearchBar";
 import api from "../../services/api";
 import Container from "../../components/Container";
 import PokemonListContainer from "../../components/PokemonListContainer";
-import * as S from "./Search.style.js";
+import * as S from "./Home.style.js";
 import Loading from "../../components/Loading";
 import Head from "../../components/Head";
 import AnimatedPage from "../../components/AnimatedPage";

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Search from "./pages/Busca/Search";
+import Home from "./pages/Home";
 import FavoritePokemon from "./pages/Favoritos/FavoritePokemon";
 // import App from "./App";
 import PokemonDetails from "./pages/PokemonDetails";
@@ -9,7 +9,7 @@ function Navigation() {
     <Router>
       <Routes>
         {/* <Route path="/" element={<App />} /> */}
-        <Route path="/" element={<Search />} />
+        <Route path="/" element={<Home />} />
         <Route path="/:name" element={<PokemonDetails />} />
         <Route path="/favoritos" element={<FavoritePokemon />} />
         <Route path="/favoritos/:name" element={<PokemonDetails />} />

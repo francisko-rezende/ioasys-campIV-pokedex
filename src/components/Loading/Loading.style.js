@@ -15,6 +15,7 @@ export const PokeballContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  transform: translateY(20px);
 
   @media (max-width: 565px) {
     transform: translateY(10px);

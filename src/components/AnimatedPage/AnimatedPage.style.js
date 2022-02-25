@@ -11,5 +11,5 @@ to {
 
 export const Div = styled.div`
   animation-name: ${fadeIn};
-  animation-duration: 0.2s;
+  animation-duration: 0.3s;
 `;

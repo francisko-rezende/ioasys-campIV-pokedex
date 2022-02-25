@@ -8,6 +8,7 @@ import Card from "../Card";
 import Error from "../Error/Error";
 import Loading from "../Loading";
 import PokemonListContainer from "../PokemonListContainer";
+import * as S from "./PokemonFeed.style";
 
 const PokemonFeed = () => {
   const { pokemonList, pokemonFeedData, error, isLoading } = useSelector(
@@ -47,9 +48,9 @@ const PokemonFeed = () => {
           ))}
         </PokemonListContainer>
       )}
-      <div ref={pageBottom} style={{ height: "100px" }}>
+      <S.PageBottom ref={pageBottom}>
         {isLoading && <Loading mode={currentMode} />}
-      </div>
+      </S.PageBottom>
       {error && <Error errorMessage={error.message} isOnFeed />}
     </>
   );

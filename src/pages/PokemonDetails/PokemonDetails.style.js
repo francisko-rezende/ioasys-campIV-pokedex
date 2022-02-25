@@ -198,14 +198,15 @@ export const DetailsContainer = styled.section`
   }
 
   @media (max-width: calc(520px + 14px)) {
-    margin: 0 7px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 `;
 
 export const BaseStatItem = styled.li`
   display: grid;
   align-items: center;
-  grid-template-columns: 70px 50px 1fr;
+  grid-template-columns: 70px 48px 1fr;
   position: relative;
 
   &::before {
@@ -256,5 +257,6 @@ export const BackLink = styled(Link)`
 
 export const MainContainer = styled.main`
   max-width: calc(830px + 14px);
+  padding: 0 7px;
   margin: 0 auto;
 `;

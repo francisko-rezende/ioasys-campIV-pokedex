@@ -17,13 +17,14 @@ const FavoritePokemon = () => {
     favoritePokemon: { favoritePokemonList },
   } = useSelector((store) => store);
 
-  function generatePlaceholderCards(favoritePokemonList) {
+  const generatePlaceholderCards = (favoritePokemonList) => {
     const numberOfCardsToCreate = 12 - favoritePokemonList.length;
     const placeholderCardsArray = Array(numberOfCardsToCreate).fill();
+
     return placeholderCardsArray.map((_, index) => (
       <S.PlaceholderCard key={index} mode={currentMode} />
     ));
-  }
+  };
 
   return (
     <Background mode={currentMode}>
@@ -39,7 +40,7 @@ const FavoritePokemon = () => {
               <S.BackArrow /> Voltar
             </S.Link>
             <S.H2>
-              <FavoriteIcon isFavorite={true} /> Meus favotiros
+              <FavoriteIcon isFavorite /> Meus favoritos
             </S.H2>
           </S.SecondaryHeaderWrapper>
           <PokemonListContainer>

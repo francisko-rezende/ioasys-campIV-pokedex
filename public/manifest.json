@@ -1,6 +1,6 @@
 {
-  "name": "Pokédex",
-  "short_name": "Ioasys Camp | Pokédex",
+  "name": "Pokédex • Ioasys Camp IV",
+  "short_name": "Pokédex",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#ec0344",
   "background_color": "#ffffff",
   "display": "standalone"
 }

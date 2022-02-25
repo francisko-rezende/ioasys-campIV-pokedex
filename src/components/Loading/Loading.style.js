@@ -15,8 +15,10 @@ export const PokeballContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: 100px;
-  transform: translateY(-100px);
+
+  @media (max-width: 565px) {
+    transform: translateY(10px);
+  }
 `;
 
 export const Pokeball = styled.div`

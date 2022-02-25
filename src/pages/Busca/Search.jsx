@@ -13,6 +13,7 @@ import * as S from "./Search.style.js";
 import Loading from "../../components/Loading";
 import Head from "../../components/Head";
 import AnimatedPage from "../../components/AnimatedPage";
+import MyFavoritesLink from "../../components/MyFavoritesLink";
 
 const Search = () => {
   const [searchedPokemon, setSearchedPokemon] = React.useState("");
@@ -56,14 +57,17 @@ const Search = () => {
         />
         <Container>
           <Header />
-          <SearchBar
-            setSearchedPokemon={setSearchedPokemon}
-            handlePokemonSearch={handlePokemonSearch}
-            searchedPokemon={searchedPokemon}
-            mode={currentMode}
-            setError={setError}
-            setSearchResult={setSearchResult}
-          />
+          <S.Wrapper>
+            <SearchBar
+              setSearchedPokemon={setSearchedPokemon}
+              handlePokemonSearch={handlePokemonSearch}
+              searchedPokemon={searchedPokemon}
+              mode={currentMode}
+              setError={setError}
+              setSearchResult={setSearchResult}
+            />
+            <MyFavoritesLink />
+          </S.Wrapper>
           {isLoading && <Loading mode={currentMode} />}
           {searchResult && (
             <S.SearchResultContainer>

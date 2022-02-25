@@ -7,3 +7,9 @@ export const SearchResultContainer = styled.section`
   border-bottom: 1px solid
     ${({ theme }) => theme.colors.ioasysColor.secondaryColor};
 `;
+
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 71px;
+`;

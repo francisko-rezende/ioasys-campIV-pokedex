@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./SearchBar.style";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-svgomg.svg";
-import FavoriteIcon from "../FavoriteIcon";
 
 const SearchBar = ({
   setSearchedPokemon,
@@ -18,7 +17,7 @@ const SearchBar = ({
   };
 
   return (
-    <S.Wrapper>
+    <>
       <S.Form onSubmit={handlePokemonSearch}>
         <S.Label htmlFor="pokemonSearch" mode={mode}>
           Buscar
@@ -37,11 +36,7 @@ const SearchBar = ({
           )}
         </div>
       </S.Form>
-      <S.FavLink to="/favoritos">
-        <FavoriteIcon isFavorite={true} />{" "}
-        <S.FavLinkText>Meus favotiros</S.FavLinkText>
-      </S.FavLink>
-    </S.Wrapper>
+    </>
   );
 };
 

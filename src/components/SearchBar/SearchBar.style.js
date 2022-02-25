@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as UnstyledClearSearchIcon } from "../../assets/icons/clear-search-svgomg.svg";
 
@@ -43,29 +42,4 @@ export const Label = styled.label`
 
 export const ClearSearchIcon = styled(UnstyledClearSearchIcon)`
   cursor: pointer;
-`;
-
-export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 71px;
-`;
-
-export const FavLink = styled(Link)`
-  margin-left: calc(60px - 1rem);
-  padding: 1rem;
-  padding-right: 0;
-  display: flex;
-  gap: 10px;
-  color: ${({ theme }) => theme.colors.ioasysColor.secondaryColor};
-
-  @media (max-width: 920px) {
-    margin-left: calc(20px - 1rem);
-  }
-`;
-
-export const FavLinkText = styled.span`
-  @media (max-width: 920px) {
-    display: none;
-  }
 `;

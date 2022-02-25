@@ -13,6 +13,11 @@ export const ErrorText = styled.span`
   font-weight: 700;
   margin-top: 29px;
   color: hsla(0, 0%, 74%, 1);
+
+  @media (max-width: 565px) {
+    margin-top: unset;
+    margin-bottom: 50px;
+  }
 `;
 
 export const MainMessage = styled.p`

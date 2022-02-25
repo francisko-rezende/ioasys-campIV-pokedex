@@ -49,8 +49,8 @@ const PokemonFeed = () => {
       )}
       <div ref={pageBottom} style={{ height: "100px" }}>
         {isLoading && <Loading mode={currentMode} />}
+        {error && <Error errorMessage={error.message} isOnFeed />}
       </div>
-      {error && <Error isOnFeed />}
     </>
   );
 };

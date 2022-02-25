@@ -11,7 +11,8 @@ export const ErrorText = styled.span`
   position: relative;
   font-size: 148px;
   font-weight: 700;
-  margin-top: 29px;
+  /* margin-top: 29px; */
+  transform: translateY(-50px);
   color: hsla(0, 0%, 74%, 1);
 
   @media (max-width: 565px) {

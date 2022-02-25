@@ -9,6 +9,7 @@ import PokemonListContainer from "../../components/PokemonListContainer";
 import Head from "../../components/Head";
 
 import * as S from "./FavoritePokemon.style";
+import AnimatedPage from "../../components/AnimatedPage";
 
 const FavoritePokemon = () => {
   const {
@@ -26,28 +27,30 @@ const FavoritePokemon = () => {
 
   return (
     <Background mode={currentMode}>
-      <Head
-        title="Favoritos"
-        description="Pokémon favoritos. Aqui você encontra os Pokémon que você mais gosta."
-      />
-      <Container>
-        <Header />
-        <S.SecondaryHeaderWrapper mode={currentMode}>
-          <S.Link to="/">
-            <S.BackArrow /> Voltar
-          </S.Link>
-          <S.H2>
-            <FavoriteIcon isFavorite={true} /> Meus favotiros
-          </S.H2>
-        </S.SecondaryHeaderWrapper>
-        <PokemonListContainer>
-          {favoritePokemonList &&
-            favoritePokemonList.map((pokemon) => (
-              <Card key={pokemon.name} {...pokemon} />
-            ))}
-          {generatePlaceholderCards(favoritePokemonList)}
-        </PokemonListContainer>
-      </Container>
+      <AnimatedPage>
+        <Head
+          title="Favoritos"
+          description="Pokémon favoritos. Aqui você encontra os Pokémon que você mais gosta."
+        />
+        <Container>
+          <Header />
+          <S.SecondaryHeaderWrapper mode={currentMode}>
+            <S.Link to="/">
+              <S.BackArrow /> Voltar
+            </S.Link>
+            <S.H2>
+              <FavoriteIcon isFavorite={true} /> Meus favotiros
+            </S.H2>
+          </S.SecondaryHeaderWrapper>
+          <PokemonListContainer>
+            {favoritePokemonList &&
+              favoritePokemonList.map((pokemon) => (
+                <Card key={pokemon.name} {...pokemon} />
+              ))}
+            {generatePlaceholderCards(favoritePokemonList)}
+          </PokemonListContainer>
+        </Container>
+      </AnimatedPage>
     </Background>
   );
 };

@@ -12,6 +12,7 @@ import PokemonListContainer from "../../components/PokemonListContainer";
 import * as S from "./Search.style.js";
 import Loading from "../../components/Loading";
 import Head from "../../components/Head";
+import AnimatedPage from "../../components/AnimatedPage";
 
 const Search = () => {
   const [searchedPokemon, setSearchedPokemon] = React.useState("");
@@ -48,35 +49,37 @@ const Search = () => {
 
   return (
     <Background mode={currentMode}>
-      <Head
-        title="PokéFeed"
-        description="Home da sua Pokédex. Aqui você pode dar uma olhada nos Pokémon existentes e procurar por Pokémon específicos."
-      />
-      <Container>
-        <Header />
-        <SearchBar
-          setSearchedPokemon={setSearchedPokemon}
-          handlePokemonSearch={handlePokemonSearch}
-          searchedPokemon={searchedPokemon}
-          mode={currentMode}
-          setError={setError}
-          setSearchResult={setSearchResult}
+      <AnimatedPage>
+        <Head
+          title="PokéFeed"
+          description="Home da sua Pokédex. Aqui você pode dar uma olhada nos Pokémon existentes e procurar por Pokémon específicos."
         />
-        {isLoading && <Loading mode={currentMode} />}
-        {searchResult && (
-          <S.SearchResultContainer>
-            <PokemonListContainer>
-              <Card {...searchResult} />
-            </PokemonListContainer>
-          </S.SearchResultContainer>
-        )}
-        {error && (
-          <S.SearchResultContainer>
-            <Error errorMessage={error} />
-          </S.SearchResultContainer>
-        )}
-        <PokemonFeed />
-      </Container>
+        <Container>
+          <Header />
+          <SearchBar
+            setSearchedPokemon={setSearchedPokemon}
+            handlePokemonSearch={handlePokemonSearch}
+            searchedPokemon={searchedPokemon}
+            mode={currentMode}
+            setError={setError}
+            setSearchResult={setSearchResult}
+          />
+          {isLoading && <Loading mode={currentMode} />}
+          {searchResult && (
+            <S.SearchResultContainer>
+              <PokemonListContainer>
+                <Card {...searchResult} />
+              </PokemonListContainer>
+            </S.SearchResultContainer>
+          )}
+          {error && (
+            <S.SearchResultContainer>
+              <Error errorMessage={error} />
+            </S.SearchResultContainer>
+          )}
+          <PokemonFeed />
+        </Container>
+      </AnimatedPage>
     </Background>
   );
 };

@@ -22,6 +22,7 @@ const pokemonSlice = createSlice({
 
       return {
         ...state,
+        error: null,
         pokemonList: uniquePokemonNames,
         endpoint: payload.next.split("v2")[1],
       };

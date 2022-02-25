@@ -3,6 +3,7 @@ import { getSvgAddress } from "./getSvgAddress";
 import { convertToThreeDigitNumber } from "./convertToThreeDigitNumber";
 import { getFormattedMoves } from "./getFormattedMoves";
 import { abbreviateBaseStatName } from "./abbreviateBaseStatName";
+import { getEndpoint } from "./getEndpoint";
 
 export {
   getPreviousPageAddress,
@@ -10,4 +11,5 @@ export {
   convertToThreeDigitNumber,
   getFormattedMoves,
   abbreviateBaseStatName,
+  getEndpoint,
 };

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import * as helpers from "../../helpers";
 
 const initialState = {
   pokemonList: [],
@@ -14,17 +15,17 @@ const pokemonSlice = createSlice({
   reducers: {
     GET_POKEMON_LIST: (state) => ({ ...state, isLoading: true }),
     GET_POKEMON_LIST_SUCCESS: (state, { payload }) => {
-      const currentPokemon = [...state.pokemonList];
+      const currentPokemonCopy = [...state.pokemonList];
       const newPokemon = payload.results.map(({ name }) => name);
       const uniquePokemonNames = Array.from(
-        new Set([...currentPokemon, ...newPokemon])
+        new Set([...currentPokemonCopy, ...newPokemon])
       );
 
       return {
         ...state,
         error: null,
         pokemonList: uniquePokemonNames,
-        endpoint: payload.next.split("v2")[1],
+        endpoint: helpers.getEndpoint(payload.next),
       };
     },
     GET_POKEMON_LIST_FAILURE: (state, { payload }) => ({

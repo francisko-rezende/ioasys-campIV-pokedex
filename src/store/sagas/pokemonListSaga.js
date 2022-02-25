@@ -10,7 +10,7 @@ import api from "../../services/api";
 
 const getEndpoint = (state) => state.pokemonFeed.endpoint;
 
-function* getPokemons() {
+function* getPokemonList() {
   try {
     const endpoint = yield select(getEndpoint);
 
@@ -25,5 +25,5 @@ function* getPokemons() {
 }
 
 export default function* watcher() {
-  yield takeEvery(GET_POKEMON_LIST, getPokemons);
+  yield takeEvery(GET_POKEMON_LIST, getPokemonList);
 }

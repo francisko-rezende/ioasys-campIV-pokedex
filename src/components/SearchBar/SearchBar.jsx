@@ -23,7 +23,15 @@ const SearchBar = ({
           Buscar
         </S.Label>
         <S.Input
-          onChange={(e) => setSearchedPokemon(e.target.value)}
+          onChange={(e) => {
+            setSearchedPokemon(e.target.value);
+          }}
+          onKeyUp={() => {
+            if (searchedPokemon === "") {
+              setError(null);
+              setSearchResult(null);
+            }
+          }}
           value={searchedPokemon}
           type="text"
           id="pokemonSearch"

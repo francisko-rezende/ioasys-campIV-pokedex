@@ -14,6 +14,7 @@ import Loading from "../../components/Loading";
 import Head from "../../components/Head";
 import AnimatedPage from "../../components/AnimatedPage";
 import MyFavoritesLink from "../../components/MyFavoritesLink";
+import SearchResult from "../../components/SearchResult";
 
 const Search = () => {
   const [searchedPokemon, setSearchedPokemon] = React.useState("");
@@ -24,12 +25,11 @@ const Search = () => {
   function handlePokemonSearch(e) {
     e.preventDefault();
 
-    setSearchResult("");
+    setSearchResult(null);
     setError(null);
     setIsLoading(true);
 
     if (!searchedPokemon) {
-      setIsLoading(false);
       return;
     }
 
@@ -37,8 +37,8 @@ const Search = () => {
       .get(`/pokemon/${searchedPokemon}`)
       .then(({ data }) => {
         setSearchResult(data);
-        setIsLoading(false);
         setError(null);
+        setIsLoading(false);
       })
       .catch((error) => {
         setError(error.message);
@@ -68,19 +68,11 @@ const Search = () => {
             />
             <MyFavoritesLink />
           </S.Wrapper>
-          {isLoading && <Loading mode={currentMode} />}
-          {searchResult && (
-            <S.SearchResultContainer>
-              <PokemonListContainer>
-                <Card {...searchResult} />
-              </PokemonListContainer>
-            </S.SearchResultContainer>
-          )}
-          {error && (
-            <S.SearchResultContainer>
-              <Error errorMessage={error} />
-            </S.SearchResultContainer>
-          )}
+          <SearchResult
+            isLoading={isLoading}
+            searchResult={searchResult}
+            error={error}
+          />
           <PokemonFeed />
         </Container>
       </AnimatedPage>

@@ -3,9 +3,8 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import Background from "../../components/Background";
-import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
 import * as S from "./PokemonDetails.style";
-import * as helpers from "../../helpers";
+
 import Head from "../../components/Head";
 import { capitalizeWord } from "../../helpers/capitalizeWord";
 import AnimatedPage from "../../components/AnimatedPage";
@@ -14,10 +13,11 @@ import PokemonTypeTag from "../../components/PokemonTypeTag";
 import PokemonTraitList from "../../components/PokemonTraitList";
 import PokemonFlavorText from "../../components/PokemonFlavorText/PokemonFlavorText";
 import PokemonBaseStats from "../../components/PokemonBaseStats/PokemonBaseStats";
+import PokemonDetailsPictureArea from "../../components/PokemonDetailsPictureArea";
 
 const PokemonDetails = () => {
   const location = useLocation();
-  const previousPage = helpers.getPreviousPageAddress(location);
+
   const { pokemon } = location.state;
   const pokemonType = pokemon.types[0].type.name;
 
@@ -48,20 +48,10 @@ const PokemonDetails = () => {
               pokemonType={pokemonType}
             />
           </S.DetailsContainer>
-          <S.PokemonPicContainer pokemonType={pokemonType}>
-            <S.AboutWrapper>
-              <S.BackLink to={previousPage}>
-                <BackArrow /> Voltar
-              </S.BackLink>
-              <S.SecondaryTitle>About</S.SecondaryTitle>
-            </S.AboutWrapper>
-            <S.PokemonPicWrapper>
-              <S.PokemonPic
-                src={helpers.getSvgAddress(pokemon.id)}
-                alt={`Foto do/da ${pokemon.name}`}
-              />
-            </S.PokemonPicWrapper>
-          </S.PokemonPicContainer>
+          <PokemonDetailsPictureArea
+            pokemon={pokemon}
+            pokemonType={pokemonType}
+          />
         </S.MainContainer>
       </AnimatedPage>
     </Background>

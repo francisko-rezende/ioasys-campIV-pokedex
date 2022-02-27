@@ -17,8 +17,10 @@ const Header = ({ className }) => {
   return (
     <S.Header className={className}>
       <S.Title>
-        <S.Logo />
-        ioasys pokédex{" "}
+        <S.HomeLink to="/">
+          <S.Logo />
+          ioasys pokédex{" "}
+        </S.HomeLink>
       </S.Title>
       <Switch onClick={toggleMode} mode={currentMode} />
     </S.Header>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as IoasysLogo } from "../../assets/ioasys-logo-svgomg.svg";
 
@@ -25,4 +26,8 @@ export const Title = styled.h1`
   @media (max-width: 565px) {
     font-size: 24px;
   }
+`;
+
+export const HomeLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.ioasysColor.secondaryColor};
 `;

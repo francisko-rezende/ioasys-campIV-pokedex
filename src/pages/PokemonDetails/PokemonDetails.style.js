@@ -26,13 +26,6 @@ export const Bar = styled.div`
   position: relative;
 `;
 
-export const PokemonTraitList = styled.ul`
-  color: ${({ theme, mode }) => theme[mode].textMain};
-  margin-bottom: 56px;
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const BaseStatsTitle = styled.h3`
   color: ${({ theme, pokemonType }) => theme.colors.pokemonTypes[pokemonType]};
   margin-bottom: 20px;

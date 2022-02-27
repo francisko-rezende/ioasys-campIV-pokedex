@@ -3,9 +3,6 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import Background from "../../components/Background";
-import TraitListItem from "../../components/TraitListItem";
-import HeightIcon from "../../components/HeightIcon";
-import WeightIcon from "../../components/WeightIcon";
 import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
 import * as S from "./PokemonDetails.style";
 import * as helpers from "../../helpers";
@@ -15,6 +12,7 @@ import { capitalizeWord } from "../../helpers/capitalizeWord";
 import AnimatedPage from "../../components/AnimatedPage";
 import Details2ndaryHeader from "../../components/Details2ndaryHeader";
 import PokemonTypeTag from "../../components/PokemonTypeTag";
+import PokemonTraitList from "../../components/PokemonTraitList";
 
 const About = () => {
   const location = useLocation();
@@ -63,17 +61,7 @@ const About = () => {
             {pokemon.types.map(({ type }) => (
               <PokemonTypeTag key={type.name} pokemonType={type.name} />
             ))}
-            <S.PokemonTraitList mode={currentMode}>
-              <TraitListItem fadedText="weight">
-                <WeightIcon mode={currentMode} /> {pokemon.weight / 10} kg
-              </TraitListItem>
-              <TraitListItem fadedText="height">
-                <HeightIcon mode={currentMode} /> {pokemon.height / 10} m
-              </TraitListItem>
-              <TraitListItem fadedText="moves">
-                {helpers.getFormattedMoves(pokemon)}
-              </TraitListItem>
-            </S.PokemonTraitList>
+            <PokemonTraitList pokemon={pokemon} mode={currentMode} />
             <S.PokemonFlavorText pokemonType={pokemonType} mode={currentMode}>
               {flavorText}
             </S.PokemonFlavorText>

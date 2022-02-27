@@ -2,14 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Card from "../../components/Card";
 import Background from "../../components/Background";
-import FavoriteIcon from "../../components/FavoriteIcon";
 import Header from "../../components/Header/Header";
 import Container from "../../components/Container";
 import PokemonListContainer from "../../components/PokemonListContainer";
 import Head from "../../components/Head";
-
 import * as S from "./FavoritePokemon.style";
 import AnimatedPage from "../../components/AnimatedPage";
+import MyFavorites2ndHeader from "../../components/MyFavorites2ndHeader";
 
 const FavoritePokemon = () => {
   const {
@@ -35,14 +34,7 @@ const FavoritePokemon = () => {
         />
         <Container>
           <Header />
-          <S.SecondaryHeaderWrapper mode={currentMode}>
-            <S.Link to="/">
-              <S.BackArrow /> Voltar
-            </S.Link>
-            <S.H2>
-              <FavoriteIcon isFavorite /> Meus favoritos
-            </S.H2>
-          </S.SecondaryHeaderWrapper>
+          <MyFavorites2ndHeader />
           <PokemonListContainer>
             {favoritePokemonList &&
               favoritePokemonList.map((pokemon) => (

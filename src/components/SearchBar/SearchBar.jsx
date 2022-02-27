@@ -31,10 +31,17 @@ const SearchBar = ({ setSearchResult, setError, setIsLoading }) => {
       });
   }
 
-  const resetSearchAndError = () => {
+  const clearSearchInputAndResult = () => {
     setError(null);
     setSearchResult(null);
     setSearchedPokemon("");
+  };
+
+  const clearSearchResult = () => {
+    if (searchedPokemon === "") {
+      setError(null);
+      setSearchResult(null);
+    }
   };
 
   const { currentMode } = useSelector(({ mode }) => mode);
@@ -49,19 +56,14 @@ const SearchBar = ({ setSearchResult, setError, setIsLoading }) => {
           onChange={(e) => {
             setSearchedPokemon(e.target.value);
           }}
-          onKeyUp={() => {
-            if (searchedPokemon === "") {
-              setError(null);
-              setSearchResult(null);
-            }
-          }}
+          onKeyUp={clearSearchResult}
           value={searchedPokemon}
           type="text"
           id="pokemonSearch"
         ></S.Input>
         <div>
           {searchedPokemon ? (
-            <S.ClearSearchIcon onClick={resetSearchAndError} />
+            <S.ClearSearchIcon onClick={clearSearchInputAndResult} />
           ) : (
             <SearchIcon />
           )}

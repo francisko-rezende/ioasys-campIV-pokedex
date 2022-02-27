@@ -9,7 +9,7 @@ export const Header = styled.header`
   @media (max-width: 1380px) {
     position: absolute;
     top: -170px;
-    width: 360px;
+    width: 352px;
     display: grid;
     grid-template-columns: repeat(2, auto) 1fr;
     justify-content: start;

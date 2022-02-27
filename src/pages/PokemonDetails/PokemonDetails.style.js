@@ -26,21 +26,6 @@ export const Bar = styled.div`
   position: relative;
 `;
 
-export const PokemonTypeTag = styled.span`
-  text-transform: capitalize;
-  display: inline-block;
-  margin-right: 10px;
-  margin-bottom: 35px;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
-  padding: 2px 8px;
-  border-radius: 10px;
-  color: ${({ theme }) => theme.colors.grayscale.white};
-  background-color: ${({ theme, pokemonType }) =>
-    theme.colors.pokemonTypes[pokemonType]};
-`;
-
 export const PokemonTraitList = styled.ul`
   color: ${({ theme, mode }) => theme[mode].textMain};
   margin-bottom: 56px;

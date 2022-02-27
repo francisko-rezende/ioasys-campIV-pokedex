@@ -14,6 +14,7 @@ import Head from "../../components/Head";
 import { capitalizeWord } from "../../helpers/capitalizeWord";
 import AnimatedPage from "../../components/AnimatedPage";
 import Details2ndaryHeader from "../../components/Details2ndaryHeader";
+import PokemonTypeTag from "../../components/PokemonTypeTag";
 
 const About = () => {
   const location = useLocation();
@@ -60,9 +61,7 @@ const About = () => {
           <S.DetailsContainer mode={currentMode}>
             <Details2ndaryHeader pokemon={pokemon} pokemonType={pokemonType} />
             {pokemon.types.map(({ type }) => (
-              <S.PokemonTypeTag key={type.name} pokemonType={type.name}>
-                {type.name}
-              </S.PokemonTypeTag>
+              <PokemonTypeTag key={type.name} pokemonType={type.name} />
             ))}
             <S.PokemonTraitList mode={currentMode}>
               <TraitListItem fadedText="weight">

@@ -14,7 +14,7 @@ import Details2ndaryHeader from "../../components/Details2ndaryHeader";
 import PokemonTypeTag from "../../components/PokemonTypeTag";
 import PokemonTraitList from "../../components/PokemonTraitList";
 
-const About = () => {
+const PokemonDatails = () => {
   const location = useLocation();
   const previousPage = helpers.getPreviousPageAddress(location);
   const { pokemon } = location.state;
@@ -110,4 +110,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default PokemonDatails;

@@ -22,7 +22,6 @@ const SearchBar = ({ setSearchResult, setError, setIsLoading }) => {
       .get(`/pokemon/${searchedPokemon}`)
       .then(({ data }) => {
         setSearchResult(data);
-        setError(null);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -37,7 +36,7 @@ const SearchBar = ({ setSearchResult, setError, setIsLoading }) => {
     setSearchedPokemon("");
   };
 
-  const clearSearchResult = () => {
+  const clearSearchResultIfNoInput = () => {
     if (searchedPokemon === "") {
       setError(null);
       setSearchResult(null);
@@ -56,7 +55,7 @@ const SearchBar = ({ setSearchResult, setError, setIsLoading }) => {
           onChange={(e) => {
             setSearchedPokemon(e.target.value);
           }}
-          onKeyUp={clearSearchResult}
+          onKeyUp={clearSearchResultIfNoInput}
           value={searchedPokemon}
           type="text"
           id="pokemonSearch"

@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Card = styled(Link)`
   border-radius: 10.49px;
   color: ${({ theme, type }) => theme.colors.pokemonTypes[type]};
@@ -57,6 +63,5 @@ export const Name = styled.span`
     top: unset;
     font-size: calc(10 / 16 * 1rem);
     top: -24%;
-    /* background-color: rgba(1, 1, 1, 0.4); */
   }
 `;

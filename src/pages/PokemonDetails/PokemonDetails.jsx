@@ -6,13 +6,13 @@ import Background from "../../components/Background";
 import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
 import * as S from "./PokemonDetails.style";
 import * as helpers from "../../helpers";
-import api from "../../services/api";
 import Head from "../../components/Head";
 import { capitalizeWord } from "../../helpers/capitalizeWord";
 import AnimatedPage from "../../components/AnimatedPage";
 import Details2ndaryHeader from "../../components/Details2ndaryHeader";
 import PokemonTypeTag from "../../components/PokemonTypeTag";
 import PokemonTraitList from "../../components/PokemonTraitList";
+import PokemonFlavorText from "../../components/PokemonFlavorText/PokemonFlavorText";
 
 const PokemonDatails = () => {
   const location = useLocation();
@@ -22,28 +22,6 @@ const PokemonDatails = () => {
 
   const store = useSelector((store) => store);
   const { currentMode } = store.mode;
-
-  const [flavorText, setFlavorText] = React.useState("");
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    api
-      .get(`/pokemon-species/${pokemon.name}`)
-      .then(({ data }) => {
-        const isLanguageEN = ({ language }) => language.name === "en";
-        const englishFlavorTextObj =
-          data.flavor_text_entries.find(isLanguageEN);
-
-        if (englishFlavorTextObj) {
-          setFlavorText(englishFlavorTextObj.flavor_text);
-          return;
-        }
-
-        setFlavorText(data.flavor_text_entries[0].flavor_text);
-      })
-      .catch((error) => console.log(error));
-  }, [pokemon.name]);
 
   return (
     <Background mode={currentMode} pokemonType={pokemonType}>
@@ -62,9 +40,7 @@ const PokemonDatails = () => {
               <PokemonTypeTag key={type.name} pokemonType={type.name} />
             ))}
             <PokemonTraitList pokemon={pokemon} mode={currentMode} />
-            <S.PokemonFlavorText pokemonType={pokemonType} mode={currentMode}>
-              {flavorText}
-            </S.PokemonFlavorText>
+            <PokemonFlavorText pokemon={pokemon} mode={currentMode} />
             <S.BaseStatsTitle pokemonType={pokemonType}>
               Base Stats
             </S.BaseStatsTitle>

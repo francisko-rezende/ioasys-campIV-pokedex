@@ -13,8 +13,9 @@ import Details2ndaryHeader from "../../components/Details2ndaryHeader";
 import PokemonTypeTag from "../../components/PokemonTypeTag";
 import PokemonTraitList from "../../components/PokemonTraitList";
 import PokemonFlavorText from "../../components/PokemonFlavorText/PokemonFlavorText";
+import PokemonBaseStats from "../../components/PokemonBaseStats/PokemonBaseStats";
 
-const PokemonDatails = () => {
+const PokemonDetails = () => {
   const location = useLocation();
   const previousPage = helpers.getPreviousPageAddress(location);
   const { pokemon } = location.state;
@@ -41,30 +42,11 @@ const PokemonDatails = () => {
             ))}
             <PokemonTraitList pokemon={pokemon} mode={currentMode} />
             <PokemonFlavorText pokemon={pokemon} mode={currentMode} />
-            <S.BaseStatsTitle pokemonType={pokemonType}>
-              Base Stats
-            </S.BaseStatsTitle>
-            <ul>
-              {pokemon.stats.map((item) => (
-                <S.BaseStatItem key={item.stat.name}>
-                  <S.BaseStatName pokemonType={pokemonType}>
-                    {helpers.abbreviateBaseStatName(item.stat.name)}
-                  </S.BaseStatName>
-                  <S.BaseStatValue mode={currentMode}>
-                    {helpers.convertToThreeDigitNumber(item.base_stat)}
-                  </S.BaseStatValue>{" "}
-                  <S.BarWrapper
-                    role="progressbar"
-                    aria-valuenow={item.base_stat}
-                    aria-valuemin="0"
-                    aria-valuemax="255"
-                    pokemonType={pokemonType}
-                  >
-                    <S.Bar pokemonType={pokemonType} value={item.base_stat} />
-                  </S.BarWrapper>
-                </S.BaseStatItem>
-              ))}
-            </ul>
+            <PokemonBaseStats
+              pokemon={pokemon}
+              mode={currentMode}
+              pokemonType={pokemonType}
+            />
           </S.DetailsContainer>
           <S.PokemonPicContainer pokemonType={pokemonType}>
             <S.AboutWrapper>
@@ -86,4 +68,4 @@ const PokemonDatails = () => {
   );
 };
 
-export default PokemonDatails;
+export default PokemonDetails;

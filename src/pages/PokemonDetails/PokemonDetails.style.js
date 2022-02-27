@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import pokeballBg from "../../assets/icons/pokeball-bg-svgomg.svg";
+import { default as HeaderComponent } from "../../components/Header/Header";
+
+export const Header = styled(HeaderComponent)`
+  @media (max-width: 1380px) {
+    display: none;
+  }
+`;
 
 export const BarWrapper = styled.div`
   background-color: ${({ theme, pokemonType }) =>
@@ -192,6 +199,7 @@ export const DetailsContainer = styled.section`
   background-color: ${({ theme, mode }) => theme[mode].pageBg};
 
   @media (max-width: 1380px) {
+    margin-top: 163px;
     border-radius: 15px;
     padding: 80px 40px 70px 40px;
     max-width: calc(440px + 80px);

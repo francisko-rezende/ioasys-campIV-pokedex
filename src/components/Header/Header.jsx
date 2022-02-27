@@ -6,7 +6,7 @@ import { TOGGLE_THEME } from "../../store/slices/modeSlice";
 import Switch from "../Switch";
 import * as S from "./Header.style";
 
-const Header = () => {
+const Header = ({ className }) => {
   const dispatch = useDispatch();
   const { currentMode } = useSelector(({ mode }) => mode);
 
@@ -15,7 +15,7 @@ const Header = () => {
   useSaveInLocalStorage("mode", currentMode);
 
   return (
-    <S.Header>
+    <S.Header className={className}>
       <S.Title>
         <S.Logo />
         ioasys pokédex{" "}

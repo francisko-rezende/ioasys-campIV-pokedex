@@ -76,7 +76,7 @@ const About = () => {
           )}s`}
         />
         <S.MainContainer>
-          <Header />
+          <S.Header />
           <S.DetailsContainer mode={currentMode}>
             <S.SectionHeader>
               <S.Button>

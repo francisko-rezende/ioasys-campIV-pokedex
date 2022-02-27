@@ -29,7 +29,7 @@ const PokemonDetails = () => {
       <AnimatedPage>
         <Head
           title={capitalizeWord(pokemon.name)}
-          description={`Aqui você encontra tudo o que pode querer saber sober ${capitalizeWord(
+          description={`Aqui você encontra tudo o que pode querer saber sobre ${capitalizeWord(
             pokemon.name
           )}s`}
         />

@@ -1,24 +1,19 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import {
-  ADD_FAVORITE_POKEMON,
-  REMOVE_FAVORITE_POKEMON,
-} from "../../store/slices/favoritePokemonSlice";
+
 import Background from "../../components/Background";
-import FavoriteIcon from "../../components/FavoriteIcon";
-import Header from "../../components/Header/Header";
 import TraitListItem from "../../components/TraitListItem";
 import HeightIcon from "../../components/HeightIcon";
 import WeightIcon from "../../components/WeightIcon";
 import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
 import * as S from "./PokemonDetails.style";
-import * as hooks from "../../hooks";
 import * as helpers from "../../helpers";
 import api from "../../services/api";
 import Head from "../../components/Head";
 import { capitalizeWord } from "../../helpers/capitalizeWord";
 import AnimatedPage from "../../components/AnimatedPage";
+import Details2ndaryHeader from "../../components/Details2ndaryHeader";
 
 const About = () => {
   const location = useLocation();
@@ -28,25 +23,10 @@ const About = () => {
 
   const store = useSelector((store) => store);
   const { currentMode } = store.mode;
-  const { favoritePokemonList } = store.favoritePokemon;
 
-  hooks.useSaveInLocalStorage("favoritePokemon", favoritePokemonList);
-
-  const dispatch = useDispatch();
-
-  const addToFavorites = () => {
-    dispatch(ADD_FAVORITE_POKEMON(pokemon));
-  };
-  const removeFromFavorites = () => {
-    dispatch(REMOVE_FAVORITE_POKEMON(pokemon));
-  };
-
-  const [isFavorite, setIsFavorite] = React.useState(false);
   const [flavorText, setFlavorText] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
-
-  hooks.useSyncFavoriteState(setIsFavorite, favoritePokemonList, pokemon);
 
   React.useEffect(() => {
     api
@@ -78,21 +58,7 @@ const About = () => {
         <S.MainContainer>
           <S.Header />
           <S.DetailsContainer mode={currentMode}>
-            <S.SectionHeader>
-              <S.Button>
-                <FavoriteIcon
-                  removeFromFavorites={removeFromFavorites}
-                  addToFavorites={addToFavorites}
-                  isFavorite={isFavorite}
-                />
-              </S.Button>
-              <S.PokemonName pokemonType={pokemonType}>
-                {pokemon.name}
-              </S.PokemonName>
-              <S.PokemonId pokemonType={pokemonType}>
-                #{helpers.convertToThreeDigitNumber(pokemon.id)}
-              </S.PokemonId>
-            </S.SectionHeader>
+            <Details2ndaryHeader pokemon={pokemon} pokemonType={pokemonType} />
             {pokemon.types.map(({ type }) => (
               <S.PokemonTypeTag key={type.name} pokemonType={type.name}>
                 {type.name}

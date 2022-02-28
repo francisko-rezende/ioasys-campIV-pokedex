@@ -27,7 +27,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/francisko-rezende/ioasys-campIV-pokedex">
-    <img src="public/android-chrome-192x192.png" alt="Logo" width="80" height="80">
+    <img src="public/favicon.svg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Pokédex • Ioasys Camp IV</h3>

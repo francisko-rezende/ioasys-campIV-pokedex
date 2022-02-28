@@ -8,13 +8,13 @@ import HeightIcon from "../HeightIcon";
 const PokemonTraitList = ({ pokemon, mode }) => {
   return (
     <S.PokemonTraitList mode={mode}>
-      <TraitListItem fadedText="weight">
+      <TraitListItem traitName="weight">
         <WeightIcon mode={mode} /> {pokemon.weight / 10} kg
       </TraitListItem>
-      <TraitListItem fadedText="height">
+      <TraitListItem traitName="height">
         <HeightIcon mode={mode} /> {pokemon.height / 10} m
       </TraitListItem>
-      <TraitListItem fadedText="moves">
+      <TraitListItem traitName="moves">
         {helpers.getFormattedMoves(pokemon)}
       </TraitListItem>
     </S.PokemonTraitList>

@@ -1,4 +1,5 @@
 import * as S from "./FavoriteIcon.style";
+import PropTypes from "prop-types";
 
 const FavoriteIcon = ({ addToFavorites, removeFromFavorites, isFavorite }) => {
   return (
@@ -17,6 +18,12 @@ const FavoriteIcon = ({ addToFavorites, removeFromFavorites, isFavorite }) => {
       />
     </S.FavoriteIcon>
   );
+};
+
+FavoriteIcon.propTypes = {
+  addToFavorites: PropTypes.func,
+  removeFromFavorites: PropTypes.func,
+  isFavorite: PropTypes.bool,
 };
 
 export default FavoriteIcon;

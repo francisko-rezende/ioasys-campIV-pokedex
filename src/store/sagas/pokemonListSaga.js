@@ -1,12 +1,12 @@
 import { call, put, takeEvery, select } from "redux-saga/effects";
 
+import api from "../../services/api";
 import {
   GET_POKEMON_LIST,
   GET_POKEMON_LIST_SUCCESS,
   GET_POKEMON_LIST_FAILURE,
 } from "../slices/PokemonFeedSlice";
 
-import api from "../../services/api";
 
 const getEndpoint = (state) => state.pokemonFeed.endpoint;
 

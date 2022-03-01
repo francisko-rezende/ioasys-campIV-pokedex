@@ -1,12 +1,12 @@
 import { call, put, takeEvery, select, all } from "redux-saga/effects";
 
+import api from "../../services/api";
 import {
   GET_POKEMON_FEED_DATA,
   GET_POKEMON_FEED_DATA_FAILURE,
   GET_POKEMON_FEED_DATA_SUCCESS,
 } from "../slices/PokemonFeedSlice";
 
-import api from "../../services/api";
 
 const fetchPokemonData = (name) => api.get(`/pokemon/${name}`);
 

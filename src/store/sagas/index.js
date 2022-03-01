@@ -1,7 +1,7 @@
 import { all } from "redux-saga/effects";
 
-import pokemonListSaga from "./pokemonListSaga";
 import pokemonFeedDataSaga from "./PokemonFeedDataSaga";
+import pokemonListSaga from "./pokemonListSaga";
 
 function* rootSaga() {
   yield all([pokemonListSaga(), pokemonFeedDataSaga()]);

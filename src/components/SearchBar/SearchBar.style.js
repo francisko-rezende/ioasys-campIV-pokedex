@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { ReactComponent as UnstyledClearSearchIcon } from "../../assets/icons/clear-search-svgomg.svg";
 
 export const Input = styled.input`

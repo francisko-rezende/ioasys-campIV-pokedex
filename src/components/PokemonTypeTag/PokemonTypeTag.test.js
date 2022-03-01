@@ -1,7 +1,8 @@
-import PokemonTypeTag from "./";
 import { render, screen } from "@testing-library/react";
-import theme from "../../styles/theme";
 import { ThemeProvider } from "styled-components";
+
+import theme from "../../styles/theme";
+import PokemonTypeTag from "./";
 
 test("tag renders the received pokemon type as text properly", () => {
   render(

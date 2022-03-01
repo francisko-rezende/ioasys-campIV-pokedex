@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import pokeballBg from "../../assets/icons/pokeball-bg-svgomg.svg";
 
 export const PokemonPicContainer = styled.div`

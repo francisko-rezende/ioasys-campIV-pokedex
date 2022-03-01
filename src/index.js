@@ -1,11 +1,15 @@
 import React from "react";
+
 import ReactDOM from "react-dom";
-import Navigation from "./routes";
-import { ThemeProvider } from "styled-components";
-import theme from "./styles/theme";
-import GlobalStyle from "./styles/GlobalStyle";
 import { Provider } from "react-redux";
+import { ThemeProvider } from "styled-components";
+
+import Navigation from "./routes";
 import store from "./store";
+import GlobalStyle from "./styles/GlobalStyle";
+import theme from "./styles/theme";
+
+
 
 ReactDOM.render(
   <React.StrictMode>

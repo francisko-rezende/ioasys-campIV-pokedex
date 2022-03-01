@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { default as HeaderComponent } from "../../components/Header";
 
 export const Header = styled(HeaderComponent)`

@@ -1,9 +1,9 @@
+import { abbreviateBaseStatName } from "./abbreviateBaseStatName";
+import { convertToThreeDigitNumber } from "./convertToThreeDigitNumber";
+import { getEndpoint } from "./getEndpoint";
+import { getFormattedMoves } from "./getFormattedMoves";
 import { getPreviousPageAddress } from "./getPreviousPageAddress";
 import { getSvgAddress } from "./getSvgAddress";
-import { convertToThreeDigitNumber } from "./convertToThreeDigitNumber";
-import { getFormattedMoves } from "./getFormattedMoves";
-import { abbreviateBaseStatName } from "./abbreviateBaseStatName";
-import { getEndpoint } from "./getEndpoint";
 
 export {
   getPreviousPageAddress,

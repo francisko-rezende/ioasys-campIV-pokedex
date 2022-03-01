@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
+import styled from "styled-components";
+
 import { ReactComponent as BackArrowIcon } from "../../assets/icons/back-svgomg.svg";
 
 export const SecondaryHeaderWrapper = styled.div`

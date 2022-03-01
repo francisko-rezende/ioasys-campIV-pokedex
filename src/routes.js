@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+
 import FavoritePokemon from "./pages/Favoritos/FavoritePokemon";
+import Home from "./pages/Home";
 import PokemonDetails from "./pages/PokemonDetails";
 
 function Navigation() {

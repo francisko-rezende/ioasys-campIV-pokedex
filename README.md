@@ -78,7 +78,8 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Ioasys pokédex](https://user-images.githubusercontent.com/39991049/156233316-4e6e29bc-a92b-4ff9-b930-f4a1d4bd615a.png)
+
 
 Welcome to your go-to app for finding out all (or almost all) there is to know about Pokémon! Tired of endless doom-scrolling on Instagram? Come endless doom-scroll on our PókeFeed™,! Want to find out more about a specific pocket-sized monster? Use our search feature! Suffering of an unquenchable thirst for Pokémon knowledge? Click any Pokémon to drown yourself in its stats! Find yourself coming back over and over again for some juicy Porygon trivia (I'm not judging you, buddy, whatever floats your boat)? Add it to your favorites and make it super easy to scratch that itch. Now go catch them all, you beautiful trainer! Developed as part of [Ioasys Camp IV](https://camp.ioasys.com.br/) - Frontend track. Besides taking part in this bootcamp, I have no relationship whatsoever with Ioasys (we can still change that though, you know how to reach, Sweet Pea, pls get in touch :cry:)
 

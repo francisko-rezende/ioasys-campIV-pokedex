@@ -82,7 +82,6 @@
 
 Welcome to your go-to app for finding out all (or almost all) there is to know about Pokémon! Tired of endless doom-scrolling on Instagram? Come endless doom-scroll on our PókeFeed™,! Want to find out more about a specific pocket-sized monster? Use our search feature! Suffering of an unquenchable thirst for Pokémon knowledge? Click any Pokémon to drown yourself in its stats! Find yourself coming back over and over again for some juicy Porygon trivia (I'm not judging you, buddy, whatever floats your boat)? Add it to your favorites and make it super easy to scratch that itch. Now go catch them all, you beautiful trainer! Developed as part of [Ioasys Camp IV](https://camp.ioasys.com.br/) - Frontend track. Besides taking part in this bootcamp, I have no relationship whatsoever with Ioasys (we can still change that though, you know how to reach, Sweet Pea, pls get in touch :cry:)
 
-<!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `francisko-rezende`, `ioasys-campIV-pokedex`, `francisko_r`, `francisko-rezende`, `gmail.com`, `francisko.rezende`, `Pokédex • Ioasys Camp IV`, `This is your go-to app for finding out all (or almost all) there is to know about Pokémon! Tired of endless doom-scrolling on Instagram? Come endless doom-scroll our Pókemon feed! Want to find out more about a specific pocket-sized monster? Use our search feature! Suffering of an unquenchable thirst for Pokémon knowledge? Click any Pokémon to drown yourself in its stats! Find yourself coming back over and over again for some juicy Snorlax facts (I'm not judging you, buddy, whatever floats your boat)? Add it to your favorites and make it super easy to scratch that itch. No go catch them all, you beautiful trainer! ` -->
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -118,8 +117,10 @@ To get a local copy up and running follow these simple example steps.
    ```
 2. Install NPM packages
    ```sh
-   npm install
+   yarn install
    ```
+(NPM should work too but)
+
 3. Have fun!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -128,7 +129,15 @@ To get a local copy up and running follow these simple example steps.
 
 ## Usage
 
-Like a Magikarp, this app is simple yet powerful. You can browse the different Pokémon using the feed, more Pokémon will load once you reach the bottom. You can also search for specific Pokémon using the search bar. Clicking the Pokémon cards will show you more info on the clicked Pokémon. Finally, you can save your favorite Pokémon by clicking the heart icon next to their name in the page with their detailed info.
+Like a Magikarp, this app is simple yet powerful. You can browse the different Pokémon using the feed, more Pokémon will load once you reach the bottom. You can also search for specific Pokémon using the search bar. Clicking the Pokémon cards will show you more info on the clicked Pokémon. Finally, you can save your favorite Pokémon by clicking the heart icon next to their name in the page with their detailed info. You can do the same to remove Pokémons from your list; your favorites will have a filled heart next to their name, just give a click and they'll be gone from the list. Here's how to do it:
+
+- Browsing the PokéFeed
+
+- Searching for specific Pokémon
+
+- Adding a Pokémon to your favorite list
+
+- Removing a Pokémon from your favorite list
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 

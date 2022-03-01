@@ -3,7 +3,7 @@ import React from "react";
 import PokemonTypeTag from ".";
 
 export default {
-  title: "PokemonTypeTag",
+  title: "Components/PokemonTypeTag",
   component: PokemonTypeTag,
 };
 

@@ -3,7 +3,7 @@ import React from "react";
 import FavoriteIcon from "./";
 
 export default {
-  title: "FavoriteIcon",
+  title: "Components/FavoriteIcon",
   component: FavoriteIcon,
 };
 

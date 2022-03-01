@@ -93,6 +93,10 @@ Welcome to your go-to app for finding out all (or almost all) there is to know a
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Redux-Saga](https://redux-saga.js.org/)
 - [Radix-UI](https://www.radix-ui.com/)
+- [Storybook](https://storybook.js.org/)
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -117,9 +121,9 @@ To get a local copy up and running follow these simple example steps.
    ```
 2. Install NPM packages
    ```sh
-   yarn install
+   npm install
    ```
-(NPM should work too but)
+(`yarn` should work fine too, I used `npm` here because `yarn`'s installation instructions seemed more complicated than `npm`'s)
 
 3. Have fun!
 
@@ -143,7 +147,9 @@ Like a Magikarp, this app is simple yet powerful. You can browse the different P
 - Removing a Pokémon from your favorite list
 ![remove-from-favs-opt](https://user-images.githubusercontent.com/39991049/156229803-2112379b-4f5e-47cf-9c4f-f6ac7f4cc428.gif)
 
-<!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
+The app also has a modest storybook and a few tests, you can check them out like so `npm run storybook` and `npm run test`. Finally, this app has custom linting using `eslint` (e.g., it checks import organization), you can run check test it out using `npm run lint` or `npm run lint:fix` if you want to eslint to implement the suggestions it can straight await.
+
+Once again, if you're using yarn you should be able to use it, just replace `npm` with `yarn` in the previous examples.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -156,6 +162,8 @@ Like a Magikarp, this app is simple yet powerful. You can browse the different P
 - [x] Save to favorites/Fav list
 - [ ] Make app more acessible
   - [ ] Use more Radix-UI components
+- [ ] Write more tests for the app
+- [ ] Write more stories for the app's storybook
 
 See the [open issues](https://github.com/francisko-rezende/ioasys-campIV-pokedex/issues) for a full list of proposed features (and known issues).
 

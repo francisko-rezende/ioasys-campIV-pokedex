@@ -132,12 +132,16 @@ To get a local copy up and running follow these simple example steps.
 Like a Magikarp, this app is simple yet powerful. You can browse the different Pokémon using the feed, more Pokémon will load once you reach the bottom. You can also search for specific Pokémon using the search bar. Clicking the Pokémon cards will show you more info on the clicked Pokémon. Finally, you can save your favorite Pokémon by clicking the heart icon next to their name in the page with their detailed info. You can do the same to remove Pokémons from your list; your favorites will have a filled heart next to their name, just give a click and they'll be gone from the list. Here's how to do it:
 
 - Browsing the PokéFeed
+![feed-opt](https://user-images.githubusercontent.com/39991049/156229767-bcaf7ab9-a639-466e-8a57-06896e93f39e.gif)
 
 - Searching for specific Pokémon
+![search-opt](https://user-images.githubusercontent.com/39991049/156229782-b777ce36-350a-4348-a5ca-32c08b27ea76.gif)
 
 - Adding a Pokémon to your favorite list
+![add-to-favs-opt](https://user-images.githubusercontent.com/39991049/156229789-5bcc1930-4890-4e76-8a5f-3ce2d2dcf526.gif)
 
 - Removing a Pokémon from your favorite list
+![remove-from-favs-opt](https://user-images.githubusercontent.com/39991049/156229803-2112379b-4f5e-47cf-9c4f-f6ac7f4cc428.gif)
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 

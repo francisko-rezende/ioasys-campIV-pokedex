@@ -5,7 +5,10 @@ export const DetailsContainer = styled.section`
   position: relative;
   z-index: 3;
   margin: 0 auto;
-  background-color: ${({ theme, mode }) => theme[mode].pageBg};
+  background-color: ${({ theme, mode }) =>
+    mode === "darkMode"
+      ? theme.colors.grayscale.darkGray
+      : theme.colors.grayscale.white};
 
   @media (max-width: 1380px) {
     margin-top: 163px;

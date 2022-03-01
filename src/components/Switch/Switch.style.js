@@ -18,11 +18,11 @@ export const Thumb = styled(SwitchPrimitive.Thumb)`
   width: 15px;
   height: 15px;
   background-color: ${({ theme, mode }) =>
-    mode === "dark"
+    mode === "darkMode"
       ? "hsla(257, 3%, 56%, 1)"
       : theme.colors.ioasysColor.secondaryColor};
   border-radius: 9999px;
   transform: ${({ mode }) =>
-    mode === "dark" ? "translateX(6px)" : "translateX(19px)"};
+    mode === "darkMode" ? "translateX(6px)" : "translateX(19px)"};
   will-change: transform;
 `;

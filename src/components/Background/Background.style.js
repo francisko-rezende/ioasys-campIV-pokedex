@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const Background = styled.div`
-  background-color: ${({ theme, mode }) => theme[mode].pageBg};
+  background-color: ${({ theme, mode }) =>
+    mode === "darkMode"
+      ? theme.colors.grayscale.darkGray
+      : theme.colors.grayscale.white};
   height: 100%;
   min-height: 100vh;
   width: 100%;

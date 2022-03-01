@@ -14,7 +14,10 @@ export const Card = styled(Link)`
   width: 150px;
   height: 148px;
   text-decoration: none;
-  background-color: ${({ theme, mode }) => theme[mode].cardBg};
+  background-color: ${({ theme, mode }) =>
+    mode === "darkMode"
+      ? theme.colors.otherColors.genericDarkGray
+      : theme.colors.grayscale.white};
 
   @media (max-width: 565px) {
     width: 104px;

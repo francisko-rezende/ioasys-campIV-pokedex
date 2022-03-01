@@ -8,7 +8,10 @@ export const SecondaryHeaderWrapper = styled.div`
   grid-template-columns: auto 1fr;
   align-items: center;
   border-top: 2px solid
-    ${({ theme, mode }) => theme[mode].favoritesHorizontalSeparator};
+    ${({ theme, mode }) =>
+      mode === "darkMode"
+        ? theme.colors.otherColors.genericDarkGray
+        : theme.colors.otherColors.favoritesHorizontalSeparatorDarkMode};
 
   @media (max-width: 500px) {
     grid-template-columns: 1fr;
@@ -18,7 +21,7 @@ export const SecondaryHeaderWrapper = styled.div`
 `;
 
 export const Link = styled(RouterLink)`
-  color: ${({ theme }) => theme.agnostic.back};
+  color: ${({ theme }) => theme.colors.otherColors.backLinkAndTraitItemName};
   display: flex;
   align-items: center;
   font-weight: 400;

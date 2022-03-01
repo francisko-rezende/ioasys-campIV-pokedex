@@ -67,5 +67,8 @@ export const PokeballButton = styled.div`
 `;
 
 export const LoadingText = styled.span`
-  color: ${({ theme, mode }) => theme[mode].textMain};
+  color: ${({ theme, mode }) =>
+    mode === "darkMode"
+      ? theme.colors.grayscale.white
+      : theme.colors.grayscale.darkGray};
 `;

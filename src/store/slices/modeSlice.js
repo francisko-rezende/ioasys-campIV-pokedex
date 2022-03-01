@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentMode: JSON.parse(window.localStorage.getItem("mode")) || "light",
+  currentMode: JSON.parse(window.localStorage.getItem("mode")) || "lightMode",
 };
 
 const modeSlice = createSlice({
@@ -9,7 +9,7 @@ const modeSlice = createSlice({
   initialState,
   reducers: {
     TOGGLE_THEME: (state) => ({
-      currentMode: state.currentMode === "light" ? "dark" : "light",
+      currentMode: state.currentMode === "lightMode" ? "darkMode" : "lightMode",
     }),
   },
 });

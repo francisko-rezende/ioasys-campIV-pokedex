@@ -13,7 +13,7 @@ export const TraitName = styled.h3`
   content: "${({ fadedText }) => fadedText}";
   font-weight: 400;
   font-size: 12px;
-  color: ${({ theme }) => theme.agnostic.textSecondary};
+  color: ${({ theme }) => theme.colors.otherColors.backLinkAndTraitItemName};
   text-transform: capitalize;
   position: absolute;
   top: 26px;

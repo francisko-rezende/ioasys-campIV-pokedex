@@ -32,7 +32,10 @@ export const BaseStatName = styled.span`
 `;
 
 export const BaseStatValue = styled.span`
-  color: ${({ theme, mode }) => theme[mode].textMain};
+  color: ${({ theme, mode }) =>
+    mode === "darkMode"
+      ? theme.colors.grayscale.white
+      : theme.colors.grayscale.darkGray};
 `;
 
 export const BarWrapper = styled.div`

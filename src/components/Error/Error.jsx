@@ -1,11 +1,11 @@
 import React from "react";
 
+import PropTypes from "prop-types";
+
 import * as S from "./Error.style";
 
 const Error = ({ errorMessage, isOnFeed }) => {
   const getErrorMessageToRender = (errorMessage) => {
-    console.log(errorMessage);
-
     return (
       {
         "Request failed with status code 404": isOnFeed
@@ -26,6 +26,9 @@ const Error = ({ errorMessage, isOnFeed }) => {
   );
 };
 
-//Este pokemon não foi encontrado ;(
+Error.propTypes = {
+  errorMessage: PropTypes.string,
+  isOnFeed: PropTypes.bool,
+};
 
 export default Error;

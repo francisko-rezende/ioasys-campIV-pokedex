@@ -1,14 +1,21 @@
 import React from "react";
 
-const Head = (props) => {
+import PropTypes from "prop-types";
+
+const Head = ({ title, description }) => {
   React.useEffect(() => {
-    document.title = props.title + " • Pokédex";
+    document.title = title + " • Pokédex";
     document
       .querySelector("meta[name='description']")
-      .setAttribute("content", props.description || "");
-  }, [props]);
+      .setAttribute("content", description || "");
+  }, [title, description]);
 
   return <></>;
+};
+
+Head.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
 };
 
 export default Head;

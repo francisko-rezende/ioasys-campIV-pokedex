@@ -7,7 +7,7 @@ const useSyncFavoriteState = (setIsFavorite, favoritePokemonList, pokemon) => {
     );
 
     setIsFavorite(isInFavList);
-  }, [favoritePokemonList, pokemon.name]);
+  }, [favoritePokemonList, pokemon.name, setIsFavorite]);
 };
 
 export default useSyncFavoriteState;

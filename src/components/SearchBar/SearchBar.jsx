@@ -1,5 +1,6 @@
 import React from "react";
 
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-svgomg.svg";
@@ -46,6 +47,12 @@ const SearchBar = ({ setSearchResult, setError, setIsLoading }) => {
   };
 
   const { currentMode } = useSelector(({ mode }) => mode);
+
+  SearchBar.propTypes = {
+    setSearchResult: PropTypes.func,
+    setError: PropTypes.func,
+    setIsLoading: PropTypes.func,
+  };
 
   return (
     <>

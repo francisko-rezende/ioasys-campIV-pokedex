@@ -1,5 +1,7 @@
 import React from "react";
 
+import PropTypes from "prop-types";
+
 import * as S from "./WeightIcon.style";
 
 const WeightIcon = ({ mode }) => {
@@ -17,6 +19,10 @@ const WeightIcon = ({ mode }) => {
       />
     </svg>
   );
+};
+
+WeightIcon.propTypes = {
+  mode: PropTypes.string,
 };
 
 export default WeightIcon;

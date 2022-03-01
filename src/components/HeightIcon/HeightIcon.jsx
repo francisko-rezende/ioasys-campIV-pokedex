@@ -1,5 +1,7 @@
 import React from "react";
 
+import ProptTypes from "prop-types";
+
 import * as S from "./HeightIcon.style";
 
 const HeightIcon = ({ mode }) => {
@@ -17,6 +19,10 @@ const HeightIcon = ({ mode }) => {
       />
     </svg>
   );
+};
+
+HeightIcon.propTypes = {
+  mode: ProptTypes.string,
 };
 
 export default HeightIcon;

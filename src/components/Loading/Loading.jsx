@@ -1,5 +1,7 @@
 import React from "react";
 
+import ProptTypes from "prop-types";
+
 import * as S from "./Loading.style";
 
 const Loading = ({ mode }) => {
@@ -11,6 +13,10 @@ const Loading = ({ mode }) => {
       <S.LoadingText mode={mode}>Carregando...</S.LoadingText>
     </S.PokeballContainer>
   );
+};
+
+Loading.propTypes = {
+  mode: ProptTypes.string,
 };
 
 export default Loading;

@@ -1,14 +1,16 @@
 import React from "react";
+
 import { useSelector } from "react-redux";
-import Card from "../../components/Card";
-import Background from "../../components/Background";
-import Header from "../../components/Header/Header";
-import Container from "../../components/Container";
-import PokemonListContainer from "../../components/PokemonListContainer";
-import Head from "../../components/Head";
-import * as S from "./FavoritePokemon.style";
+
 import AnimatedPage from "../../components/AnimatedPage";
+import Background from "../../components/Background";
+import Card from "../../components/Card";
+import Container from "../../components/Container";
+import Head from "../../components/Head";
+import Header from "../../components/Header/Header";
 import MyFavorites2ndHeader from "../../components/MyFavorites2ndHeader";
+import PokemonListContainer from "../../components/PokemonListContainer";
+import * as S from "./FavoritePokemon.style";
 
 const FavoritePokemon = () => {
   const {

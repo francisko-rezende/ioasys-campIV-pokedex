@@ -1,5 +1,7 @@
 import React from "react";
+
 import { useSelector } from "react-redux";
+
 import * as helpers from "../../helpers";
 import * as S from "./Card.style";
 

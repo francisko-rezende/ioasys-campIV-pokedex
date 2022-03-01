@@ -1,5 +1,7 @@
 import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   GET_POKEMON_FEED_DATA,
   GET_POKEMON_LIST,

@@ -1,4 +1,5 @@
 import React from "react";
+
 import api from "../../services/api";
 import * as S from "./PokemonFlavorText.style";
 

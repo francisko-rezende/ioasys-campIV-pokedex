@@ -1,5 +1,8 @@
-import * as S from "./FavoriteIcon.style";
+import React from "react";
+
 import PropTypes from "prop-types";
+
+import * as S from "./FavoriteIcon.style";
 
 const FavoriteIcon = ({ addToFavorites, removeFromFavorites, isFavorite }) => {
   return (

@@ -1,6 +1,8 @@
 import React from "react";
+
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+
 import useSaveInLocalStorage from "../../hooks/useSaveInLocalStorage";
 import { TOGGLE_THEME } from "../../store/slices/modeSlice";
 import Switch from "../Switch";

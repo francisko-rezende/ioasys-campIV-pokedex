@@ -1,8 +1,10 @@
 import React from "react";
-import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
-import * as S from "./PokemonDetailsPictureArea.style";
-import * as helpers from "../../helpers";
+
 import { useLocation } from "react-router-dom";
+
+import { ReactComponent as BackArrow } from "../../assets/icons/back-svgomg.svg";
+import * as helpers from "../../helpers";
+import * as S from "./PokemonDetailsPictureArea.style";
 
 const PokemonDetailsPictureArea = ({ pokemonType, pokemon }) => {
   const location = useLocation();

@@ -1,13 +1,15 @@
 import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
+import * as helpers from "../../helpers";
+import * as hooks from "../../hooks";
 import {
   ADD_FAVORITE_POKEMON,
   REMOVE_FAVORITE_POKEMON,
 } from "../../store/slices/favoritePokemonSlice";
-import * as hooks from "../../hooks";
-import * as S from "./Details2ndaryHeader.style";
-import * as helpers from "../../helpers";
 import FavoriteIcon from "../FavoriteIcon";
+import * as S from "./Details2ndaryHeader.style";
 
 const Details2ndaryHeader = ({ pokemon, pokemonType }) => {
   const [isFavorite, setIsFavorite] = React.useState(false);

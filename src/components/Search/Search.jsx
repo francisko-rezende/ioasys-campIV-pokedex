@@ -1,4 +1,5 @@
 import React from "react";
+
 import MyFavoritesLink from "../MyFavoritesLink";
 import SearchBar from "../SearchBar";
 import SearchResult from "../SearchResult";

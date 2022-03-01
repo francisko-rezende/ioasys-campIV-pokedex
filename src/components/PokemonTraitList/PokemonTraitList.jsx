@@ -1,9 +1,10 @@
 import React from "react";
-import * as S from "./PokemonTraitList.style";
+
 import * as helpers from "../../helpers";
+import HeightIcon from "../HeightIcon";
 import TraitListItem from "../TraitListItem";
 import WeightIcon from "../WeightIcon";
-import HeightIcon from "../HeightIcon";
+import * as S from "./PokemonTraitList.style";
 
 const PokemonTraitList = ({ pokemon, mode }) => {
   return (

@@ -1,10 +1,11 @@
 import React from "react";
-import * as S from "./PokemonDetailsSection.style";
+
 import Details2ndaryHeader from "../Details2ndaryHeader";
 import PokemonBaseStats from "../PokemonBaseStats/PokemonBaseStats";
 import PokemonFlavorText from "../PokemonFlavorText";
 import PokemonTraitList from "../PokemonTraitList";
 import PokemonTypeTag from "../PokemonTypeTag";
+import * as S from "./PokemonDetailsSection.style";
 
 const PokemonDetailsSection = ({ mode, pokemon, pokemonType }) => {
   return (

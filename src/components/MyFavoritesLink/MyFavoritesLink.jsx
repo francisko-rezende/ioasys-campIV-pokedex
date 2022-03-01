@@ -1,4 +1,5 @@
 import React from "react";
+
 import FavoriteIcon from "../FavoriteIcon";
 import * as S from "./MyFavoritesLink.style";
 

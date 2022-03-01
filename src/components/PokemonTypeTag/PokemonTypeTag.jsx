@@ -1,6 +1,8 @@
 import React from "react";
-import * as S from "./PokemonTypeTag.style";
+
 import PropTypes from "prop-types";
+
+import * as S from "./PokemonTypeTag.style";
 
 const PokemonTypeTag = ({ pokemonType }) => {
   return (

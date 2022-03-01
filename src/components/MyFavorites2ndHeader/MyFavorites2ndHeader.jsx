@@ -1,5 +1,7 @@
 import React from "react";
+
 import { useSelector } from "react-redux";
+
 import FavoriteIcon from "../FavoriteIcon";
 import * as S from "./MyFavorites2ndHeader.style";
 

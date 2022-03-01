@@ -1,8 +1,10 @@
 import React from "react";
-import * as S from "./SearchBar.style";
+
+import { useSelector } from "react-redux";
+
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-svgomg.svg";
 import api from "../../services/api";
-import { useSelector } from "react-redux";
+import * as S from "./SearchBar.style";
 
 const SearchBar = ({ setSearchResult, setError, setIsLoading }) => {
   const [searchedPokemon, setSearchedPokemon] = React.useState("");

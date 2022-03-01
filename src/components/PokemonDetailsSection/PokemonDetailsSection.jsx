@@ -1,7 +1,7 @@
 import React from "react";
 
-import Details2ndaryHeader from "../Details2ndaryHeader";
 import PokemonBaseStats from "../PokemonBaseStats/PokemonBaseStats";
+import PokemonDetailsHeader from "../PokemonDetailsHeader";
 import PokemonFlavorText from "../PokemonFlavorText";
 import PokemonTraitList from "../PokemonTraitList";
 import PokemonTypeTag from "../PokemonTypeTag";
@@ -10,7 +10,7 @@ import * as S from "./PokemonDetailsSection.style";
 const PokemonDetailsSection = ({ mode, pokemon, pokemonType }) => {
   return (
     <S.DetailsContainer mode={mode}>
-      <Details2ndaryHeader pokemon={pokemon} pokemonType={pokemonType} />
+      <PokemonDetailsHeader pokemon={pokemon} pokemonType={pokemonType} />
       {pokemon.types.map(({ type }) => (
         <PokemonTypeTag key={type.name} pokemonType={type.name} />
       ))}

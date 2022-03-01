@@ -9,9 +9,9 @@ import {
   REMOVE_FAVORITE_POKEMON,
 } from "../../store/slices/favoritePokemonSlice";
 import FavoriteIcon from "../FavoriteIcon";
-import * as S from "./Details2ndaryHeader.style";
+import * as S from "./PokemonDetailsHeader.style";
 
-const Details2ndaryHeader = ({ pokemon, pokemonType }) => {
+const PokemonDetailsHeader = ({ pokemon, pokemonType }) => {
   const [isFavorite, setIsFavorite] = React.useState(false);
   const store = useSelector((store) => store);
   const { favoritePokemonList } = store.favoritePokemon;
@@ -46,4 +46,4 @@ const Details2ndaryHeader = ({ pokemon, pokemonType }) => {
   );
 };
 
-export default Details2ndaryHeader;
+export default PokemonDetailsHeader;

@@ -1,13 +1,15 @@
 import React from "react";
+
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import Background from "../../components/Background";
-import * as S from "./PokemonDetails.style";
-import Head from "../../components/Head";
-import { capitalizeWord } from "../../helpers/capitalizeWord";
+
 import AnimatedPage from "../../components/AnimatedPage";
+import Background from "../../components/Background";
+import Head from "../../components/Head";
 import PokemonDetailsPictureArea from "../../components/PokemonDetailsPictureArea";
 import PokemonDetailsSection from "../../components/PokemonDetailsSection";
+import { capitalizeWord } from "../../helpers/capitalizeWord";
+import * as S from "./PokemonDetails.style";
 
 const PokemonDetails = () => {
   const location = useLocation();

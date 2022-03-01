@@ -9,8 +9,6 @@ import store from "./store";
 import GlobalStyle from "./styles/GlobalStyle";
 import theme from "./styles/theme";
 
-
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

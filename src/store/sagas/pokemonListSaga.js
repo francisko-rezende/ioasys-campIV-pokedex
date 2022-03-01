@@ -7,7 +7,6 @@ import {
   GET_POKEMON_LIST_FAILURE,
 } from "../slices/PokemonFeedSlice";
 
-
 const getEndpoint = (state) => state.pokemonFeed.endpoint;
 
 function* getPokemonList() {

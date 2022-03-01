@@ -7,7 +7,6 @@ import {
   GET_POKEMON_FEED_DATA_SUCCESS,
 } from "../slices/PokemonFeedSlice";
 
-
 const fetchPokemonData = (name) => api.get(`/pokemon/${name}`);
 
 const getPokemonList = (state) => Array.from(state.pokemonFeed.pokemonList);

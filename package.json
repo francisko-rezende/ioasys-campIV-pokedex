@@ -59,6 +59,8 @@
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "^0.0.9",
     "babel-loader": "^8.2.3",
+    "eslint": "^8.10.0",
+    "eslint-plugin-react": "^7.29.2",
     "husky": "^7.0.4",
     "webpack": "5"
   }

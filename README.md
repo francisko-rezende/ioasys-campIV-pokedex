@@ -225,7 +225,7 @@ Project Link: [https://github.com/francisko-rezende/ioasys-campIV-pokedex](https
 [issues-shield]: https://img.shields.io/github/issues/francisko-rezende/ioasys-campIV-pokedex.svg?style=for-the-badge
 [issues-url]: https://github.com/francisko-rezende/ioasys-campIV-pokedex/issues
 [license-shield]: https://img.shields.io/github/license/francisko-rezende/ioasys-campIV-pokedex.svg?style=for-the-badge
-[license-url]: https://github.com/francisko-rezende/ioasys-campIV-pokedex/blob/master/LICENSE.txt
+[license-url]: https://github.com/francisko-rezende/ioasys-campIV-pokedex/blob/francisko-main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/francisko-rezende
 [product-screenshot]: images/screenshot.png

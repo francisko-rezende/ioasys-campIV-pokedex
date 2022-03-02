@@ -21,6 +21,8 @@ const PokemonDetailsHeader = ({ pokemon, pokemonType }) => {
 
   hooks.useSyncFavoriteState(setIsFavorite, favoritePokemonList, pokemon);
 
+  hooks.useSaveInLocalStorage("favoritePokemon", favoritePokemonList);
+
   const addToFavorites = () => {
     dispatch(ADD_FAVORITE_POKEMON(pokemon));
   };

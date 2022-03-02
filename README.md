@@ -124,7 +124,7 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    npm install
    ```
-(`yarn` should work fine too, I used `npm` here because `yarn`'s installation instructions seemed more complicated than `npm`'s)
+(`yarn` should work fine too, I used `npm` in these instructions because `yarn`'s installation instructions seemed more complicated than `npm`'s)
 
 3. Have fun!
 
@@ -134,7 +134,7 @@ To get a local copy up and running follow these simple example steps.
 
 ## Usage
 
-Like a Magikarp, this app is simple yet powerful. You can browse the different Pokémon using the feed, more Pokémon will load once you reach the bottom. You can also search for specific Pokémon using the search bar. Clicking the Pokémon cards will show you more info on the clicked Pokémon. Finally, you can save your favorite Pokémon by clicking the heart icon next to their name in the page with their detailed info. You can do the same to remove Pokémons from your list; your favorites will have a filled heart next to their name, just give a click and they'll be gone from the list. Here's how to do it:
+Like a Magikarp, this app is simple yet powerful. You can browse the different Pokémon using the feed, more Pokémon will load once you reach the bottom. You can also search for specific Pokémon using the search bar. Clicking the Pokémon cards will show you more info on the clicked Pokémon. Finally, you can save your favorite Pokémon by clicking the heart icon next to their name in the page with their detailed info. You can do the same to remove Pokémons from your list; your favorites will have a filled heart next to their name, just give a click and they'll be gone from the list. Here's how to do these things:
 
 - Browsing the PokéFeed
 ![feed-opt](https://user-images.githubusercontent.com/39991049/156229767-bcaf7ab9-a639-466e-8a57-06896e93f39e.gif)
@@ -148,7 +148,7 @@ Like a Magikarp, this app is simple yet powerful. You can browse the different P
 - Removing a Pokémon from your favorite list
 ![remove-from-favs-opt](https://user-images.githubusercontent.com/39991049/156229803-2112379b-4f5e-47cf-9c4f-f6ac7f4cc428.gif)
 
-The app also has a modest storybook and a few tests, you can check them out like so `npm run storybook` and `npm run test`. Finally, this app has custom linting using `eslint` (e.g., it checks import organization), you can run check test it out using `npm run lint` or `npm run lint:fix` if you want to eslint to implement the suggestions it can straight await.
+The app also has a humble storybook and a couple of tests, you can check them out like so: `npm run storybook` and `npm run test`, respectively. Finally, this app has custom linting using `eslint` (e.g., it checks import organization), you can run check test it out using `npm run lint` or `npm run lint:fix` if you want to eslint to implement the suggestions it can straight await. It also uses `prettier` to ~~enforce a reasonable code style~~ help keep the code clean so even if you don't `prettier`'s plugin I got you covered (just to make sure it's clear, the linting implements prettier corrections too).
 
 Once again, if you're using yarn you should be able to use it, just replace `npm` with `yarn` in the previous examples.
 

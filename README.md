@@ -40,7 +40,7 @@
     <a href="https://github.com/francisko-rezende/ioasys-campIV-pokedex"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/francisko-rezende/ioasys-campIV-pokedex">View Demo</a>
+    <a href="https://ioasys-camp-iv-pokedex.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/francisko-rezende/ioasys-campIV-pokedex/issues">Report Bug</a>
     ·

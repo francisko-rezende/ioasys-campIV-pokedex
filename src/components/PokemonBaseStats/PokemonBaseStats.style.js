@@ -8,8 +8,9 @@ export const BaseStatsTitle = styled.h3`
 export const BaseStatItem = styled.li`
   display: grid;
   align-items: center;
-  grid-template-columns: 70px 48px 1fr;
+  grid-template-columns: 70px 37px 1fr;
   position: relative;
+  padding: 2px 0;
 
   &::before {
     position: absolute;
@@ -36,6 +37,7 @@ export const BaseStatValue = styled.span`
     mode === "darkMode"
       ? theme.colors.grayscale.white
       : theme.colors.grayscale.darkGray};
+  font-size: 12px;
 `;
 
 export const BarWrapper = styled.div`

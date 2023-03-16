@@ -69,6 +69,6 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
     "prettier": "2.5.1",
-    "webpack": "5"
+    "webpack": "5.76.0"
   }
 }
